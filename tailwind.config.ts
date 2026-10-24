@@ -10,54 +10,56 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#030303",
-        surface: {
-          50: "#18181b",
-          100: "#121215",
-          200: "#0d0d0f",
-          300: "#08080a",
-          400: "#050506",
+        paper: {
+          DEFAULT: "#f2efe9",
+          muted: "#e8e3d9",
+          dim: "#d9d4c7",
         },
-        brand: {
-          light: "#c3c4f7",
-          primary: "#8587e3",
-          hover: "#9b9de9",
-          muted: "#696aac",
-          dark: "#3d3e75",
-          glow: "rgba(133, 135, 227, 0.25)",
+        ink: {
+          DEFAULT: "#1a1a1a",
+          soft: "#1c1917",
+          card: "#24211e",
+          deep: "#141210",
+        },
+        muted: {
+          DEFAULT: "#9b9590",
+          dark: "#6b6560",
+          deep: "#4a4540",
+        },
+        accent: {
+          red: "#e63946",
+          blue: "#3b82f6",
+          amber: "#f59e0b",
         },
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "system-ui", "-apple-system", "sans-serif"],
-        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
+        sans: ["var(--font-sans)", "Instrument Sans", "system-ui", "-apple-system", "sans-serif"],
+        serif: ["var(--font-serif)", "Newsreader", "Georgia", "serif"],
+        mono: ["var(--font-mono)", "IBM Plex Mono", "ui-monospace", "monospace"],
+        logo: ["var(--font-logo)", "Outfit", "sans-serif"],
       },
       animation: {
-        marquee: "marquee 28s linear infinite",
-        "marquee-reverse": "marquee-reverse 28s linear infinite",
-        "pulse-glow": "pulseGlow 6s ease-in-out infinite",
-        "beam-sweep": "beamSweep 8s ease-in-out infinite",
-        "float": "float 4s ease-in-out infinite",
+        "reveal-in": "reveal-in .85s cubic-bezier(.22,1,.36,1) forwards",
+        "hero-kenburns": "hero-kenburns 28s ease-in-out infinite alternate",
+        "hero-enter": "hero-enter .72s cubic-bezier(.22,1,.36,1) forwards",
+        "nano-draw": "nano-draw 2.2s ease-out forwards",
       },
       keyframes: {
-        marquee: {
-          "0%": { transform: "translateX(0%)" },
-          "100%": { transform: "translateX(-50%)" },
+        "reveal-in": {
+          "0%": { opacity: "0", transform: "translateY(16px)" },
+          "100%": { opacity: "1", transform: "none" },
         },
-        "marquee-reverse": {
-          "0%": { transform: "translateX(-50%)" },
-          "100%": { transform: "translateX(0%)" },
+        "hero-kenburns": {
+          "0%": { transform: "scale(1)" },
+          "100%": { transform: "scale(1.055)" },
         },
-        pulseGlow: {
-          "0%, 100%": { opacity: "0.4", transform: "scale(1)" },
-          "50%": { opacity: "0.75", transform: "scale(1.04)" },
+        "hero-enter": {
+          "0%": { opacity: "0", transform: "translateY(24px)" },
+          "100%": { opacity: "1", transform: "none" },
         },
-        beamSweep: {
-          "0%, 100%": { transform: "rotate(-15deg)" },
-          "50%": { transform: "rotate(15deg)" },
-        },
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-6px)" },
+        "nano-draw": {
+          "0%": { strokeDashoffset: "1000" },
+          "100%": { strokeDashoffset: "0" },
         },
       },
     },

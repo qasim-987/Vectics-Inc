@@ -3,24 +3,25 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { firstName, lastName, email, service, budget, message, botField, formLoadedAt } = body;
+    const { firstName, lastName, email, service, message, botField, formLoadedAt } = body;
 
-    // Honeypot spam protection: if botField is populated, silently reject
+    // Honeypot anti-spam protection: if botField is populated, silently reject
     if (botField && botField.trim().length > 0) {
       console.warn("[ANTI-SPAM] Honeypot triggered by automated bot submission.");
       return NextResponse.json({ success: true, message: "Inquiry processed" }, { status: 200 });
     }
 
-    // Timestamp check: if submitted in under 1 second, likely an automated scraper
-    if (formLoadedAt && Date.now() - Number(formLoadedAt) < 1000) {
-      console.warn("[ANTI-SPAM] Rejected submission completed in < 1 second.");
+    // Timestamp check: if submitted in under 1.5 seconds, likely an automated scraper
+    if (formLoadedAt && Date.now() - Number(formLoadedAt) < 1500) {
+      console.warn("[ANTI-SPAM] Rejected submission completed in < 1.5 seconds.");
       return NextResponse.json({ success: true, message: "Inquiry processed" }, { status: 200 });
     }
 
     // Input validation
-    if (!firstName || !email || !message) {
+    const name = (firstName || "").trim();
+    if (!name || !email || !message) {
       return NextResponse.json(
-        { error: "First name, email, and message are required fields." },
+        { error: "Name, email, and message are required fields." },
         { status: 400 }
       );
     }
@@ -33,20 +34,19 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Log verified inquiry (in production this would dispatch to SendGrid, Resend, or CRM)
-    console.log("[INQUIRY LOG]", {
+    // Log verified inquiry
+    console.log("[VECTIS INQUIRY LOG]", {
       timestamp: new Date().toISOString(),
-      clientName: `${firstName} ${lastName || ""}`.trim(),
+      clientName: `${name} ${lastName || ""}`.trim(),
       email,
-      service: service || "General Scoping",
-      budget: budget || "Unspecified",
-      messageLength: message.length
+      operation: service || "General Depot Scoping",
+      messageLength: message.length,
     });
 
     return NextResponse.json({
       success: true,
-      message: "Your inquiry has been logged. An Axiom Labs architect will respond within 24 hours.",
-      receivedAt: new Date().toISOString()
+      message: "Your inquiry has been logged. A Vectis Inc. engineer will review your operational requirements and respond within 24 hours.",
+      receivedAt: new Date().toISOString(),
     });
   } catch (error: any) {
     console.error("[API CONTACT ERROR]", error);

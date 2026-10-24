@@ -3,11 +3,22 @@
 @tailwind utilities;
 
 :root {
-  --background: #030303;
-  --foreground: #f4f4f5;
-  --accent-purple: #8587e3;
-  --accent-violet: #696aac;
-  --card-border: rgba(255, 255, 255, 0.08);
+  --color-paper: #f2efe9;
+  --color-paper-muted: #e8e3d9;
+  --color-ink: #1a1a1a;
+  --color-ink-soft: #1c1917;
+  --color-ink-card: #24211e;
+  --color-line: rgba(242, 239, 233, 0.12);
+  --color-muted: #9b9590;
+  --color-muted-dark: #6b6560;
+
+  --nano-blue: #3b82f6;
+  --nano-amber: #f59e0b;
+
+  --font-sans: "Instrument Sans", system-ui, -apple-system, sans-serif;
+  --font-serif: "Newsreader", Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-logo: "Outfit", sans-serif;
 }
 
 * {
@@ -20,108 +31,132 @@ html {
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  background-color: var(--color-ink-soft);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
   overflow-x: hidden;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Glassmorphism card styles */
-.glass-panel {
-  background: rgba(14, 14, 18, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* Scroll reveal triggers */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
 }
 
-.glass-panel-hover {
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+.reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.glass-panel-hover:hover {
-  background: rgba(20, 20, 26, 0.85);
-  border-color: rgba(133, 135, 227, 0.35);
-  box-shadow: 0 12px 36px -10px rgba(133, 135, 227, 0.15);
-  transform: translateY(-2px);
+/* Hero entrance animations */
+.hero-enter {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: hero-enter 0.72s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-/* Conic & Radial Light Rays Backdrop */
-.light-rays-bg {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1400px;
-  height: 900px;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
+.hero-enter-eyebrow {
+  animation-delay: 80ms;
 }
 
-.ray-conic {
-  position: absolute;
-  top: -200px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1200px;
-  height: 900px;
-  background: conic-gradient(
-    from 180deg at 50% 0%,
-    transparent 40deg,
-    rgba(133, 135, 227, 0.18) 60deg,
-    rgba(105, 106, 172, 0.28) 85deg,
-    rgba(255, 255, 255, 0.35) 90deg,
-    rgba(105, 106, 172, 0.28) 95deg,
-    rgba(133, 135, 227, 0.18) 120deg,
-    transparent 140deg
-  );
-  filter: blur(55px);
-  opacity: 0.65;
+.hero-enter-line {
+  animation-delay: 160ms;
 }
 
-.ray-glow {
-  position: absolute;
-  top: -120px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 600px;
-  height: 380px;
-  background: radial-gradient(
-    ellipse at 50% 20%,
-    rgba(133, 135, 227, 0.45) 0%,
-    rgba(105, 106, 172, 0.2) 50%,
-    transparent 80%
-  );
-  filter: blur(40px);
+.hero-enter-line-2 {
+  animation-delay: 260ms;
 }
 
-/* Custom Scrollbar */
+.hero-enter-lede {
+  animation-delay: 320ms;
+}
+
+.hero-enter-cta {
+  animation-delay: 440ms;
+}
+
+@keyframes hero-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero kenburns motion */
+.hero-kenburns {
+  transform-origin: 50% 50%;
+  will-change: transform;
+  animation: hero-kenburns 28s ease-in-out infinite alternate;
+}
+
+.hero-kenburns.is-paused {
+  animation-play-state: paused !important;
+}
+
+@keyframes hero-kenburns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.055);
+  }
+}
+
+/* Arrow hover micro-interactions */
+.footer-cta-arrow {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.footer-cta:hover .footer-cta-arrow {
+  transform: translateX(4px);
+}
+
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #050506;
+  background: var(--color-ink-soft);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(242, 239, 233, 0.2);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(133, 135, 227, 0.4);
-}
-
-/* Tabular Numerals for live clock and animated counters */
-.tabular-nums {
-  font-variant-numeric: tabular-nums;
+  background: rgba(242, 239, 233, 0.35);
 }
 
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *,
+  ::before,
+  ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .hero-kenburns {
+    animation: none !important;
+    transform: none !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .hero-enter {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
   }
 }
