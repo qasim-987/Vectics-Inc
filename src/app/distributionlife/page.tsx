@@ -114,8 +114,8 @@ export default function DistributionLifePage() {
         </div>
       </section>
 
-      {/* 5 Operational Pillars */}
-      <section className="py-24 mx-auto max-w-[1180px] px-5 md:px-8">
+      {/* 5 Operational Pillars — anchor for the DistributionLife dropdown */}
+      <section id="features" className="py-24 mx-auto max-w-[1180px] px-5 md:px-8">
         <div className="mb-16">
           <span className="text-[0.78rem] font-mono uppercase tracking-[0.18em] text-accent-amber">
             // Core capabilities
