@@ -12,34 +12,34 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="w-full pt-32 pb-24">
+    <div className="w-full bg-surface pt-32 pb-24 text-content">
       <div className="mx-auto max-w-[840px] px-5 md:px-8">
         {/* Header */}
-        <div className="border-b border-white/[0.08] pb-10 mb-12">
-          <span className="text-xs font-mono uppercase tracking-[0.2em] text-accent-amber block mb-4">
+        <div className="border-b border-surface-border pb-10 mb-12">
+          <span className="text-xs font-mono uppercase tracking-[0.2em] text-brand block mb-4">
             // Legal & Terms of Service
           </span>
-          <h1 className="text-4xl sm:text-5xl font-serif font-normal tracking-tight text-paper">
+          <h1 className="text-4xl sm:text-5xl font-serif font-normal tracking-tight text-content">
             Terms of Use
           </h1>
-          <p className="mt-4 text-xs font-mono text-muted">
+          <p className="mt-4 text-xs font-mono text-content-muted">
             Last Updated: October 2026 • Vectis Operations Inc.
           </p>
         </div>
 
         {/* Terms Content */}
-        <div className="space-y-10 text-paper/85 text-base sm:text-lg leading-relaxed">
+        <div className="space-y-10 text-content-muted text-base sm:text-lg leading-relaxed">
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-paper font-sans">
+            <h2 className="text-xl font-semibold text-content font-sans">
               1. Acceptance of Terms
             </h2>
             <p>
-              By accessing the website (<a href="https://vectisoperations.tech" className="text-accent-amber underline">vectisoperations.tech</a>) or downloading, installing, or evaluating software distributed by Vectis Operations Inc. (&quot;Vectis&quot;), you agree to be bound by these Terms of Use.
+              By accessing the website (<a href="https://vectisoperations.tech" className="text-brand underline">vectisoperations.tech</a>) or downloading, installing, or evaluating software distributed by Vectis Operations Inc. (&quot;Vectis&quot;), you agree to be bound by these Terms of Use.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-paper font-sans">
+            <h2 className="text-xl font-semibold text-content font-sans">
               2. Software Licensing
             </h2>
             <p>
@@ -48,7 +48,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-paper font-sans">
+            <h2 className="text-xl font-semibold text-content font-sans">
               3. Operational Responsibility
             </h2>
             <p>
@@ -57,7 +57,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-paper font-sans">
+            <h2 className="text-xl font-semibold text-content font-sans">
               4. Accuracy of Operating Records
             </h2>
             <p>
@@ -66,7 +66,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-paper font-sans">
+            <h2 className="text-xl font-semibold text-content font-sans">
               5. In-Development Products
             </h2>
             <p>
@@ -75,7 +75,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-paper font-sans">
+            <h2 className="text-xl font-semibold text-content font-sans">
               6. Intellectual Property
             </h2>
             <p>
@@ -84,7 +84,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-paper font-sans">
+            <h2 className="text-xl font-semibold text-content font-sans">
               7. Hardware & Peripherals
             </h2>
             <p>
@@ -93,7 +93,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-paper font-sans">
+            <h2 className="text-xl font-semibold text-content font-sans">
               8. Limitation of Liability
             </h2>
             <p>
@@ -102,7 +102,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-paper font-sans">
+            <h2 className="text-xl font-semibold text-content font-sans">
               9. Termination
             </h2>
             <p>
@@ -111,7 +111,7 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-paper font-sans">
+            <h2 className="text-xl font-semibold text-content font-sans">
               10. Governing Law
             </h2>
             <p>
@@ -119,13 +119,13 @@ export default function TermsPage() {
             </p>
           </section>
 
-          <section className="space-y-3 border-t border-white/[0.08] pt-8">
-            <h2 className="text-xl font-semibold text-paper font-sans">
+          <section className="space-y-3 border-t border-surface-border pt-8">
+            <h2 className="text-xl font-semibold text-content font-sans">
               11. Contact Information
             </h2>
             <p>
               For legal inquiries regarding licensing or operational agreements, contact:{" "}
-              <a href={`mailto:${siteMeta.email}`} className="text-accent-amber underline font-mono">
+              <a href={`mailto:${siteMeta.email}`} className="text-brand underline font-mono">
                 {siteMeta.email}
               </a>
             </p>

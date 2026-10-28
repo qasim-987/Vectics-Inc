@@ -21,14 +21,8 @@ export default function VectisFooter() {
         className="mx-auto max-w-[1180px] px-5 py-24 sm:py-32 md:px-8 border-b border-white/[0.08]"
       >
         <div className="reveal rounded-2xl border border-white/[0.08] bg-ink-card/60 p-8 sm:p-12 md:p-16 relative overflow-hidden backdrop-blur-sm">
-          {/* Subtle warm glow background */}
-          <div
-            className="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-amber-500/5 blur-3xl pointer-events-none"
-            aria-hidden="true"
-          />
-
           <div className="max-w-2xl">
-            <span className="text-[0.78rem] font-mono uppercase tracking-[0.18em] text-accent-amber">
+            <span className="text-[0.78rem] font-mono uppercase tracking-[0.18em] text-brand-light">
               // Contact
             </span>
             <h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-serif font-normal tracking-tight text-paper">

@@ -10,26 +10,47 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Dark surfaces are reserved for the navigation, hero and footer.
         paper: {
-          DEFAULT: "#f2efe9",
-          muted: "#e8e3d9",
-          dim: "#d9d4c7",
+          DEFAULT: "#f8fafc",
+          muted: "#e4edf4",
+          dim: "#c7d5e1",
         },
         ink: {
-          DEFAULT: "#1a1a1a",
-          soft: "#1c1917",
-          card: "#24211e",
-          deep: "#141210",
+          DEFAULT: "#122b42",
+          soft: "#10263a",
+          card: "#1c364d",
+          deep: "#0b1d2d",
         },
         muted: {
-          DEFAULT: "#9b9590",
-          dark: "#6b6560",
-          deep: "#4a4540",
+          DEFAULT: "#b6c6d2",
+          dark: "#9fb2c1",
+          deep: "#8fa3b3",
+        },
+        // The main content uses light surfaces with navy and slate text.
+        surface: {
+          DEFAULT: "#ffffff",
+          muted: "#f3f6f9",
+          alternate: "#eaf0f5",
+          border: "#d6e0e8",
+        },
+        content: {
+          DEFAULT: "#172d43",
+          muted: "#4b6175",
+          subtle: "#5c7184",
+        },
+        brand: {
+          DEFAULT: "#285f85",
+          deep: "#1b496b",
+          light: "#a9cfe2",
+          // Used by legacy dark pages.
+          primary: "#a9cfe2",
+          muted: "#83aabf",
         },
         accent: {
-          red: "#e63946",
-          blue: "#3b82f6",
-          amber: "#f59e0b",
+          red: "#b8444d",
+          blue: "#78a9ca",
+          amber: "#a9cfe2",
         },
       },
       fontFamily: {

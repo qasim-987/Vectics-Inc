@@ -350,7 +350,7 @@ export default function ContactSection() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-brand-primary hover:bg-brand-hover disabled:opacity-50 text-white text-sm font-semibold transition-all duration-200 shadow-xl shadow-brand-primary/25 hover:shadow-brand-primary/40 cursor-pointer"
+                    className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-brand hover:bg-brand-deep disabled:opacity-50 text-white text-sm font-semibold transition-all duration-200 shadow-xl shadow-brand-primary/25 hover:shadow-brand-primary/40 cursor-pointer"
                   >
                     {isSubmitting ? (
                       <>

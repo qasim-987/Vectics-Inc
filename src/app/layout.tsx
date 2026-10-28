@@ -65,7 +65,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#1c1917",
+  themeColor: "#10263a",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -112,7 +112,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }}
         />
       </head>
-      <body className="min-h-screen bg-ink-soft text-paper antialiased font-sans overflow-x-hidden selection:bg-paper selection:text-ink">
+      <body className="min-h-screen bg-ink-soft text-paper antialiased font-sans overflow-x-hidden selection:bg-brand-light/40 selection:text-ink">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-paper focus:text-ink focus:rounded-md focus:shadow-lg focus:outline-none text-xs font-semibold uppercase tracking-wider"

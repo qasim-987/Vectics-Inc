@@ -115,7 +115,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 bg-black/80 backdrop-blur-sm transition-opacity duration-300 animate-fadeIn"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 bg-ink-deep/70 backdrop-blur-sm transition-opacity duration-300 animate-fadeIn"
       role="dialog"
       aria-modal="true"
       aria-labelledby="contact-modal-title"
@@ -125,38 +125,38 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
     >
       <div
         ref={modalRef}
-        className="relative w-full max-w-xl rounded-xl border border-white/10 bg-ink-card p-6 sm:p-8 text-paper shadow-2xl transition-all max-h-[90vh] overflow-y-auto"
+        className="relative w-full max-w-xl rounded-xl border border-surface-border bg-surface p-6 sm:p-8 text-content shadow-2xl transition-all max-h-[90vh] overflow-y-auto"
       >
         <button
           onClick={handleClose}
           aria-label="Close dialog"
-          className="absolute right-4 top-4 rounded-lg p-2 text-muted hover:bg-white/5 hover:text-paper transition-colors"
+          className="absolute right-4 top-4 rounded-lg p-2 text-content-muted hover:bg-surface-muted hover:text-content transition-colors"
         >
           <X className="h-5 w-5" />
         </button>
 
         <div className="mb-6">
-          <span className="text-[0.78rem] font-mono uppercase tracking-[0.18em] text-accent-amber">
+          <span className="text-[0.78rem] font-mono uppercase tracking-[0.18em] text-brand">
             // Get in touch
           </span>
-          <h2 id="contact-modal-title" className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight text-paper">
+          <h2 id="contact-modal-title" className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight text-content">
             Let’s discuss your operation.
           </h2>
-          <p className="mt-2 text-sm sm:text-base text-muted font-normal">
+          <p className="mt-2 text-sm sm:text-base text-content-muted font-normal">
             Tell us about your distribution routes, warehouse workflow, or software requirements.
           </p>
         </div>
 
         {status === "success" ? (
-          <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/10 p-6 text-center space-y-3">
-            <CheckCircle2 className="mx-auto h-10 w-10 text-emerald-400" />
-            <h3 className="text-lg font-semibold text-paper">Message received</h3>
-            <p className="text-sm text-paper/80">
+          <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-6 text-center space-y-3">
+            <CheckCircle2 className="mx-auto h-10 w-10 text-emerald-700" />
+            <h3 className="text-lg font-semibold text-content">Message received</h3>
+            <p className="text-sm text-content-muted">
               Thank you for reaching out. A Vectis Inc. engineer will review your operational requirements and respond within 24 hours.
             </p>
             <button
               onClick={handleClose}
-              className="mt-4 inline-flex items-center justify-center rounded-md bg-paper px-5 py-2 text-xs font-semibold uppercase tracking-wider text-ink transition-colors hover:bg-paper-muted"
+              className="mt-4 inline-flex items-center justify-center rounded-md bg-brand px-5 py-2 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-brand-deep"
             >
               Done
             </button>
@@ -164,13 +164,13 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             {status === "error" && (
-              <div className="flex items-start gap-3 rounded-lg border border-accent-red/30 bg-accent-red/10 p-3.5 text-xs text-paper">
+              <div className="flex items-start gap-3 rounded-lg border border-accent-red/30 bg-accent-red/10 p-3.5 text-xs text-content">
                 <AlertCircle className="h-4 w-4 shrink-0 text-accent-red mt-0.5" />
                 <div className="space-y-1">
                   <p>{errorMessage}</p>
                   <p>
                     Or write directly to:{" "}
-                    <a href={`mailto:${siteMeta.email}`} className="underline font-mono text-paper">
+                    <a href={`mailto:${siteMeta.email}`} className="underline font-mono text-content">
                       {siteMeta.email}
                     </a>
                   </p>
@@ -193,7 +193,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
             </div>
 
             <div className="space-y-1">
-              <label htmlFor="name" className="text-xs font-medium uppercase tracking-wider text-muted">
+              <label htmlFor="name" className="text-xs font-medium uppercase tracking-wider text-content-muted">
                 Your Name <span className="text-accent-red">*</span>
               </label>
               <input
@@ -203,12 +203,12 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="e.g. Tariq Mahmood"
-                className="w-full rounded-md border border-white/10 bg-ink-soft px-3.5 py-2.5 text-sm text-paper placeholder-muted/60 focus:border-paper focus:outline-none focus:ring-1 focus:ring-paper transition-all"
+                className="w-full rounded-md border border-surface-border bg-surface-muted px-3.5 py-2.5 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all"
               />
             </div>
 
             <div className="space-y-1">
-              <label htmlFor="email" className="text-xs font-medium uppercase tracking-wider text-muted">
+              <label htmlFor="email" className="text-xs font-medium uppercase tracking-wider text-content-muted">
                 Email Address <span className="text-accent-red">*</span>
               </label>
               <input
@@ -218,12 +218,12 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="name@company.com"
-                className="w-full rounded-md border border-white/10 bg-ink-soft px-3.5 py-2.5 text-sm text-paper placeholder-muted/60 focus:border-paper focus:outline-none focus:ring-1 focus:ring-paper transition-all"
+                className="w-full rounded-md border border-surface-border bg-surface-muted px-3.5 py-2.5 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all"
               />
             </div>
 
             <div className="space-y-1">
-              <label htmlFor="organization" className="text-xs font-medium uppercase tracking-wider text-muted">
+              <label htmlFor="organization" className="text-xs font-medium uppercase tracking-wider text-content-muted">
                 Organization / Operation Type
               </label>
               <input
@@ -232,12 +232,12 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
                 value={formData.organization}
                 onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
                 placeholder="e.g. FMCG Wholesale (15 routes)"
-                className="w-full rounded-md border border-white/10 bg-ink-soft px-3.5 py-2.5 text-sm text-paper placeholder-muted/60 focus:border-paper focus:outline-none focus:ring-1 focus:ring-paper transition-all"
+                className="w-full rounded-md border border-surface-border bg-surface-muted px-3.5 py-2.5 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all"
               />
             </div>
 
             <div className="space-y-1">
-              <label htmlFor="message" className="text-xs font-medium uppercase tracking-wider text-muted">
+              <label htmlFor="message" className="text-xs font-medium uppercase tracking-wider text-content-muted">
                 Message <span className="text-accent-red">*</span>
               </label>
               <textarea
@@ -247,14 +247,14 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 placeholder="Tell us about your route reconciliation, inventory counts, or system questions..."
-                className="w-full rounded-md border border-white/10 bg-ink-soft px-3.5 py-2.5 text-sm text-paper placeholder-muted/60 focus:border-paper focus:outline-none focus:ring-1 focus:ring-paper transition-all resize-none"
+                className="w-full rounded-md border border-surface-border bg-surface-muted px-3.5 py-2.5 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all resize-none"
               />
             </div>
 
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
               <a
                 href={`mailto:${siteMeta.email}`}
-                className="inline-flex items-center gap-1.5 text-xs text-muted hover:text-paper transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs text-content-muted hover:text-content transition-colors"
               >
                 <Mail className="h-3.5 w-3.5" />
                 <span>Prefer direct email? {siteMeta.email}</span>
@@ -263,7 +263,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-md bg-paper px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-ink transition-colors hover:bg-paper-muted disabled:opacity-50"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-md bg-brand px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-brand-deep disabled:opacity-50"
               >
                 {status === "loading" ? (
                   <span>Sending...</span>

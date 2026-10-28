@@ -37,7 +37,7 @@ export default function Hero() {
       <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-16">
         <Link
           href="/contact"
-          className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-brand-primary hover:bg-brand-hover text-white text-sm font-semibold transition-all duration-200 shadow-xl shadow-brand-primary/25 hover:shadow-brand-primary/40 hover:-translate-y-0.5"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-brand hover:bg-brand-deep text-white text-sm font-semibold transition-all duration-200 shadow-xl shadow-brand-primary/25 hover:shadow-brand-primary/40 hover:-translate-y-0.5"
         >
           <span>Schedule Architecture Review</span>
           <ArrowRight className="w-4 h-4" />

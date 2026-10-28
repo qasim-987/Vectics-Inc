@@ -29,8 +29,8 @@ export default function VectisHeader() {
     <header
       className={`site-header fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300 ease-out ${
         scrolled
-          ? "bg-ink-soft/90 backdrop-blur-md border-b border-white/[0.08] py-3.5 shadow-2xl shadow-black/60"
-          : "bg-transparent border-b border-transparent py-5"
+          ? "bg-ink-soft/95 backdrop-blur-md border-b border-white/10 py-3.5 shadow-lg shadow-slate-950/10"
+          : "bg-ink-soft border-b border-white/10 py-5"
       }`}
     >
       <div className="site-header-bar mx-auto flex max-w-[1180px] items-center justify-between px-5 md:px-8 text-paper">
@@ -121,7 +121,7 @@ export default function VectisHeader() {
 
       {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-[65px] bottom-0 bg-ink-soft/98 backdrop-blur-2xl border-t border-white/[0.08] p-6 flex flex-col justify-between z-50 animate-reveal-in">
+        <div className="lg:hidden fixed inset-x-0 top-[65px] bottom-0 bg-ink-soft backdrop-blur-2xl border-t border-white/[0.08] p-6 flex flex-col justify-between z-50 animate-reveal-in">
           <nav className="flex flex-col space-y-4 pt-4" aria-label="Mobile Navigation">
             <span className="text-[10px] font-mono uppercase tracking-widest text-muted block mb-2">
               Navigation

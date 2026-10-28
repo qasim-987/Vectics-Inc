@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --color-paper: #f2efe9;
-  --color-paper-muted: #e8e3d9;
-  --color-ink: #1a1a1a;
-  --color-ink-soft: #1c1917;
-  --color-ink-card: #24211e;
-  --color-line: rgba(242, 239, 233, 0.12);
-  --color-muted: #9b9590;
-  --color-muted-dark: #6b6560;
+  --color-paper: #f8fafc;
+  --color-paper-muted: #e4edf4;
+  --color-ink: #122b42;
+  --color-ink-soft: #10263a;
+  --color-ink-card: #1c364d;
+  --color-line: rgba(214, 224, 232, 0.16);
+  --color-muted: #b6c6d2;
+  --color-muted-dark: #9fb2c1;
 
-  --nano-blue: #3b82f6;
-  --nano-amber: #f59e0b;
+  --nano-blue: #78a9ca;
+  --nano-amber: #a9cfe2;
 
   --font-sans: "Instrument Sans", system-ui, -apple-system, sans-serif;
   --font-serif: "Newsreader", Georgia, serif;
@@ -27,7 +27,7 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
@@ -128,11 +128,11 @@ body {
   background: var(--color-ink-soft);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(242, 239, 233, 0.2);
+  background: rgba(182, 198, 210, 0.35);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(242, 239, 233, 0.35);
+  background: rgba(182, 198, 210, 0.55);
 }
 
 /* Reduced motion preference */
