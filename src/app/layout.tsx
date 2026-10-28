@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s | Vectis Inc.",
   },
   description:
-    "Vectis builds custom software, web applications, and practical AI automation for real-world teams. A Vectis company within Forza Inc.",
+    "Vectis builds custom software, web applications, and practical AI automation for real-world teams.",
   keywords: [
     "Vectis Inc",
     "RouteCore",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Vectis Inc. — Custom Software, AI & Web Apps",
     description:
-      "Vectis builds custom software, web applications, and practical AI automation for real-world teams. A Vectis company within Forza Inc.",
+      "Vectis builds custom software, web applications, and practical AI automation for real-world teams.",
     url: "https://vectisoperations.tech",
     siteName: "Vectis Inc.",
     images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Vectis Inc. — custom software, AI and web applications" }],
@@ -89,11 +89,6 @@ export default function RootLayout({
     url: "https://vectisoperations.tech",
     email: siteMeta.email,
     description: siteMeta.description,
-    parentOrganization: {
-      "@type": "Organization",
-      name: "Forza Inc.",
-      url: "https://forzainc.tech/",
-    },
   };
 
   const jsonLdWebSite = {

@@ -6,7 +6,7 @@ import { ArrowRight, ArrowUp, Mail } from "lucide-react";
 import { siteMeta, productsData } from "@/data/vectis";
 import { productDropdownResources } from "@/data/home";
 import { Reveal } from "./home/Reveal";
-import { footerNavigation, parentCompany } from "@/data/site-navigation";
+import { footerNavigation } from "@/data/site-navigation";
 
 const exploreLinks = footerNavigation;
 
@@ -80,15 +80,6 @@ export default function VectisFooter() {
             <p className="mt-4 text-sm text-darkText/80">
               {siteMeta.location}
             </p>
-            <a
-              href={parentCompany.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="link-underline mt-6 inline-flex items-center gap-2 text-sm text-paper/70 hover:text-paper"
-            >
-              Vectis is part of {parentCompany.label}
-              <ArrowRight className="h-3 w-3" aria-hidden="true" />
-            </a>
           </div>
 
           {/* Explore */}
@@ -161,16 +152,6 @@ export default function VectisFooter() {
                 </a>
               </li>
             </ul>
-            <h4 className="eyebrow mt-8 text-muted-dark">Parent company</h4>
-            <a
-              href={parentCompany.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${footerLink} mt-4 inline-flex items-center gap-2`}
-            >
-              {parentCompany.label}
-              <ArrowRight className="h-3 w-3" aria-hidden="true" />
-            </a>
           </div>
         </div>
 

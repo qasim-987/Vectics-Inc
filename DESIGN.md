@@ -1,6 +1,6 @@
 # Vectis website — design & implementation notes
 
-Vectis is a calm, mature B2B operations-software company within **Forza Inc.** Existing product names, routes, and copy remain in place; the visual system is shared across the app shell and route pages.
+Vectis is a calm, mature B2B operations-software company. Existing product names and routes remain in place; the visual system is shared across the app shell and route pages.
 
 ## Design system
 
@@ -18,14 +18,14 @@ Vectis is a calm, mature B2B operations-software company within **Forza Inc.** E
 3. Four-stage discovery/design/build/improve story with responsive imagery and a sticky desktop image panel.
 4. Three existing Vectis products with text-only status labels and real detail routes.
 5. Four principles and a five-step delivery loop.
-6. Shared dark contact CTA/footer, including the Forza Inc. parent-company link.
+6. Shared dark contact CTA/footer.
 
 ## Shared components and data
 
 - `src/app/globals.css` and `tailwind.config.ts` — centralized palette, typography, spacing/layout, radius, shadow, and motion foundations.
 - `src/components/Container.tsx`, `Button.tsx`, `SectionLabel.tsx`, `SiteImage.tsx`, and `home/StatusBadge.tsx` — shared layout, controls, labels, image handling, and text-only product status.
 - `src/components/home/Reveal.tsx` — reduced-motion-aware 300ms reveal and image observer.
-- `src/data/site-navigation.ts` — typed navigation shared by the header/footer, plus the verified Forza parent link.
+- `src/data/site-navigation.ts` — typed navigation shared by the header and footer.
 - `src/data/home.ts` and `src/data/vectis.ts` — hero/story media, products, story, principles, and process content.
 - `src/components/VectisHeader.tsx` and `VectisFooter.tsx` — 72px shared navigation, keyboard-accessible mobile menu, contact CTA, and footer.
 
@@ -34,7 +34,7 @@ Vectis is a calm, mature B2B operations-software company within **Forza Inc.** E
 - Product pages: `/distributionlife`, `/nano`, `/studio`.
 - Editorial pages: `/clients`, `/journal`, `/about`, `/privacy`, `/terms`, `/contact`.
 - Existing work, services, resources, company, blog, and demo routes are retained and use the shared app chrome.
-- SEO: App Router metadata, Organization/WebSite structured data with `parentOrganization: Forza Inc.`, `/icon.svg`, `robots.txt`, and `sitemap.xml`.
+- SEO: App Router metadata, Organization/WebSite structured data, `/icon.svg`, `robots.txt`, and `sitemap.xml`.
 - Contact form: `/api/contact` validates and bounds input, quietly rejects honeypot submissions, and sends mail through Resend server-side. It does not return a false success when email credentials are missing.
 
 ## Contact delivery setup

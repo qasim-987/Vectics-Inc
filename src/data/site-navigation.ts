@@ -17,8 +17,3 @@ export const footerNavigation: SiteNavItem[] = [
   ...primaryNavigation,
   { label: "Contact", href: "/contact" },
 ];
-
-export const parentCompany = {
-  label: "Forza Inc.",
-  href: "https://forzainc.tech/",
-};

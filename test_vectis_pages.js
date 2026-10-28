@@ -69,7 +69,7 @@ async function runTests() {
     { path: '/distributionlife', title: 'RouteCore', expected: ['RouteCore', 'One system for the office', 'Inventory and load-outs', 'Route collections', 'Close-of-Day Summary', 'SQLite'] },
     { path: '/nano', title: 'PulseGrid', expected: ['PulseGrid', 'Market intelligence for distributors', 'Four questions PulseGrid answers', 'Route Velocity', 'svg'] },
     { path: '/studio', title: 'Vectis Studio', titleExpected: 'Vectis Studio', expected: ['Vectis Studio', 'Turning operational workflows into working software prototypes', 'Sites', 'Boards', 'Operational tools'] },
-    { path: '/about', title: 'About', expected: ['About Vectis Inc.', 'Forza Inc.', 'custom software', 'Four stubborn ideas'] },
+    { path: '/about', title: 'About', expected: ['About Vectis Inc.', 'practical digital products', 'custom software', 'Four stubborn ideas'] },
     { path: '/clients', title: 'Clients', expected: ['Where RouteCore is used every single day', 'Khyber Beverage Logistics', 'Indus Valley Wholesale', 'Atlas Route Traders', 'Margalla Food Services'] },
     { path: '/journal', title: 'Journal', expected: ['Writing on operations, software, and physical commerce', 'The whole distribution office, in one system', 'Software that has to hold up where the work actually happens', 'Reading the market so the operation can stay profitable'] },
     { path: '/privacy', title: 'Privacy Policy', expected: ['Privacy Policy', 'Scope', 'Absolute Offline Ledger Isolation', 'Information We Collect'] },
@@ -83,11 +83,12 @@ async function runTests() {
       const res = await fetchUrl(`${baseUrl}${r.path}`);
       const checksPassed = r.expected.every(str => res.body.includes(str));
       const hasJsonLd = res.body.includes('application/ld+json');
-      const passed = res.status === 200 && checksPassed;
+      const hasParentCompanyReference = res.body.toLowerCase().includes('forza');
+      const passed = res.status === 200 && checksPassed && hasJsonLd && !hasParentCompanyReference;
       results.push({
         name: `Route: ${r.path} (${r.title})`,
         passed,
-        details: passed ? `200 OK | Content & JSON-LD Verified (${res.body.length} bytes)` : `Failed | Status ${res.status} | Content match: ${checksPassed}`
+        details: passed ? `200 OK | Content & JSON-LD Verified | No parent-company reference (${res.body.length} bytes)` : `Failed | Status ${res.status} | Content match: ${checksPassed} | Parent-company reference: ${hasParentCompanyReference}`
       });
       console.log(`  ✓ ${r.path.padEnd(20)}: ${passed ? 'PASSED' : 'FAILED'}`);
     } catch (err) {

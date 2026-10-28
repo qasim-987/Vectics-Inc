@@ -7,7 +7,7 @@ import { siteMeta, principles } from "@/data/vectis";
 export const metadata: Metadata = {
   title: "About Vectis Inc. — Software & AI Studio",
   description:
-    "Meet Vectis, a Forza Inc. company building custom software, web applications, and useful AI automation for real-world teams.",
+    "Meet Vectis, building custom software, web applications, and useful AI automation for real-world teams.",
   alternates: {
     canonical: "https://vectisoperations.tech/about",
   },
@@ -45,7 +45,7 @@ export default function AboutPage() {
           </h1>
 
           <p className="mt-8 text-lg sm:text-xl text-content-muted font-normal leading-relaxed">
-            Vectis is part of Forza Inc., building practical digital products and custom software for teams doing consequential work. We combine thoughtful product design, dependable engineering, and useful AI automation to make everyday workflows clearer.
+            Vectis builds practical digital products and custom software for teams doing consequential work. We combine thoughtful product design, dependable engineering, and useful AI automation to make everyday workflows clearer.
           </p>
         </div>
       </section>
@@ -70,7 +70,7 @@ export default function AboutPage() {
                 From custom software and web applications to AI-powered automation, we focus on clear outcomes, sensible scope, and reliable foundations. The right solution can be a new application, a careful integration, or a simpler way to handle repetitive work.
               </p>
               <p>
-                As a company within Forza Inc., Vectis works with the wider Forza family to turn real needs into software that is useful, maintainable, and ready to evolve with the people who rely on it.
+                We turn real needs into software that is useful, maintainable, and ready to evolve with the people who rely on it.
               </p>
             </div>
           </div>
