@@ -2,9 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import LightRays from "@/components/LightRays";
 import {
   TrendingUp,
   Sliders,
@@ -85,21 +82,19 @@ export default function IntentIQDemoPage() {
   const filteredAccounts = mockAccounts.filter((a) => a.intentScore >= minScore);
 
   return (
-    <div className="relative min-h-screen bg-[#030303] text-zinc-100 flex flex-col justify-between">
-      <Navbar />
+    <div className="relative min-h-screen bg-bg text-zinc-100 flex flex-col justify-between">
 
-      <main id="main-content" className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full flex-1">
-        <LightRays />
+      <div className="relative pt-12 sm:pt-16 pb-24 px-6 sm:px-8 lg:px-12 max-w-shell mx-auto w-full flex-1">
 
         {/* Header Block */}
         <div className="max-w-4xl mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs font-mono uppercase tracking-wider text-amber-400 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs font-mono uppercase tracking-wider text-amber-400 mb-6">
             <Zap className="w-3.5 h-3.5" />
             Interactive Simulation
           </div>
           <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
             Atom IntentIQ: <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-300 to-brand-primary">
+            <span className="text-transparent bg-clip-text bg-surface">
               Buyer Intent Intelligence
             </span>
           </h1>
@@ -109,9 +104,9 @@ export default function IntentIQDemoPage() {
         </div>
 
         {/* Interactive Threshold Slider */}
-        <div className="p-6 rounded-2xl bg-[#09090e] border border-white/[0.08] mb-12 flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-xl">
+        <div className="p-6 rounded-2xl bg-surface border border-white/[0.08] mb-12 flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-xl">
           <div className="flex items-center gap-4">
-            <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400">
+            <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400">
               <Sliders className="w-5 h-5" />
             </div>
             <div>
@@ -161,29 +156,29 @@ export default function IntentIQDemoPage() {
                     : "bg-white/[0.02] border-white/[0.08] hover:bg-white/[0.04] hover:border-white/20"
                 }`}
               >
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2.5">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2">
                     <Building2 className="w-4 h-4 text-zinc-400" />
                     <h3 className="font-bold text-white text-base">
                       {account.name}
                     </h3>
                   </div>
-                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 font-mono text-xs font-bold">
+                  <div className="flex items-center gap-2 px-2 py-2 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 font-mono text-xs font-bold">
                     <Flame className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                     <span>{account.intentScore} Score</span>
                   </div>
                 </div>
 
-                <div className="text-xs font-mono text-zinc-500 mb-3">
+                <div className="text-xs font-mono text-zinc-500 mb-4">
                   {account.domain} • Stage: {account.stage}
                 </div>
 
-                <div className="space-y-1.5 pt-3 border-t border-white/[0.04]">
+                <div className="space-y-2 pt-4 border-t border-white/[0.04]">
                   <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 block">
                     Telemetry Signals Detected:
                   </span>
                   {account.signals.map((sig, sIdx) => (
-                    <div key={sIdx} className="text-xs text-zinc-300 flex items-start gap-1.5">
+                    <div key={sIdx} className="text-xs text-zinc-300 flex items-start gap-2">
                       <span className="text-amber-400">•</span>
                       <span>{sig}</span>
                     </div>
@@ -205,7 +200,7 @@ export default function IntentIQDemoPage() {
               AI INTENT-SYNTHESIZED OUTREACH DRAFT
             </span>
 
-            <div className="p-6 sm:p-8 rounded-2xl bg-[#08080c] border border-brand-primary/30 shadow-2xl flex flex-col justify-between h-full">
+            <div className="p-6 sm:p-8 rounded-2xl bg-surface border border-brand-primary/30 shadow-2xl flex flex-col justify-between h-full">
               <div>
                 <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/[0.08]">
                   <div className="flex items-center gap-2">
@@ -214,32 +209,32 @@ export default function IntentIQDemoPage() {
                       AUTONOMOUS SEQUENCER
                     </span>
                   </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-primary/20 text-brand-primary">
+                  <span className="text-[10px] font-mono px-2 py-2 rounded bg-brand-primary/20 text-brand-primary">
                     Play: {selectedAccount.recommendedPlay}
                   </span>
                 </div>
 
                 <div className="space-y-4">
                   <div>
-                    <label className="text-[11px] font-mono uppercase text-zinc-500 block mb-1">
+                    <label className="text-[11px] font-mono uppercase text-zinc-500 block mb-2">
                       Recipient
                     </label>
-                    <div className="text-xs font-mono text-zinc-300 p-2.5 rounded-lg bg-white/[0.02] border border-white/[0.06]">
+                    <div className="text-xs font-mono text-zinc-300 p-2 rounded-lg bg-white/[0.02] border border-white/[0.06]">
                       CTO / VP Architecture &lt;engineering@{selectedAccount.domain}&gt;
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-[11px] font-mono uppercase text-zinc-500 block mb-1">
+                    <label className="text-[11px] font-mono uppercase text-zinc-500 block mb-2">
                       Synthesized Subject Line
                     </label>
-                    <div className="text-xs font-semibold text-white p-2.5 rounded-lg bg-white/[0.02] border border-white/[0.06]">
+                    <div className="text-xs font-semibold text-white p-2 rounded-lg bg-white/[0.02] border border-white/[0.06]">
                       {selectedAccount.draftSubject}
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-[11px] font-mono uppercase text-zinc-500 block mb-1">
+                    <label className="text-[11px] font-mono uppercase text-zinc-500 block mb-2">
                       Body Copy (Tailored to Observed Telemetry)
                     </label>
                     <div className="text-xs text-zinc-300 p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] leading-relaxed whitespace-pre-wrap">
@@ -255,7 +250,7 @@ export default function IntentIQDemoPage() {
                 </span>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black hover:bg-zinc-200 text-xs font-semibold uppercase tracking-wider transition-colors"
+                  className="inline-flex items-center gap-2 px-6 py-2 rounded-xl bg-white text-black hover:bg-zinc-200 text-xs font-semibold uppercase tracking-wider transition-colors"
                 >
                   Deploy IntentIQ Engine
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -264,9 +259,7 @@ export default function IntentIQDemoPage() {
             </div>
           </div>
         </div>
-      </main>
-
-      <Footer />
+      </div>
     </div>
   );
 }

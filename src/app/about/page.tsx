@@ -28,17 +28,16 @@ export default function AboutPage() {
   };
 
   return (
-    <div className="w-full bg-surface pt-32 pb-24 text-content">
+    <div className="w-full bg-bg pt-12 sm:pt-16 pb-24 text-content">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
       {/* Hero Narrative */}
-      <section className="mx-auto max-w-[1180px] px-5 md:px-8 mb-20">
+      <section className="mx-auto max-w-shell px-6 md:px-8 mb-20">
         <div className="max-w-3xl">
-          <span className="text-xs font-mono uppercase tracking-[0.2em] text-brand block mb-6">
-            // About Vectis Inc.
+          <span className="text-xs font-mono uppercase tracking-[0.2em] text-brand block mb-6">About Vectis Inc.
           </span>
 
           <h1 className="text-4xl sm:text-6xl font-serif font-normal tracking-tight text-content leading-[1.1]">
@@ -53,13 +52,12 @@ export default function AboutPage() {
 
       {/* Origin Story Section */}
       <section className="border-t border-surface-border bg-surface-muted py-24">
-        <div className="mx-auto max-w-[1180px] px-5 md:px-8">
+        <div className="mx-auto max-w-shell px-6 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
             <div className="md:col-span-4">
-              <span className="text-[0.78rem] font-mono uppercase tracking-[0.18em] text-brand">
-                // Where we began
+              <span className="text-[0.78rem] font-mono uppercase tracking-[0.18em] text-brand">Where we began
               </span>
-              <h2 className="mt-3 text-3xl sm:text-4xl font-serif text-content">
+              <h2 className="mt-4 text-3xl sm:text-4xl font-serif text-content">
                 The Concrete Floor
               </h2>
             </div>
@@ -80,25 +78,24 @@ export default function AboutPage() {
       </section>
 
       {/* Four Stubborn Ideas */}
-      <section className="py-24 mx-auto max-w-[1180px] px-5 md:px-8">
+      <section className="py-24 mx-auto max-w-shell px-6 md:px-8">
         <div className="mb-16">
-          <span className="text-[0.78rem] font-mono uppercase tracking-[0.18em] text-brand">
-            // Convictions
+          <span className="text-[0.78rem] font-mono uppercase tracking-[0.18em] text-brand">Convictions
           </span>
-          <h2 className="mt-3 text-3xl sm:text-5xl font-serif font-normal tracking-tight text-content">
+          <h2 className="mt-4 text-3xl sm:text-5xl font-serif font-normal tracking-tight text-content">
             Four stubborn ideas.
           </h2>
-          <p className="mt-3 text-base text-content-muted max-w-2xl">
+          <p className="mt-4 text-base text-content-muted max-w-2xl">
             These are the principles that dictate how we write every line of code at Vectis Inc.
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-          <div className="reveal rounded-xl border border-surface-border bg-surface p-8">
-            <span className="font-mono text-xs uppercase tracking-widest text-brand block mb-3">
+          <div className="rounded-xl border border-surface-border bg-surface p-8">
+            <span className="font-mono text-xs uppercase tracking-widest text-brand block mb-4">
               01 • Offline Resilience
             </span>
-            <h3 className="text-xl font-medium text-content mb-3">
+            <h3 className="text-xl font-medium text-content mb-4">
               Internet connections will fail. The software must not.
             </h3>
             <p className="text-sm text-content-muted leading-relaxed">
@@ -106,11 +103,11 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="reveal rounded-xl border border-surface-border bg-surface p-8">
-            <span className="font-mono text-xs uppercase tracking-widest text-brand block mb-3">
+          <div className="rounded-xl border border-surface-border bg-surface p-8">
+            <span className="font-mono text-xs uppercase tracking-widest text-brand block mb-4">
               02 • Atomic Accountability
             </span>
-            <h3 className="text-xl font-medium text-content mb-3">
+            <h3 className="text-xl font-medium text-content mb-4">
               Every single rupee and carton must balance before the office locks.
             </h3>
             <p className="text-sm text-content-muted leading-relaxed">
@@ -118,11 +115,11 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="reveal rounded-xl border border-surface-border bg-surface p-8">
-            <span className="font-mono text-xs uppercase tracking-widest text-brand block mb-3">
+          <div className="rounded-xl border border-surface-border bg-surface p-8">
+            <span className="font-mono text-xs uppercase tracking-widest text-brand block mb-4">
               03 • Ergonomic Speed
             </span>
-            <h3 className="text-xl font-medium text-content mb-3">
+            <h3 className="text-xl font-medium text-content mb-4">
               Keyboard velocity beats flashy design animations.
             </h3>
             <p className="text-sm text-content-muted leading-relaxed">
@@ -130,11 +127,11 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="reveal rounded-xl border border-surface-border bg-surface p-8">
-            <span className="font-mono text-xs uppercase tracking-widest text-brand block mb-3">
+          <div className="rounded-xl border border-surface-border bg-surface p-8">
+            <span className="font-mono text-xs uppercase tracking-widest text-brand block mb-4">
               04 • Direct Partnership
             </span>
-            <h3 className="text-xl font-medium text-content mb-3">
+            <h3 className="text-xl font-medium text-content mb-4">
               We stand next to the people using our tools.
             </h3>
             <p className="text-sm text-content-muted leading-relaxed">
@@ -146,17 +143,17 @@ export default function AboutPage() {
 
       {/* Call to Action */}
       <section className="py-16 border-t border-surface-border bg-surface-muted">
-        <div className="mx-auto max-w-[1180px] px-5 md:px-8 text-center max-w-2xl">
+        <div className="mx-auto max-w-shell px-6 md:px-8 text-center max-w-2xl">
           <h2 className="text-2xl sm:text-3xl font-serif text-content">
             Want to see how our software works in real depots?
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-content-muted leading-relaxed">
+          <p className="mt-4 text-sm sm:text-base text-content-muted leading-relaxed">
             Read case studies from independent distributors who run RouteCore every day.
           </p>
           <div className="mt-6 flex justify-center gap-4">
             <Link
               href="/clients"
-              className="inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-brand-deep"
+              className="inline-flex items-center gap-2 rounded-full bg-brand px-6 py-4 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-brand-deep"
             >
               Explore Client Stories
             </Link>

@@ -3,9 +3,6 @@
 import React, { useState } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import LightRays from "@/components/LightRays";
 import { servicesData, ServiceItem } from "@/data/services";
 import {
   ArrowLeft,
@@ -92,12 +89,10 @@ export default function ServiceDetail({ params }: ServicePageProps) {
 
   return (
     <>
-      <Navbar />
 
-      <main id="main-content" className="min-h-screen pt-32 pb-24 relative overflow-hidden bg-[#030303] text-zinc-100">
-        <LightRays />
+      <div className="min-h-screen pt-12 sm:pt-16 pb-24 relative overflow-hidden bg-bg text-zinc-100">
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
           {/* Breadcrumbs */}
           <div className="flex items-center gap-2 text-xs font-mono text-zinc-500 mb-8">
             <Link href="/" className="hover:text-white transition-colors">
@@ -113,13 +108,13 @@ export default function ServiceDetail({ params }: ServicePageProps) {
 
           {/* Hero Section */}
           <div className="mb-20 max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary/10 border border-brand-primary/30 text-brand-primary text-xs font-mono font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-primary/10 border border-brand-primary/30 text-brand-primary text-xs font-mono font-medium mb-6">
               <Sparkles className="w-3.5 h-3.5" />
               <span>{service.badge}</span>
             </div>
 
             <div className="flex items-center gap-4 mb-4">
-              <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-brand-primary/30 shadow-lg shadow-brand-primary/10">
+              <div className="p-4 rounded-2xl bg-white/[0.04] border border-brand-primary/30 shadow-lg shadow-brand-primary/10">
                 {iconMap[service.iconName] || <Cpu className="w-8 h-8 text-brand-primary" />}
               </div>
               <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
@@ -127,7 +122,7 @@ export default function ServiceDetail({ params }: ServicePageProps) {
               </h1>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-brand-primary mb-6">
+            <h2 className="text-2xl sm:text-3xl font-semibold text-transparent bg-clip-text bg-surface mb-6">
               {service.heroHeadline}
             </h2>
 
@@ -136,11 +131,11 @@ export default function ServiceDetail({ params }: ServicePageProps) {
             </p>
 
             <div className="flex items-center gap-4 text-xs font-mono">
-              <span className="px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-white">
+              <span className="px-4 py-2 rounded-full bg-white/[0.04] border border-white/[0.08] text-white">
                 Benchmark: {service.metrics}
               </span>
               <span className="text-zinc-500">•</span>
-              <span className="text-emerald-400 flex items-center gap-1">
+              <span className="text-emerald-400 flex items-center gap-2">
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 Production SLA Ready
               </span>
@@ -165,7 +160,7 @@ export default function ServiceDetail({ params }: ServicePageProps) {
                   className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.08] hover:border-brand-primary/30 transition-all flex flex-col justify-between"
                 >
                   <div>
-                    <span className="text-xs font-mono text-zinc-500 mb-3 block">
+                    <span className="text-xs font-mono text-zinc-500 mb-4 block">
                       0{idx + 1}
                     </span>
                     <h3 className="text-base font-semibold text-white mb-2">
@@ -175,7 +170,7 @@ export default function ServiceDetail({ params }: ServicePageProps) {
                       {item.description}
                     </p>
                   </div>
-                  <div className="pt-4 mt-4 border-t border-white/[0.04] flex items-center gap-1.5 text-[11px] font-mono text-brand-primary">
+                  <div className="pt-4 mt-4 border-t border-white/[0.04] flex items-center gap-2 text-[11px] font-mono text-brand-primary">
                     <Check className="w-3.5 h-3.5" />
                     Verified Deliverable
                   </div>
@@ -185,12 +180,12 @@ export default function ServiceDetail({ params }: ServicePageProps) {
           </div>
 
           {/* "How We Work" - Phased Process Roadmap (4 Phases) */}
-          <div className="mb-24 p-8 sm:p-12 rounded-3xl bg-gradient-to-b from-[#09090e] to-[#040406] border border-white/[0.08]">
+          <div className="mb-24 p-8 sm:p-12 rounded-3xl bg-surface border border-white/[0.08]">
             <div className="max-w-3xl mb-12">
               <span className="text-xs font-mono uppercase tracking-widest text-brand-primary font-semibold mb-2 block">
                 EXECUTION METHODOLOGY
               </span>
-              <h2 className="text-3xl font-bold text-white tracking-tight mb-3">
+              <h2 className="text-3xl font-bold text-white tracking-tight mb-4">
                 How We Work
               </h2>
               <p className="text-sm text-zinc-400">
@@ -209,7 +204,7 @@ export default function ServiceDetail({ params }: ServicePageProps) {
                       <span className="text-2xl font-mono font-extrabold text-brand-primary">
                         {phase.number}
                       </span>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.06] text-zinc-400 flex items-center gap-1">
+                      <span className="text-[10px] font-mono px-2 py-2 rounded bg-white/[0.06] text-zinc-400 flex items-center gap-2">
                         <Calendar className="w-3 h-3" />
                         {phase.duration}
                       </span>
@@ -223,12 +218,12 @@ export default function ServiceDetail({ params }: ServicePageProps) {
                     </p>
                   </div>
 
-                  <div className="pt-4 border-t border-white/[0.06] space-y-1.5">
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 block mb-1">
+                  <div className="pt-4 border-t border-white/[0.06] space-y-2">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 block mb-2">
                       Outputs:
                     </span>
                     {phase.deliverables.map((d, dIdx) => (
-                      <div key={dIdx} className="text-[11px] text-zinc-300 flex items-start gap-1.5">
+                      <div key={dIdx} className="text-[11px] text-zinc-300 flex items-start gap-2">
                         <span className="text-brand-primary">•</span>
                         <span>{d}</span>
                       </div>
@@ -241,14 +236,14 @@ export default function ServiceDetail({ params }: ServicePageProps) {
 
           {/* Tech Stack Cloud */}
           <div className="mb-24">
-            <span className="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-3 block">
+            <span className="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-4 block">
               PRODUCTION TOOLING &amp; PROTOCOLS
             </span>
-            <div className="flex flex-wrap gap-2.5">
+            <div className="flex flex-wrap gap-2">
               {service.tools.map((tool, idx) => (
                 <span
                   key={idx}
-                  className="text-xs font-mono px-3.5 py-1.5 rounded-xl bg-white/[0.04] text-zinc-300 border border-white/[0.08]"
+                  className="text-xs font-mono px-4 py-2 rounded-xl bg-white/[0.04] text-zinc-300 border border-white/[0.08]"
                 >
                   {tool}
                 </span>
@@ -276,7 +271,7 @@ export default function ServiceDetail({ params }: ServicePageProps) {
                   <button
                     type="button"
                     onClick={() => toggleFaq(idx)}
-                    className="w-full p-5 text-left flex items-center justify-between gap-4 hover:bg-white/[0.02] transition-colors"
+                    className="w-full p-6 text-left flex items-center justify-between gap-4 hover:bg-white/[0.02] transition-colors"
                   >
                     <span className="text-sm sm:text-base font-semibold text-white">
                       {faq.question}
@@ -289,7 +284,7 @@ export default function ServiceDetail({ params }: ServicePageProps) {
                   </button>
 
                   {openFaq === idx && (
-                    <div className="px-5 pb-5 text-xs sm:text-sm text-zinc-300 leading-relaxed border-t border-white/[0.04] pt-3">
+                    <div className="px-6 pb-6 text-xs sm:text-sm text-zinc-300 leading-relaxed border-t border-white/[0.04] pt-4">
                       {faq.answer}
                     </div>
                   )}
@@ -299,7 +294,7 @@ export default function ServiceDetail({ params }: ServicePageProps) {
           </div>
 
           {/* Dedicated Inline Service Scoping Form */}
-          <div className="mb-24 p-8 sm:p-12 rounded-3xl bg-[#08080d] border border-brand-primary/30 shadow-2xl shadow-brand-primary/10">
+          <div className="mb-24 p-8 sm:p-12 rounded-3xl bg-surface border border-brand-primary/30 shadow-2xl shadow-brand-primary/10">
             <div className="max-w-2xl mb-8">
               <span className="text-xs font-mono uppercase tracking-widest text-brand-primary font-semibold mb-2 block">
                 PROJECT SCOPING
@@ -323,9 +318,9 @@ export default function ServiceDetail({ params }: ServicePageProps) {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl">
+              <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl">
                 <div>
-                  <label className="text-xs font-mono text-zinc-400 mb-1.5 block">
+                  <label className="text-xs font-mono text-zinc-400 mb-2 block">
                     Your Name *
                   </label>
                   <input
@@ -334,12 +329,12 @@ export default function ServiceDetail({ params }: ServicePageProps) {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Marcus Vance"
-                    className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-sm text-white focus:outline-none focus:border-brand-primary"
+                    className="w-full px-4 py-4 rounded-xl bg-white/[0.03] border border-white/[0.1] text-sm text-white focus:outline-none focus:border-brand-primary"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-mono text-zinc-400 mb-1.5 block">
+                  <label className="text-xs font-mono text-zinc-400 mb-2 block">
                     Work Email *
                   </label>
                   <input
@@ -348,12 +343,12 @@ export default function ServiceDetail({ params }: ServicePageProps) {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="marcus@company.com"
-                    className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-sm text-white focus:outline-none focus:border-brand-primary"
+                    className="w-full px-4 py-4 rounded-xl bg-white/[0.03] border border-white/[0.1] text-sm text-white focus:outline-none focus:border-brand-primary"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-mono text-zinc-400 mb-1.5 block">
+                  <label className="text-xs font-mono text-zinc-400 mb-2 block">
                     Company / Organization
                   </label>
                   <input
@@ -361,18 +356,18 @@ export default function ServiceDetail({ params }: ServicePageProps) {
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                     placeholder="Acme Systems Inc."
-                    className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-sm text-white focus:outline-none focus:border-brand-primary"
+                    className="w-full px-4 py-4 rounded-xl bg-white/[0.03] border border-white/[0.1] text-sm text-white focus:outline-none focus:border-brand-primary"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs font-mono text-zinc-400 mb-1.5 block">
+                  <label className="text-xs font-mono text-zinc-400 mb-2 block">
                     Expected Budget Tier
                   </label>
                   <select
                     value={formData.budget}
                     onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#0d0d12] border border-white/[0.1] text-sm text-white focus:outline-none focus:border-brand-primary"
+                    className="w-full px-4 py-4 rounded-xl bg-surface border border-white/[0.1] text-sm text-white focus:outline-none focus:border-brand-primary"
                   >
                     <option value="< $25k">&lt; $25,000</option>
                     <option value="$25k - $50k">$25,000 - $50,000</option>
@@ -382,7 +377,7 @@ export default function ServiceDetail({ params }: ServicePageProps) {
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label className="text-xs font-mono text-zinc-400 mb-1.5 block">
+                  <label className="text-xs font-mono text-zinc-400 mb-2 block">
                     Project Details &amp; Objectives *
                   </label>
                   <textarea
@@ -391,7 +386,7 @@ export default function ServiceDetail({ params }: ServicePageProps) {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder={`Tell us about your ${service.title} requirements, timeline, or current technical bottlenecks...`}
-                    className="w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.1] text-sm text-white focus:outline-none focus:border-brand-primary"
+                    className="w-full px-4 py-4 rounded-xl bg-white/[0.03] border border-white/[0.1] text-sm text-white focus:outline-none focus:border-brand-primary"
                   />
                 </div>
 
@@ -399,7 +394,7 @@ export default function ServiceDetail({ params }: ServicePageProps) {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors disabled:opacity-50"
+                    className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs font-semibold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors disabled:opacity-50"
                   >
                     {submitting ? "Transmitting Scoping Brief..." : "Submit Scoping Inquiry"}
                     <Send className="w-3.5 h-3.5" />
@@ -419,7 +414,7 @@ export default function ServiceDetail({ params }: ServicePageProps) {
                 <Link
                   key={other.id}
                   href={`/services/${other.slug}`}
-                  className="p-5 rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.06] hover:border-brand-primary/40 transition-all flex items-center justify-between group"
+                  className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.06] hover:border-brand-primary/40 transition-all flex items-center justify-between group"
                 >
                   <span className="text-sm font-semibold text-white group-hover:text-brand-primary transition-colors">
                     {other.title}
@@ -430,9 +425,7 @@ export default function ServiceDetail({ params }: ServicePageProps) {
             </div>
           </div>
         </div>
-      </main>
-
-      <Footer />
+      </div>
     </>
   );
 }

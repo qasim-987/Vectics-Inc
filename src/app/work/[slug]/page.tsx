@@ -1,9 +1,6 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import LightRays from "@/components/LightRays";
 import { clientsData, ClientCaseStudy } from "@/data/clients";
 import {
   ArrowLeft,
@@ -53,12 +50,10 @@ export default function CaseStudyDetail({ params }: CaseStudyPageProps) {
 
   return (
     <>
-      <Navbar />
 
-      <main id="main-content" className="min-h-screen pt-32 pb-24 relative overflow-hidden bg-[#030303] text-zinc-100">
-        <LightRays />
+      <div className="min-h-screen pt-12 sm:pt-16 pb-24 relative overflow-hidden bg-bg text-zinc-100">
 
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12">
           {/* Breadcrumbs */}
           <div className="flex items-center gap-2 text-xs font-mono text-zinc-500 mb-8">
             <Link href="/" className="hover:text-white transition-colors">
@@ -74,11 +69,11 @@ export default function CaseStudyDetail({ params }: CaseStudyPageProps) {
 
           {/* Header Block */}
           <div className="mb-14">
-            <div className="flex flex-wrap items-center gap-3 mb-4">
-              <span className="text-xs font-mono font-bold text-white px-3 py-1 rounded-md bg-white/[0.08] border border-white/10">
+            <div className="flex flex-wrap items-center gap-4 mb-4">
+              <span className="text-xs font-mono font-bold text-white px-4 py-2 rounded-md bg-white/[0.08] border border-white/10">
                 {study.client}
               </span>
-              <span className="text-xs font-mono text-brand-primary px-2.5 py-0.5 rounded-full bg-brand-primary/10 border border-brand-primary/20">
+              <span className="text-xs font-mono text-brand-primary px-2 py-2 rounded-full bg-brand-primary/10 border border-brand-primary/20">
                 {study.category}
               </span>
               <span className="text-xs font-mono text-zinc-400">
@@ -96,16 +91,16 @@ export default function CaseStudyDetail({ params }: CaseStudyPageProps) {
           </div>
 
           {/* Highlight Impact Stat Banner */}
-          <div className="p-8 sm:p-10 rounded-2xl border border-brand-primary/30 bg-gradient-to-r from-brand-primary/15 via-[#0c0c12] to-transparent mb-16 flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-2xl shadow-brand-primary/10">
+          <div className="p-8 sm:p-10 rounded-2xl border border-brand-primary/30 bg-surface mb-16 flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-2xl shadow-brand-primary/10">
             <div>
               <div className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight font-mono">
                 {study.impactMetric}
               </div>
-              <div className="text-sm text-zinc-300 font-medium mt-1">
+              <div className="text-sm text-zinc-300 font-medium mt-2">
                 {study.impactLabel}
               </div>
             </div>
-            <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 bg-emerald-500/10 px-3.5 py-2 rounded-full border border-emerald-500/20 shrink-0">
+            <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 bg-emerald-500/10 px-4 py-2 rounded-full border border-emerald-500/20 shrink-0">
               <CheckCircle2 className="w-4 h-4 text-emerald-400" />
               <span>Production Benchmark Verified</span>
             </div>
@@ -113,7 +108,7 @@ export default function CaseStudyDetail({ params }: CaseStudyPageProps) {
 
           {/* Executive Summary */}
           <div className="mb-16">
-            <h2 className="text-xs font-mono uppercase tracking-widest text-brand-primary mb-3 font-semibold">
+            <h2 className="text-xs font-mono uppercase tracking-widest text-brand-primary mb-4 font-semibold">
               Executive Summary
             </h2>
             <p className="text-lg text-zinc-200 leading-relaxed">
@@ -125,7 +120,7 @@ export default function CaseStudyDetail({ params }: CaseStudyPageProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
             {/* The Challenge */}
             <div className="p-8 rounded-2xl bg-white/[0.02] border border-white/[0.08] relative">
-              <span className="text-xs font-mono uppercase tracking-wider text-amber-400 font-semibold mb-3 block">
+              <span className="text-xs font-mono uppercase tracking-wider text-amber-400 font-semibold mb-4 block">
                 The Operational Bottleneck
               </span>
               <h3 className="text-xl font-bold text-white mb-4">
@@ -138,7 +133,7 @@ export default function CaseStudyDetail({ params }: CaseStudyPageProps) {
 
             {/* The Solution */}
             <div className="p-8 rounded-2xl bg-brand-primary/[0.04] border border-brand-primary/20 relative">
-              <span className="text-xs font-mono uppercase tracking-wider text-brand-primary font-semibold mb-3 block">
+              <span className="text-xs font-mono uppercase tracking-wider text-brand-primary font-semibold mb-4 block">
                 Engineered Architecture
               </span>
               <h3 className="text-xl font-bold text-white mb-4">
@@ -153,7 +148,7 @@ export default function CaseStudyDetail({ params }: CaseStudyPageProps) {
           {/* Architecture Highlights */}
           {study.architectureHighlights && study.architectureHighlights.length > 0 && (
             <div className="mb-16">
-              <h2 className="text-xs font-mono uppercase tracking-widest text-brand-primary mb-3 font-semibold">
+              <h2 className="text-xs font-mono uppercase tracking-widest text-brand-primary mb-4 font-semibold">
                 Technical Highlights
               </h2>
               <h3 className="text-2xl font-bold text-white mb-6">
@@ -163,7 +158,7 @@ export default function CaseStudyDetail({ params }: CaseStudyPageProps) {
                 {study.architectureHighlights.map((hl, i) => (
                   <div
                     key={i}
-                    className="p-6 rounded-xl bg-[#09090d] border border-white/[0.08] hover:border-brand-primary/30 transition-colors"
+                    className="p-6 rounded-xl bg-surface border border-white/[0.08] hover:border-brand-primary/30 transition-colors"
                   >
                     <span className="text-xs font-mono text-zinc-500 mb-2 block">
                       0{i + 1}
@@ -181,7 +176,7 @@ export default function CaseStudyDetail({ params }: CaseStudyPageProps) {
           )}
 
           {/* Quantified Results */}
-          <div className="mb-16 p-8 sm:p-10 rounded-2xl bg-[#08080c] border border-white/[0.08]">
+          <div className="mb-16 p-8 sm:p-10 rounded-2xl bg-surface border border-white/[0.08]">
             <h2 className="text-xs font-mono uppercase tracking-widest text-brand-primary mb-2 font-semibold">
               Measurable Outcomes
             </h2>
@@ -192,9 +187,9 @@ export default function CaseStudyDetail({ params }: CaseStudyPageProps) {
               {study.results.map((result, idx) => (
                 <div
                   key={idx}
-                  className="flex items-start gap-3.5 p-4 rounded-xl bg-white/[0.02] border border-white/[0.04]"
+                  className="flex items-start gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/[0.04]"
                 >
-                  <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-2" />
                   <span className="text-sm text-zinc-200 leading-relaxed">
                     {result}
                   </span>
@@ -212,7 +207,7 @@ export default function CaseStudyDetail({ params }: CaseStudyPageProps) {
               {study.techStack.map((tech, idx) => (
                 <span
                   key={idx}
-                  className="text-xs font-mono px-3 py-1.5 rounded-lg bg-white/[0.04] text-zinc-300 border border-white/[0.08]"
+                  className="text-xs font-mono px-4 py-2 rounded-lg bg-white/[0.04] text-zinc-300 border border-white/[0.08]"
                 >
                   {tech}
                 </span>
@@ -224,9 +219,9 @@ export default function CaseStudyDetail({ params }: CaseStudyPageProps) {
           <div className="pt-10 border-t border-white/[0.08] grid grid-cols-1 sm:grid-cols-2 gap-6 mb-16">
             <Link
               href={`/work/${prevStudy.slug}`}
-              className="p-5 rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.05] hover:border-white/[0.2] transition-all group flex flex-col justify-between"
+              className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.05] hover:border-white/[0.2] transition-all group flex flex-col justify-between"
             >
-              <span className="text-xs font-mono text-zinc-500 mb-2 flex items-center gap-1.5">
+              <span className="text-xs font-mono text-zinc-500 mb-2 flex items-center gap-2">
                 <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
                 Previous Case Study
               </span>
@@ -237,9 +232,9 @@ export default function CaseStudyDetail({ params }: CaseStudyPageProps) {
 
             <Link
               href={`/work/${nextStudy.slug}`}
-              className="p-5 rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.05] hover:border-white/[0.2] transition-all group flex flex-col justify-between text-right"
+              className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.05] hover:border-white/[0.2] transition-all group flex flex-col justify-between text-right"
             >
-              <span className="text-xs font-mono text-zinc-500 mb-2 flex items-center justify-end gap-1.5">
+              <span className="text-xs font-mono text-zinc-500 mb-2 flex items-center justify-end gap-2">
                 Next Case Study
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </span>
@@ -250,9 +245,9 @@ export default function CaseStudyDetail({ params }: CaseStudyPageProps) {
           </div>
 
           {/* Bottom Consultation CTA */}
-          <div className="p-8 rounded-2xl bg-gradient-to-r from-brand-primary/10 to-transparent border border-brand-primary/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div className="p-8 rounded-2xl bg-surface border border-brand-primary/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <div>
-              <h4 className="text-xl font-bold text-white mb-1">
+              <h4 className="text-xl font-bold text-white mb-2">
                 Explore an architecture tailored to your data
               </h4>
               <p className="text-xs text-zinc-400">
@@ -261,15 +256,13 @@ export default function CaseStudyDetail({ params }: CaseStudyPageProps) {
             </div>
             <Link
               href="/contact"
-              className="px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors shrink-0"
+              className="px-6 py-4 rounded-full text-xs font-semibold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors shrink-0"
             >
               Book Scoping Call
             </Link>
           </div>
         </div>
-      </main>
-
-      <Footer />
+      </div>
     </>
   );
 }

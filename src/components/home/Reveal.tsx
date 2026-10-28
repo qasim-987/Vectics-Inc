@@ -25,8 +25,8 @@ export function Reveal({
   children,
   className,
   delay = 0,
-  distance = 26,
-  duration = 0.85,
+  distance = 8,
+  duration = 0.3,
   amount = 0.18,
   style,
 }: RevealProps) {
@@ -104,8 +104,8 @@ export function RevealImage({ children, className, delay = 0 }: RevealImageProps
       <motion.div
         className="relative h-full w-full"
         initial={false}
-        animate={inView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 18, scale: 1.025 }}
-        transition={{ duration: 0.7, delay, ease: EASE }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+        transition={{ duration: 0.3, delay, ease: EASE }}
         style={{ willChange: "transform, opacity" }}
       >
         {children}

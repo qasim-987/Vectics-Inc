@@ -2,9 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import LightRays from "@/components/LightRays";
 import { openSourceItems, openSourceCategories, OpenSourceItem } from "@/data/openSource";
 import {
   Code,
@@ -35,21 +32,19 @@ export default function OpenAxiomPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#030303] text-zinc-100 flex flex-col justify-between">
-      <Navbar />
+    <div className="relative min-h-screen bg-bg text-zinc-100 flex flex-col justify-between">
 
-      <main id="main-content" className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full flex-1">
-        <LightRays />
+      <div className="relative pt-12 sm:pt-16 pb-24 px-6 sm:px-8 lg:px-12 max-w-shell mx-auto w-full flex-1">
 
         {/* Header Block */}
         <div className="max-w-3xl mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-mono uppercase tracking-wider text-emerald-400 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-mono uppercase tracking-wider text-emerald-400 mb-6">
             <Code className="w-3.5 h-3.5" />
             Open-Source Infrastructure
           </div>
           <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
             Open Axiom: <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-brand-primary">
+            <span className="text-transparent bg-clip-text bg-surface">
               Tools, Skills &amp; Templates
             </span>
           </h1>
@@ -89,15 +84,15 @@ export default function OpenAxiomPage() {
               <div>
                 {/* Meta Top: Category + License + Stars */}
                 <div className="flex items-center justify-between gap-2 mb-4">
-                  <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-2 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                     {item.category}
                   </span>
-                  <div className="flex items-center gap-3 text-xs font-mono text-zinc-400">
-                    <span className="flex items-center gap-1">
+                  <div className="flex items-center gap-4 text-xs font-mono text-zinc-400">
+                    <span className="flex items-center gap-2">
                       <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
                       {item.stars}
                     </span>
-                    <span className="flex items-center gap-1">
+                    <span className="flex items-center gap-2">
                       <GitFork className="w-3.5 h-3.5 text-zinc-500" />
                       {item.forks}
                     </span>
@@ -116,7 +111,7 @@ export default function OpenAxiomPage() {
 
                 {/* Quick Copy Install Command */}
                 {item.installCommand && (
-                  <div className="mb-6 p-2.5 rounded-xl bg-[#08080c] border border-white/[0.06] flex items-center justify-between gap-2 text-xs font-mono text-zinc-300">
+                  <div className="mb-6 p-2 rounded-xl bg-surface border border-white/[0.06] flex items-center justify-between gap-2 text-xs font-mono text-zinc-300">
                     <div className="flex items-center gap-2 truncate">
                       <Terminal className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                       <span className="truncate">{item.installCommand}</span>
@@ -125,7 +120,7 @@ export default function OpenAxiomPage() {
                       type="button"
                       onClick={() => handleCopy(item.id, item.installCommand!)}
                       aria-label="Copy install command"
-                      className="p-1.5 rounded-lg hover:bg-white/[0.08] text-zinc-400 hover:text-white transition-colors shrink-0"
+                      className="p-2 rounded-lg hover:bg-white/[0.08] text-zinc-400 hover:text-white transition-colors shrink-0"
                     >
                       {copiedId === item.id ? (
                         <Check className="w-3.5 h-3.5 text-emerald-400" />
@@ -137,11 +132,11 @@ export default function OpenAxiomPage() {
                 )}
 
                 {/* Tech Stack Badges */}
-                <div className="flex flex-wrap gap-1.5 mb-6">
+                <div className="flex flex-wrap gap-2 mb-6">
                   {item.techStack.map((tech, idx) => (
                     <span
                       key={idx}
-                      className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.04] text-zinc-400 border border-white/[0.04]"
+                      className="text-[10px] font-mono px-2 py-2 rounded bg-white/[0.04] text-zinc-400 border border-white/[0.04]"
                     >
                       {tech}
                     </span>
@@ -158,7 +153,7 @@ export default function OpenAxiomPage() {
                   href={item.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 font-semibold text-white hover:text-emerald-400 transition-colors"
+                  className="inline-flex items-center gap-2 font-semibold text-white hover:text-emerald-400 transition-colors"
                 >
                   <Github className="w-4 h-4" />
                   <span>Repository</span>
@@ -170,7 +165,7 @@ export default function OpenAxiomPage() {
         </div>
 
         {/* Contribution Banner */}
-        <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-emerald-500/10 via-teal-500/5 to-transparent border border-emerald-500/20 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+        <div className="p-8 sm:p-12 rounded-3xl bg-surface border border-emerald-500/20 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div>
             <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 font-semibold mb-2 block">
               OPEN SOURCE ECOSYSTEM
@@ -186,15 +181,13 @@ export default function OpenAxiomPage() {
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors shrink-0 shadow-xl shadow-emerald-500/20"
+            className="inline-flex items-center gap-2 px-6 py-4 rounded-full text-xs font-semibold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors shrink-0 shadow-xl shadow-emerald-500/20"
           >
             <Github className="w-4 h-4" />
             <span>Visit GitHub Org</span>
           </a>
         </div>
-      </main>
-
-      <Footer />
+      </div>
     </div>
   );
 }

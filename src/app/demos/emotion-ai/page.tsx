@@ -2,9 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import LightRays from "@/components/LightRays";
 import {
   Sparkles,
   Heart,
@@ -67,21 +64,19 @@ export default function EmotionAIDemoPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#030303] text-zinc-100 flex flex-col justify-between">
-      <Navbar />
+    <div className="relative min-h-screen bg-bg text-zinc-100 flex flex-col justify-between">
 
-      <main id="main-content" className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full flex-1">
-        <LightRays />
+      <div className="relative pt-12 sm:pt-16 pb-24 px-6 sm:px-8 lg:px-12 max-w-shell mx-auto w-full flex-1">
 
         {/* Header Block */}
         <div className="max-w-4xl mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-pink-500/10 border border-pink-500/20 text-xs font-mono uppercase tracking-wider text-pink-400 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-500/10 border border-pink-500/20 text-xs font-mono uppercase tracking-wider text-pink-400 mb-6">
             <Heart className="w-3.5 h-3.5" />
             Multimodal Sentiment Engine
           </div>
           <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
             Sentiment AI for <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-rose-300 to-brand-primary">
+            <span className="text-transparent bg-clip-text bg-surface">
               High-Stakes Decision Making
             </span>
           </h1>
@@ -100,7 +95,7 @@ export default function EmotionAIDemoPage() {
               key={idx}
               type="button"
               onClick={() => selectPreset(p)}
-              className={`px-3.5 py-1.5 rounded-xl text-xs font-mono transition-all ${
+              className={`px-4 py-2 rounded-xl text-xs font-mono transition-all ${
                 activePreset.label === p.label
                   ? "bg-white text-black font-semibold shadow-md"
                   : "bg-white/[0.04] text-zinc-400 hover:text-white border border-white/[0.06]"
@@ -115,7 +110,7 @@ export default function EmotionAIDemoPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-24">
           {/* Left Column: Input Text Area */}
           <div className="lg:col-span-7 flex flex-col justify-between">
-            <div className="p-6 sm:p-8 rounded-3xl bg-[#08080c] border border-white/[0.1] shadow-2xl h-full flex flex-col justify-between">
+            <div className="p-6 sm:p-8 rounded-3xl bg-surface border border-white/[0.1] shadow-2xl h-full flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/[0.08]">
                   <span className="text-xs font-mono font-semibold text-white">
@@ -144,9 +139,9 @@ export default function EmotionAIDemoPage() {
 
           {/* Right Column: Multimodal Emotional Radar Breakdown */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="p-6 sm:p-8 rounded-3xl bg-[#08080c] border border-pink-500/30 shadow-2xl space-y-6">
+            <div className="p-6 sm:p-8 rounded-3xl bg-surface border border-pink-500/30 shadow-2xl space-y-6">
               <div>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-pink-400 font-semibold block mb-1">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-pink-400 font-semibold block mb-2">
                   PREDOMINANT TONE CLASSIFICATION
                 </span>
                 <h3 className="text-xl font-bold text-white">
@@ -156,8 +151,8 @@ export default function EmotionAIDemoPage() {
 
               {/* Metric 1: Positive / Delight */}
               <div>
-                <div className="flex justify-between items-center text-xs font-mono mb-1.5">
-                  <span className="text-emerald-400 flex items-center gap-1.5">
+                <div className="flex justify-between items-center text-xs font-mono mb-2">
+                  <span className="text-emerald-400 flex items-center gap-2">
                     <Smile className="w-3.5 h-3.5" />
                     Positive / Delight
                   </span>
@@ -173,8 +168,8 @@ export default function EmotionAIDemoPage() {
 
               {/* Metric 2: Urgency */}
               <div>
-                <div className="flex justify-between items-center text-xs font-mono mb-1.5">
-                  <span className="text-rose-400 flex items-center gap-1.5">
+                <div className="flex justify-between items-center text-xs font-mono mb-2">
+                  <span className="text-rose-400 flex items-center gap-2">
                     <AlertTriangle className="w-3.5 h-3.5" />
                     Urgency / Mandate
                   </span>
@@ -190,8 +185,8 @@ export default function EmotionAIDemoPage() {
 
               {/* Metric 3: Skepticism / Risk */}
               <div>
-                <div className="flex justify-between items-center text-xs font-mono mb-1.5">
-                  <span className="text-amber-400 flex items-center gap-1.5">
+                <div className="flex justify-between items-center text-xs font-mono mb-2">
+                  <span className="text-amber-400 flex items-center gap-2">
                     <Frown className="w-3.5 h-3.5" />
                     Skepticism / Risk
                   </span>
@@ -207,8 +202,8 @@ export default function EmotionAIDemoPage() {
 
               {/* Metric 4: Informational / Neutral */}
               <div>
-                <div className="flex justify-between items-center text-xs font-mono mb-1.5">
-                  <span className="text-blue-400 flex items-center gap-1.5">
+                <div className="flex justify-between items-center text-xs font-mono mb-2">
+                  <span className="text-blue-400 flex items-center gap-2">
                     <Meh className="w-3.5 h-3.5" />
                     Informational / Neutral
                   </span>
@@ -225,7 +220,7 @@ export default function EmotionAIDemoPage() {
               <div className="pt-4 border-t border-white/[0.08]">
                 <Link
                   href="/contact"
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-white text-black text-xs font-semibold uppercase tracking-wider hover:bg-zinc-200 transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-2 py-4 rounded-xl bg-white text-black text-xs font-semibold uppercase tracking-wider hover:bg-zinc-200 transition-colors"
                 >
                   Integrate Sentiment Pipeline
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -234,9 +229,7 @@ export default function EmotionAIDemoPage() {
             </div>
           </div>
         </div>
-      </main>
-
-      <Footer />
+      </div>
     </div>
   );
 }

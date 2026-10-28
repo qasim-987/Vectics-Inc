@@ -146,7 +146,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 bg-ink-deep/70 backdrop-blur-sm transition-opacity duration-300 animate-fadeIn"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 bg-dark/70 backdrop-blur-sm transition-opacity duration-300 animate-fade-in"
       role="dialog"
       aria-modal="true"
       aria-labelledby="contact-modal-title"
@@ -167,8 +167,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
         </button>
 
         <div className="mb-6">
-          <span className="text-[0.78rem] font-mono uppercase tracking-[0.18em] text-brand">
-            // Get in touch
+          <span className="text-[0.78rem] font-mono uppercase tracking-[0.18em] text-brand">Get in touch
           </span>
           <h2 id="contact-modal-title" className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight text-content">
             Let’s talk about what you need.
@@ -179,7 +178,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
         </div>
 
         {status === "success" ? (
-          <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-6 text-center space-y-3">
+          <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-6 text-center space-y-4">
             <CheckCircle2 className="mx-auto h-10 w-10 text-emerald-700" />
             <h3 className="text-lg font-semibold text-content">Message received</h3>
             <p className="text-sm text-content-muted">
@@ -187,7 +186,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
             </p>
             <button
               onClick={handleClose}
-              className="mt-4 inline-flex items-center justify-center rounded-md bg-brand px-5 py-2 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-brand-deep"
+              className="mt-4 inline-flex items-center justify-center rounded-md bg-brand px-6 py-2 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-brand-deep"
             >
               Done
             </button>
@@ -195,9 +194,9 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             {status === "error" && (
-              <div className="flex items-start gap-3 rounded-lg border border-accent-red/30 bg-accent-red/10 p-3.5 text-xs text-content">
-                <AlertCircle className="h-4 w-4 shrink-0 text-accent-red mt-0.5" />
-                <div className="space-y-1">
+              <div className="flex items-start gap-4 rounded-lg border border-accent-red/30 bg-accent-red/10 p-4 text-xs text-content">
+                <AlertCircle className="h-4 w-4 shrink-0 text-accent-red mt-2" />
+                <div className="space-y-2">
                   <p>{errorMessage}</p>
                   <p>
                     Or write directly to:{" "}
@@ -223,7 +222,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
               />
             </div>
 
-            <div className="space-y-1">
+            <div className="space-y-2">
               <label htmlFor="name" className="text-xs font-medium uppercase tracking-wider text-content-muted">
                 Your Name <span className="text-accent-red">*</span>
               </label>
@@ -234,11 +233,11 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Your name"
-                className="w-full rounded-md border border-surface-border bg-surface-muted px-3.5 py-2.5 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all"
+                className="w-full rounded-md border border-surface-border bg-surface-muted px-4 py-2 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all"
               />
             </div>
 
-            <div className="space-y-1">
+            <div className="space-y-2">
               <label htmlFor="email" className="text-xs font-medium uppercase tracking-wider text-content-muted">
                 Email Address <span className="text-accent-red">*</span>
               </label>
@@ -249,11 +248,11 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="name@company.com"
-                className="w-full rounded-md border border-surface-border bg-surface-muted px-3.5 py-2.5 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all"
+                className="w-full rounded-md border border-surface-border bg-surface-muted px-4 py-2 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all"
               />
             </div>
 
-            <div className="space-y-1">
+            <div className="space-y-2">
               <label htmlFor="organization" className="text-xs font-medium uppercase tracking-wider text-content-muted">
                 Organization / Operation Type
               </label>
@@ -263,11 +262,11 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
                 value={formData.organization}
                 onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
                 placeholder="Company or project (optional)"
-                className="w-full rounded-md border border-surface-border bg-surface-muted px-3.5 py-2.5 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all"
+                className="w-full rounded-md border border-surface-border bg-surface-muted px-4 py-2 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all"
               />
             </div>
 
-            <div className="space-y-1">
+            <div className="space-y-2">
               <label htmlFor="message" className="text-xs font-medium uppercase tracking-wider text-content-muted">
                 Message <span className="text-accent-red">*</span>
               </label>
@@ -278,14 +277,14 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 placeholder="Tell us about the work you want to improve or the product you want to build..."
-                className="w-full rounded-md border border-surface-border bg-surface-muted px-3.5 py-2.5 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all resize-none"
+                className="w-full rounded-md border border-surface-border bg-surface-muted px-4 py-2 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all resize-none"
               />
             </div>
 
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
               <a
                 href={`mailto:${siteMeta.email}`}
-                className="inline-flex items-center gap-1.5 text-xs text-content-muted hover:text-content transition-colors"
+                className="inline-flex items-center gap-2 text-xs text-content-muted hover:text-content transition-colors"
               >
                 <Mail className="h-3.5 w-3.5" />
                 <span>Prefer direct email? {siteMeta.email}</span>
@@ -294,7 +293,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-md bg-brand px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-brand-deep disabled:opacity-50"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-md bg-brand px-6 py-2 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-brand-deep disabled:opacity-50"
               >
                 {status === "loading" ? (
                   <span>Sending...</span>

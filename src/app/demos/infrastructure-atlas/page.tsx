@@ -2,9 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import LightRays from "@/components/LightRays";
 import {
   Globe2,
   Server,
@@ -53,21 +50,19 @@ export default function InfrastructureAtlasDemoPage() {
   );
 
   return (
-    <div className="relative min-h-screen bg-[#030303] text-zinc-100 flex flex-col justify-between">
-      <Navbar />
+    <div className="relative min-h-screen bg-bg text-zinc-100 flex flex-col justify-between">
 
-      <main id="main-content" className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full flex-1">
-        <LightRays />
+      <div className="relative pt-12 sm:pt-16 pb-24 px-6 sm:px-8 lg:px-12 max-w-shell mx-auto w-full flex-1">
 
         {/* Header Block */}
         <div className="max-w-4xl mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-mono uppercase tracking-wider text-blue-400 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-mono uppercase tracking-wider text-blue-400 mb-6">
             <Globe2 className="w-3.5 h-3.5" />
             Geospatial Network Telemetry
           </div>
           <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
             Infrastructure Atlas: <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-brand-primary">
+            <span className="text-transparent bg-clip-text bg-surface">
               Global Data Center &amp; Fiber Map
             </span>
           </h1>
@@ -81,7 +76,7 @@ export default function InfrastructureAtlasDemoPage() {
           {/* Left Column: Interactive Map Grid */}
           <div className="lg:col-span-8 flex flex-col justify-between">
             {/* Search Filter Bar */}
-            <div className="p-4 rounded-2xl bg-[#08080c] border border-white/[0.08] mb-6 flex items-center gap-3">
+            <div className="p-4 rounded-2xl bg-surface border border-white/[0.08] mb-6 flex items-center gap-4">
               <Search className="w-4 h-4 text-zinc-500 shrink-0" />
               <input
                 type="text"
@@ -96,19 +91,11 @@ export default function InfrastructureAtlasDemoPage() {
             </div>
 
             {/* Visual Geospatial Coordinate Matrix */}
-            <div className="relative rounded-3xl overflow-hidden border border-white/[0.1] bg-[#050508] p-8 shadow-2xl min-h-[420px] flex flex-col justify-between">
+            <div className="relative rounded-3xl overflow-hidden border border-white/[0.1] bg-surface p-8 shadow-2xl min-h-[420px] flex flex-col justify-between">
               {/* Radial Coordinate Grid */}
-              <div
-                className="absolute inset-0 opacity-20"
-                style={{
-                  backgroundImage: `radial-gradient(rgba(105, 106, 172, 0.4) 1px, transparent 1px)`,
-                  backgroundSize: "32px 32px",
-                }}
-              />
 
-              <div className="relative z-10 flex items-center justify-between text-xs font-mono text-zinc-500 border-b border-white/[0.06] pb-3">
-                <span className="flex items-center gap-1.5 text-emerald-400">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <div className="relative z-10 flex items-center justify-between text-xs font-mono text-zinc-500 border-b border-white/[0.06] pb-4">
+                <span className="flex items-center gap-2 text-emerald-400">
                   OPTICAL BACKBONE: 99.999% HEALTHY
                 </span>
                 <span>SUB-SEA FIBER CARRIERS: 18 ACTIVE</span>
@@ -123,12 +110,12 @@ export default function InfrastructureAtlasDemoPage() {
                     onClick={() => setSelectedNode(dc)}
                     className={`p-4 rounded-2xl border text-left transition-all ${
                       selectedNode.id === dc.id
-                        ? "bg-brand-primary/20 border-brand-primary shadow-xl shadow-brand-primary/20 scale-[1.02]"
+                        ? "bg-brand-primary/20 border-brand-primary shadow-xl shadow-brand-primary/20 "
                         : "bg-white/[0.03] border-white/[0.08] hover:bg-white/[0.06] hover:border-white/20"
                     }`}
                   >
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.08] text-white">
+                      <span className="text-[10px] font-mono px-2 py-2 rounded bg-white/[0.08] text-white">
                         {dc.region}
                       </span>
                       <span className="text-xs font-mono text-emerald-400 font-bold">
@@ -138,14 +125,14 @@ export default function InfrastructureAtlasDemoPage() {
                     <div className="font-bold text-sm text-white truncate">
                       {dc.city}
                     </div>
-                    <div className="text-[11px] font-mono text-zinc-400 mt-1 truncate">
+                    <div className="text-[11px] font-mono text-zinc-400 mt-2 truncate">
                       {dc.provider}
                     </div>
                   </button>
                 ))}
               </div>
 
-              <div className="relative z-10 flex items-center justify-between text-xs font-mono text-zinc-500 pt-3 border-t border-white/[0.06]">
+              <div className="relative z-10 flex items-center justify-between text-xs font-mono text-zinc-500 pt-4 border-t border-white/[0.06]">
                 <span>GLOBAL TIME-TO-FIRST-BYTE &lt; 250MS</span>
                 <span>PQC ENCRYPTED CROSS-CONNECTS</span>
               </div>
@@ -154,7 +141,7 @@ export default function InfrastructureAtlasDemoPage() {
 
           {/* Right Column: Node Details Inspector */}
           <div className="lg:col-span-4">
-            <div className="p-6 sm:p-8 rounded-3xl bg-[#08080c] border border-brand-primary/30 shadow-2xl flex flex-col justify-between h-full">
+            <div className="p-6 sm:p-8 rounded-3xl bg-surface border border-brand-primary/30 shadow-2xl flex flex-col justify-between h-full">
               <div>
                 <div className="flex items-center justify-between pb-4 mb-6 border-b border-white/[0.08]">
                   <div className="flex items-center gap-2">
@@ -163,12 +150,12 @@ export default function InfrastructureAtlasDemoPage() {
                       NODE TELEMETRY
                     </span>
                   </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  <span className="text-[10px] font-mono px-2 py-2 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                     ONLINE
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-1">
+                <h3 className="text-xl font-bold text-white mb-2">
                   {selectedNode.name}
                 </h3>
                 <p className="text-xs font-mono text-zinc-400 mb-6">
@@ -176,24 +163,24 @@ export default function InfrastructureAtlasDemoPage() {
                 </p>
 
                 <div className="space-y-4 text-xs font-mono">
-                  <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.04] flex justify-between items-center">
+                  <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.04] flex justify-between items-center">
                     <span className="text-zinc-500">Live Round-Trip Ping</span>
                     <span className="text-emerald-400 font-bold text-sm">{selectedNode.latencyMs} ms</span>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.04] flex justify-between items-center">
+                  <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.04] flex justify-between items-center">
                     <span className="text-zinc-500">Facility Power Capacity</span>
                     <span className="text-white font-semibold">{selectedNode.capacityMW}</span>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.04] flex justify-between items-center">
+                  <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.04] flex justify-between items-center">
                     <span className="text-zinc-500">Infrastructure Host</span>
                     <span className="text-zinc-300">{selectedNode.provider}</span>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.04] flex justify-between items-center">
+                  <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.04] flex justify-between items-center">
                     <span className="text-zinc-500">Post-Quantum Cryptography</span>
-                    <span className="text-brand-primary flex items-center gap-1 font-semibold">
+                    <span className="text-brand-primary flex items-center gap-2 font-semibold">
                       <ShieldCheck className="w-3.5 h-3.5" />
                       Lattice Protected
                     </span>
@@ -203,7 +190,7 @@ export default function InfrastructureAtlasDemoPage() {
                     <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 block mb-2">
                       Connected Subsea &amp; Terrestrial Fiber:
                     </span>
-                    <div className="space-y-1.5">
+                    <div className="space-y-2">
                       {selectedNode.fiberRoutes.map((f, fIdx) => (
                         <div key={fIdx} className="p-2 rounded-lg bg-white/[0.03] text-zinc-300 text-[11px] flex items-center gap-2">
                           <Radio className="w-3 h-3 text-brand-primary" />
@@ -218,7 +205,7 @@ export default function InfrastructureAtlasDemoPage() {
               <div className="pt-6 mt-6 border-t border-white/[0.08]">
                 <Link
                   href="/contact"
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-white text-black text-xs font-semibold uppercase tracking-wider hover:bg-zinc-200 transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-2 py-4 rounded-xl bg-white text-black text-xs font-semibold uppercase tracking-wider hover:bg-zinc-200 transition-colors"
                 >
                   Deploy Private Sovereign VPC
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -227,9 +214,7 @@ export default function InfrastructureAtlasDemoPage() {
             </div>
           </div>
         </div>
-      </main>
-
-      <Footer />
+      </div>
     </div>
   );
 }

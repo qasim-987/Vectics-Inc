@@ -1,37 +1,40 @@
 # Vectis website — design & implementation notes
 
-Vectis is presented as a software and AI studio within **Forza Inc.** The visual and content direction takes cues from the editorial, cinematic rhythm of [forzainc.tech](https://forzainc.tech/) without reusing its logo, copy, or imagery. Existing Vectis product routes and names remain intact.
+Vectis is a calm, mature B2B operations-software company within **Forza Inc.** Existing product names, routes, and copy remain in place; the visual system is shared across the app shell and route pages.
 
 ## Design system
 
-- Warm editorial surfaces: `--canvas` `#f2efe9`, warm raised/deep surfaces, near-black type, readable muted text, and restrained blue accents. Navy remains for high-contrast hero, navigation, and footer regions.
-- Shared CSS variables live in `src/app/globals.css`; Tailwind maps the semantic tokens in `tailwind.config.ts`.
-- Fonts are self-hosted: Inter Variable, Instrument Serif, IBM Plex Mono, and Outfit.
-- Motion easing is `cubic-bezier(0.22, 1, 0.36, 1)`. Shared reveal/stagger/hover timing tokens are in the CSS root. Motion is limited to opacity and transform in the new reveals; reduced-motion users get static content and no autoplay.
-- Components are mobile-first, use semantic links/buttons and visible focus states, and share the global skip link and navigation/footer.
+- Approved palette only: `--bg: #FAFAF7`, `--surface: #FFFFFF`, `--border: #E4E4DE`, `--text: #0F1B2D`, `--text-muted: #5B6675`, `--accent: #1D4ED8`, `--accent-hover: #1E40AF`, `--dark: #0B1524`, `--dark-text: #E5E7EB`. Opacity variants use derived RGB channels of those exact tokens.
+- CSS variables live in `src/app/globals.css`; Tailwind maps semantic and legacy utility names to the approved tokens in `tailwind.config.ts`.
+- Typography uses self-hosted Inter for UI/body and Instrument Serif for headings. Headings are non-italic, and technical/legacy mono utilities resolve to Inter.
+- Shared layout tokens: 1200px content shell, 72px solid sticky navigation, 48px buttons with 8px corners, and 12px card corners. Shadows remain subtle and section backgrounds stay neutral; dark surfaces are reserved for the shared contact CTA/footer.
+- Reveals use a 300ms fade/short rise and honor `prefers-reduced-motion`. Decorative gradients, glow, glass effects, magnetic movement, and status-dot badges are removed.
+- Components remain responsive, semantic, keyboard operable, and include visible focus states, a skip link, reduced-motion support, and image alt text.
 
 ## Home page sections
 
-1. Cinematic image hero with intentional two-line heading, priority-loaded first image, image slideshow controls, pause control, and a `#products` CTA.
-2. Light editorial statement describing Vectis' custom software, web app, and practical AI work.
+1. Contained two-column hero with the existing headline/copy and only the existing primary/secondary CTAs; the pill label and third text link are removed.
+2. Editorial statement describing Vectis' custom software, web app, and practical AI work.
 3. Four-stage discovery/design/build/improve story with responsive imagery and a sticky desktop image panel.
-4. Three existing Vectis products with live/development badges and real detail routes.
+4. Three existing Vectis products with text-only status labels and real detail routes.
 5. Four principles and a five-step delivery loop.
-6. Closing contact CTA and shared footer, including the Forza Inc. parent-company link.
+6. Shared dark contact CTA/footer, including the Forza Inc. parent-company link.
 
 ## Shared components and data
 
-- `src/components/Container.tsx`, `SectionLabel.tsx`, `Button.tsx`, `SiteImage.tsx`, `StatusBadge.tsx` — reusable layout, labels, links, `next/image` blur/ratio wrapper, and product status badge.
-- `src/components/home/Reveal.tsx` — reduced-motion-aware reveal and image observer.
-- `src/data/site-navigation.ts` — typed navigation shared by the header and footer, and the verified Forza parent link.
-- `src/data/home.ts` and `src/data/vectis.ts` — hero/story media, product, story, principle, and process content.
-- `src/components/VectisHeader.tsx` and `VectisFooter.tsx` — desktop dropdown, focus-managed mobile menu, consistent footer, contact CTA, and parent identity.
+- `src/app/globals.css` and `tailwind.config.ts` — centralized palette, typography, spacing/layout, radius, shadow, and motion foundations.
+- `src/components/Container.tsx`, `Button.tsx`, `SectionLabel.tsx`, `SiteImage.tsx`, and `home/StatusBadge.tsx` — shared layout, controls, labels, image handling, and text-only product status.
+- `src/components/home/Reveal.tsx` — reduced-motion-aware 300ms reveal and image observer.
+- `src/data/site-navigation.ts` — typed navigation shared by the header/footer, plus the verified Forza parent link.
+- `src/data/home.ts` and `src/data/vectis.ts` — hero/story media, products, story, principles, and process content.
+- `src/components/VectisHeader.tsx` and `VectisFooter.tsx` — 72px shared navigation, keyboard-accessible mobile menu, contact CTA, and footer.
 
 ## Routes and technical systems
 
-- Existing product pages: `/distributionlife`, `/nano`, `/studio`.
+- Product pages: `/distributionlife`, `/nano`, `/studio`.
 - Editorial pages: `/clients`, `/journal`, `/about`, `/privacy`, `/terms`, `/contact`.
-- SEO: App Router metadata, Organization/WebSite structured data with `parentOrganization: Forza Inc.`, static `/opengraph-image.png`, `/icon.svg`, `robots.txt`, and `sitemap.xml`.
+- Existing work, services, resources, company, blog, and demo routes are retained and use the shared app chrome.
+- SEO: App Router metadata, Organization/WebSite structured data with `parentOrganization: Forza Inc.`, `/icon.svg`, `robots.txt`, and `sitemap.xml`.
 - Contact form: `/api/contact` validates and bounds input, quietly rejects honeypot submissions, and sends mail through Resend server-side. It does not return a false success when email credentials are missing.
 
 ## Contact delivery setup

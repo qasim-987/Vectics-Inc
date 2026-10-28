@@ -1,9 +1,6 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import LightRays from "@/components/LightRays";
 import { blogPosts, BlogPost } from "@/data/blog";
 import {
   ArrowLeft,
@@ -48,12 +45,10 @@ export default function BlogPostDetail({ params }: BlogPostPageProps) {
 
   return (
     <>
-      <Navbar />
 
-      <main id="main-content" className="min-h-screen pt-32 pb-24 relative overflow-hidden bg-[#030303] text-zinc-100">
-        <LightRays />
+      <div className="min-h-screen pt-12 sm:pt-16 pb-24 relative overflow-hidden bg-bg text-zinc-100">
 
-        <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <article className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
           {/* Breadcrumbs */}
           <div className="flex items-center gap-2 text-xs font-mono text-zinc-500 mb-8">
             <Link href="/" className="hover:text-white transition-colors">
@@ -69,11 +64,11 @@ export default function BlogPostDetail({ params }: BlogPostPageProps) {
 
           {/* Article Header */}
           <header className="mb-12">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-xs font-mono px-3 py-1 rounded-full bg-brand-primary/10 text-brand-primary border border-brand-primary/20">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="text-xs font-mono px-4 py-2 rounded-full bg-brand-primary/10 text-brand-primary border border-brand-primary/20">
                 {post.category}
               </span>
-              <span className="text-xs font-mono text-zinc-400 flex items-center gap-1">
+              <span className="text-xs font-mono text-zinc-400 flex items-center gap-2">
                 <Clock className="w-3.5 h-3.5" />
                 {post.readingTime}
               </span>
@@ -93,7 +88,7 @@ export default function BlogPostDetail({ params }: BlogPostPageProps) {
 
             {/* Author Card */}
             <div className="flex items-center justify-between p-4 rounded-xl bg-white/[0.02] border border-white/[0.08]">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full bg-brand-primary/20 border border-brand-primary/30 flex items-center justify-center font-mono text-xs font-bold text-white">
                   {post.author.avatar}
                 </div>
@@ -115,7 +110,7 @@ export default function BlogPostDetail({ params }: BlogPostPageProps) {
 
           {/* Article Content */}
           <div className="prose prose-invert max-w-none mb-16 text-zinc-300 text-base leading-relaxed space-y-8">
-            <p className="text-lg text-zinc-200 leading-relaxed font-normal border-l-2 border-brand-primary/50 pl-4 py-1">
+            <p className="text-lg text-zinc-200 leading-relaxed font-normal border-l-2 border-brand-primary/50 pl-4 py-2">
               {post.content.introduction}
             </p>
 
@@ -129,14 +124,14 @@ export default function BlogPostDetail({ params }: BlogPostPageProps) {
                 </p>
 
                 {section.takeaways && section.takeaways.length > 0 && (
-                  <div className="p-6 rounded-2xl bg-[#08080c] border border-white/[0.08] my-6">
-                    <span className="text-xs font-mono uppercase tracking-widest text-brand-primary font-semibold mb-3 block">
+                  <div className="p-6 rounded-2xl bg-surface border border-white/[0.08] my-6">
+                    <span className="text-xs font-mono uppercase tracking-widest text-brand-primary font-semibold mb-4 block">
                       Architectural Takeaways
                     </span>
                     <ul className="space-y-2 text-sm text-zinc-300">
                       {section.takeaways.map((t, tIdx) => (
-                        <li key={tIdx} className="flex items-start gap-2.5">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                        <li key={tIdx} className="flex items-start gap-2">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-2" />
                           <span>{t}</span>
                         </li>
                       ))}
@@ -147,7 +142,7 @@ export default function BlogPostDetail({ params }: BlogPostPageProps) {
             ))}
 
             <div className="pt-8 border-t border-white/[0.08]">
-              <h3 className="text-xl font-bold text-white mb-3">
+              <h3 className="text-xl font-bold text-white mb-4">
                 Summary &amp; Strategic Horizon
               </h3>
               <p className="text-zinc-300 leading-relaxed">
@@ -169,14 +164,14 @@ export default function BlogPostDetail({ params }: BlogPostPageProps) {
                   className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.08] hover:border-brand-primary/30 transition-all group flex flex-col justify-between"
                 >
                   <div>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.06] text-zinc-400 mb-3 inline-block">
+                    <span className="text-[10px] font-mono px-2 py-2 rounded bg-white/[0.06] text-zinc-400 mb-4 inline-block">
                       {rPost.category}
                     </span>
                     <h4 className="text-base font-bold text-white group-hover:text-brand-primary transition-colors">
                       {rPost.title}
                     </h4>
                   </div>
-                  <span className="text-xs font-mono text-zinc-400 mt-4 flex items-center gap-1 group-hover:text-white">
+                  <span className="text-xs font-mono text-zinc-400 mt-4 flex items-center gap-2 group-hover:text-white">
                     Read Post
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
@@ -186,9 +181,9 @@ export default function BlogPostDetail({ params }: BlogPostPageProps) {
           </div>
 
           {/* Consultation CTA */}
-          <div className="p-8 rounded-2xl bg-gradient-to-r from-brand-primary/10 to-transparent border border-brand-primary/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div className="p-8 rounded-2xl bg-surface border border-brand-primary/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <div>
-              <h4 className="text-lg font-bold text-white mb-1">
+              <h4 className="text-lg font-bold text-white mb-2">
                 Implement these systems in your stack
               </h4>
               <p className="text-xs text-zinc-400">
@@ -197,15 +192,13 @@ export default function BlogPostDetail({ params }: BlogPostPageProps) {
             </div>
             <Link
               href="/contact"
-              className="px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors shrink-0"
+              className="px-6 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors shrink-0"
             >
               Get In Touch
             </Link>
           </div>
         </article>
-      </main>
-
-      <Footer />
+      </div>
     </>
   );
 }

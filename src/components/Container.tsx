@@ -8,7 +8,7 @@ interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
 export default function Container({ as: Component = "div", className = "", ...props }: ContainerProps) {
   return (
     <Component
-      className={`mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-12 ${className}`.trim()}
+      className={`mx-auto w-full max-w-shell px-6 sm:px-8 lg:px-12 ${className}`.trim()}
       {...props}
     />
   );

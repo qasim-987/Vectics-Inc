@@ -32,23 +32,19 @@ export default function DistributionLifePage() {
   };
 
   return (
-    <div className="w-full bg-surface pt-32 pb-24 text-content">
+    <div className="w-full bg-bg pt-12 sm:pt-16 pb-24 text-content">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
       {/* Hero Header */}
-      <section className="mx-auto max-w-[1180px] px-5 md:px-8 mb-20">
+      <section className="mx-auto max-w-shell px-6 md:px-8 mb-20">
         <div className="max-w-3xl">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="text-xs font-mono uppercase tracking-[0.2em] text-brand">
-              // Live System
+          <div className="flex items-center gap-4 mb-6">
+            <span className="text-xs font-mono uppercase tracking-[0.2em] text-brand">Live System
             </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-0.5 text-xs font-medium text-emerald-700 border border-emerald-200">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-600"></span>
-              Live in Active Depots
-            </span>
+            <span className="status-badge">Live in Active Depots</span>
           </div>
 
           <h1 className="text-4xl sm:text-6xl font-serif font-normal tracking-tight text-content leading-[1.1]">
@@ -62,14 +58,14 @@ export default function DistributionLifePage() {
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
               href="#close-summary"
-              className="inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white transition-all hover:bg-brand-deep"
+              className="inline-flex items-center gap-2 rounded-full bg-brand px-6 py-4 text-xs font-semibold uppercase tracking-wider text-white transition-all hover:bg-brand-deep"
             >
               <span>See the Daily Record</span>
               <ArrowRight className="h-3.5 w-3.5" />
             </a>
             <Link
               href="/clients"
-              className="inline-flex items-center gap-2 rounded-full border border-surface-border px-6 py-3 text-xs font-mono uppercase tracking-wider text-content-muted transition-colors hover:border-brand/40 hover:text-brand"
+              className="inline-flex items-center gap-2 rounded-full border border-surface-border px-6 py-4 text-xs font-mono uppercase tracking-wider text-content-muted transition-colors hover:border-brand/40 hover:text-brand"
             >
               Read Client Stories
             </Link>
@@ -79,33 +75,33 @@ export default function DistributionLifePage() {
 
       {/* Architectural Philosophy Callout */}
       <section className="border-y border-surface-border bg-surface-muted py-16">
-        <div className="mx-auto max-w-[1180px] px-5 md:px-8">
+        <div className="mx-auto max-w-shell px-6 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex items-start gap-4">
-              <Database className="h-6 w-6 text-brand shrink-0 mt-1" />
+              <Database className="h-6 w-6 text-brand shrink-0 mt-2" />
               <div>
                 <h3 className="text-base font-semibold text-content">Offline-First SQLite Engine</h3>
-                <p className="mt-1 text-sm text-content-muted leading-relaxed">
+                <p className="mt-2 text-sm text-content-muted leading-relaxed">
                   Zero cloud dependency for daily operations. Runs instantaneously on standard Windows PCs, immune to warehouse ISP blackouts.
                 </p>
               </div>
             </div>
 
             <div className="flex items-start gap-4">
-              <ShieldCheck className="h-6 w-6 text-brand shrink-0 mt-1" />
+              <ShieldCheck className="h-6 w-6 text-brand shrink-0 mt-2" />
               <div>
                 <h3 className="text-base font-semibold text-content">Indisputable Cash Auditing</h3>
-                <p className="mt-1 text-sm text-content-muted leading-relaxed">
+                <p className="mt-2 text-sm text-content-muted leading-relaxed">
                   Driver collections match line-item invoices against bank deposit slips, isolating discrepancies down to the single rupee.
                 </p>
               </div>
             </div>
 
             <div className="flex items-start gap-4">
-              <Printer className="h-6 w-6 text-brand shrink-0 mt-1" />
+              <Printer className="h-6 w-6 text-brand shrink-0 mt-2" />
               <div>
                 <h3 className="text-base font-semibold text-content">Deterministic Print Summaries</h3>
-                <p className="mt-1 text-sm text-content-muted leading-relaxed">
+                <p className="mt-2 text-sm text-content-muted leading-relaxed">
                   Produces clean, physical end-of-day audit sheets for operations managers and accountants before the office locks up.
                 </p>
               </div>
@@ -115,15 +111,14 @@ export default function DistributionLifePage() {
       </section>
 
       {/* 5 Operational Pillars — anchor for the DistributionLife dropdown */}
-      <section id="features" className="py-24 mx-auto max-w-[1180px] px-5 md:px-8">
+      <section id="features" className="py-24 mx-auto max-w-shell px-6 md:px-8">
         <div className="mb-16">
-          <span className="text-[0.78rem] font-mono uppercase tracking-[0.18em] text-brand">
-            // Core capabilities
+          <span className="text-[0.78rem] font-mono uppercase tracking-[0.18em] text-brand">Core capabilities
           </span>
-          <h2 className="mt-3 text-3xl sm:text-5xl font-serif font-normal tracking-tight text-content">
+          <h2 className="mt-4 text-3xl sm:text-5xl font-serif font-normal tracking-tight text-content">
             Five pillars of the daily operation.
           </h2>
-          <p className="mt-3 text-base text-content-muted max-w-2xl">
+          <p className="mt-4 text-base text-content-muted max-w-2xl">
             RouteCore was shaped around physical depot handoffs. Each pillar addresses a specific operational touchpoint during the working day.
           </p>
         </div>
@@ -132,10 +127,10 @@ export default function DistributionLifePage() {
           {product.pillars?.map((pillar, i) => (
             <div
               key={pillar.title}
-              className="reveal rounded-xl border border-surface-border bg-surface p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-brand/40 transition-all"
+              className="rounded-xl border border-surface-border bg-surface p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-brand/40 transition-all"
             >
               <div className="flex items-start gap-4">
-                <span className="font-mono text-sm uppercase tracking-wider text-brand shrink-0 mt-1">
+                <span className="font-mono text-sm uppercase tracking-wider text-brand shrink-0 mt-2">
                   0{i + 1}
                 </span>
                 <div>
@@ -156,12 +151,11 @@ export default function DistributionLifePage() {
 
       {/* Close-of-Day Printable Summary Simulation */}
       <section id="close-summary" className="py-20 border-t border-surface-border bg-surface-muted">
-        <div className="mx-auto max-w-[1180px] px-5 md:px-8">
+        <div className="mx-auto max-w-shell px-6 md:px-8">
           <div className="mb-12">
-            <span className="text-[0.78rem] font-mono uppercase tracking-[0.18em] text-brand">
-              // End-of-Day Output
+            <span className="text-[0.78rem] font-mono uppercase tracking-[0.18em] text-brand">End-of-Day Output
             </span>
-            <h2 className="mt-3 text-3xl sm:text-4xl font-serif font-normal text-content">
+            <h2 className="mt-4 text-3xl sm:text-4xl font-serif font-normal text-content">
               The Close-of-Day Summary
             </h2>
             <p className="mt-2 text-sm sm:text-base text-content-muted max-w-xl">
@@ -173,7 +167,7 @@ export default function DistributionLifePage() {
             <div className="flex items-center justify-between border-b border-surface-border pb-4 mb-6">
               <div>
                 <span className="text-brand font-bold">VECTIS ROUTECORE v2.8</span>
-                <span className="text-content-muted block text-xs mt-0.5">DAILY AUDIT TALLY • DEPOT 01</span>
+                <span className="text-content-muted block text-xs mt-2">DAILY AUDIT TALLY • DEPOT 01</span>
               </div>
               <div className="text-right text-xs text-content-muted">
                 <span>OPERATING DATE: OCT 24, 2026</span>
@@ -184,19 +178,19 @@ export default function DistributionLifePage() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 py-4 border-b border-surface-border">
               <div>
                 <span className="text-content-muted text-xs block">TOTAL DISPATCH VALUE</span>
-                <span className="text-base text-content font-semibold mt-1 block">Rs. 1,482,500</span>
+                <span className="text-base text-content font-semibold mt-2 block">Rs. 1,482,500</span>
               </div>
               <div>
                 <span className="text-content-muted text-xs block">CASH COLLECTED</span>
-                <span className="text-base text-content font-semibold mt-1 block">Rs. 1,124,300</span>
+                <span className="text-base text-content font-semibold mt-2 block">Rs. 1,124,300</span>
               </div>
               <div>
                 <span className="text-content-muted text-xs block">CREDIT EXTENSIONS</span>
-                <span className="text-base text-content font-semibold mt-1 block">Rs. 298,200</span>
+                <span className="text-base text-content font-semibold mt-2 block">Rs. 298,200</span>
               </div>
               <div>
                 <span className="text-content-muted text-xs block">RETURNS RESTOCKED</span>
-                <span className="text-base text-content font-semibold mt-1 block">Rs. 60,000</span>
+                <span className="text-base text-content font-semibold mt-2 block">Rs. 60,000</span>
               </div>
             </div>
 

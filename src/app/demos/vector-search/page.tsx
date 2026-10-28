@@ -2,9 +2,6 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import LightRays from "@/components/LightRays";
 import {
   Search,
   Zap,
@@ -99,21 +96,19 @@ export default function VectorSearchDemoPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#030303] text-zinc-100 flex flex-col justify-between">
-      <Navbar />
+    <div className="relative min-h-screen bg-bg text-zinc-100 flex flex-col justify-between">
 
-      <main id="main-content" className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full flex-1">
-        <LightRays />
+      <div className="relative pt-12 sm:pt-16 pb-24 px-6 sm:px-8 lg:px-12 max-w-shell mx-auto w-full flex-1">
 
         {/* Header Block */}
         <div className="max-w-4xl mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/20 text-xs font-mono uppercase tracking-wider text-teal-400 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 text-xs font-mono uppercase tracking-wider text-teal-400 mb-6">
             <Database className="w-3.5 h-3.5" />
             Vector Search Simulator
           </div>
           <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
             Atom Search: <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-emerald-300 to-brand-primary">
+            <span className="text-transparent bg-clip-text bg-surface">
               Sub-50ms Semantic Vector Search
             </span>
           </h1>
@@ -123,7 +118,7 @@ export default function VectorSearchDemoPage() {
         </div>
 
         {/* Search Query Input Console */}
-        <div className="p-6 sm:p-8 rounded-3xl bg-[#08080c] border border-white/[0.1] shadow-2xl mb-10">
+        <div className="p-6 sm:p-8 rounded-3xl bg-surface border border-white/[0.1] shadow-2xl mb-10">
           <div className="relative mb-6">
             <Search className="w-5 h-5 text-teal-400 absolute left-4 top-1/2 -translate-y-1/2" />
             <input
@@ -143,7 +138,7 @@ export default function VectorSearchDemoPage() {
                   key={cat}
                   type="button"
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-3 py-1 rounded-full transition-colors whitespace-nowrap ${
+                  className={`px-4 py-2 rounded-full transition-colors whitespace-nowrap ${
                     activeCategory === cat
                       ? "bg-teal-400 text-black font-semibold"
                       : "bg-white/[0.04] text-zinc-400 hover:text-white"
@@ -155,8 +150,8 @@ export default function VectorSearchDemoPage() {
             </div>
 
             {/* Live Stopwatch Counter */}
-            <div className="flex items-center gap-3 shrink-0">
-              <span className="flex items-center gap-1.5 text-emerald-400 font-bold">
+            <div className="flex items-center gap-4 shrink-0">
+              <span className="flex items-center gap-2 text-emerald-400 font-bold">
                 <Zap className="w-3.5 h-3.5 fill-emerald-400" />
                 {latencyMs}ms Query Latency
               </span>
@@ -178,8 +173,8 @@ export default function VectorSearchDemoPage() {
               className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.08] hover:border-teal-500/40 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-6 group"
             >
               <div className="max-w-3xl">
-                <div className="flex items-center gap-2.5 mb-2">
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.06] text-zinc-400">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-[10px] font-mono px-2 py-2 rounded bg-white/[0.06] text-zinc-400">
                     {doc.category}
                   </span>
                   <span className="text-xs font-mono text-zinc-500">
@@ -195,7 +190,7 @@ export default function VectorSearchDemoPage() {
               </div>
 
               {/* Similarity Score Pill */}
-              <div className="shrink-0 p-3 rounded-xl bg-teal-500/10 border border-teal-500/20 text-center min-w-[120px]">
+              <div className="shrink-0 p-4 rounded-xl bg-teal-500/10 border border-teal-500/20 text-center min-w-[120px]">
                 <div className="text-xl font-bold font-mono text-teal-300">
                   {(doc.cosineSimilarity * 100).toFixed(1)}%
                 </div>
@@ -206,9 +201,7 @@ export default function VectorSearchDemoPage() {
             </div>
           ))}
         </div>
-      </main>
-
-      <Footer />
+      </div>
     </div>
   );
 }

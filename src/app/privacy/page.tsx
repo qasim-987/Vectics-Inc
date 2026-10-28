@@ -12,12 +12,11 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="w-full bg-surface pt-32 pb-24 text-content">
-      <div className="mx-auto max-w-[840px] px-5 md:px-8">
+    <div className="legal-page w-full bg-bg pt-12 sm:pt-16 pb-24 text-content">
+      <div className="mx-auto max-w-[840px] px-6 md:px-8">
         {/* Header */}
         <div className="border-b border-surface-border pb-10 mb-12">
-          <span className="text-xs font-mono uppercase tracking-[0.2em] text-brand block mb-4">
-            // Legal & Data Governance
+          <span className="text-xs font-mono uppercase tracking-[0.2em] text-brand block mb-4">Legal & Data Governance
           </span>
           <h1 className="text-4xl sm:text-5xl font-serif font-normal tracking-tight text-content">
             Privacy Policy
@@ -29,7 +28,7 @@ export default function PrivacyPage() {
 
         {/* Policy Content */}
         <div className="space-y-10 text-content-muted text-base sm:text-lg leading-relaxed">
-          <section className="space-y-3">
+          <section className="space-y-4">
             <h2 className="text-xl font-semibold text-content font-sans">
               1. Scope & Identity
             </h2>
@@ -38,7 +37,7 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
+          <section className="space-y-4">
             <h2 className="text-xl font-semibold text-content font-sans">
               2. Absolute Offline Ledger Isolation
             </h2>
@@ -50,7 +49,7 @@ export default function PrivacyPage() {
             </div>
           </section>
 
-          <section className="space-y-3">
+          <section className="space-y-4">
             <h2 className="text-xl font-semibold text-content font-sans">
               3. Information We Collect
             </h2>
@@ -64,7 +63,7 @@ export default function PrivacyPage() {
             </ul>
           </section>
 
-          <section className="space-y-3">
+          <section className="space-y-4">
             <h2 className="text-xl font-semibold text-content font-sans">
               4. How We Use Collected Data
             </h2>
@@ -73,7 +72,7 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
+          <section className="space-y-4">
             <h2 className="text-xl font-semibold text-content font-sans">
               5. Data Protection & Non-Disclosure
             </h2>
@@ -82,7 +81,7 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
+          <section className="space-y-4">
             <h2 className="text-xl font-semibold text-content font-sans">
               6. Data Retention
             </h2>
@@ -91,7 +90,7 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
+          <section className="space-y-4">
             <h2 className="text-xl font-semibold text-content font-sans">
               7. Security Measures
             </h2>
@@ -100,7 +99,7 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
+          <section className="space-y-4">
             <h2 className="text-xl font-semibold text-content font-sans">
               8. Your Rights
             </h2>
@@ -109,7 +108,7 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
+          <section className="space-y-4">
             <h2 className="text-xl font-semibold text-content font-sans">
               9. Policy Updates
             </h2>
@@ -118,7 +117,7 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          <section className="space-y-3 border-t border-surface-border pt-8">
+          <section className="space-y-4 border-t border-surface-border pt-8">
             <h2 className="text-xl font-semibold text-content font-sans">
               10. Contact Us
             </h2>

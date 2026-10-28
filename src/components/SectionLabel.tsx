@@ -4,11 +4,11 @@ interface SectionLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
   children: React.ReactNode;
 }
 
-/** Small monospace editorial label. Pass the section name without the slashes. */
+/** Shared understated section label. */
 export default function SectionLabel({ children, className = "", ...props }: SectionLabelProps) {
   return (
     <span className={`eyebrow ${className}`.trim()} {...props}>
-      {String(children).startsWith("//") ? children : `// ${children}`}
+      {children}
     </span>
   );
 }

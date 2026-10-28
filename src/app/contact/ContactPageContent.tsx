@@ -27,17 +27,17 @@ export default function ContactPageContent() {
   const openForm = () => window.dispatchEvent(new CustomEvent("open-contact"));
 
   return (
-    <div className="min-h-[70vh] bg-canvas pb-24 pt-32 text-char sm:pb-32">
+    <div className="contact-page min-h-[70vh] bg-canvas pb-24 pt-12 text-char sm:pb-32 sm:pt-16">
       <Container as="section">
         <div className="max-w-3xl">
           <SectionLabel className="eyebrow-light">Start a conversation</SectionLabel>
-          <h1 className="mt-5 font-serif text-[clamp(2.8rem,6vw,5.8rem)] leading-[1.02] tracking-[-0.035em]">
+          <h1 className="mt-6 font-serif text-[clamp(2.8rem,6vw,5.8rem)] leading-[1.02] tracking-[-0.035em]">
             Tell us what you&apos;re trying to make better.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-char-soft">
             Whether you need custom software, a considered web application, or a practical use for AI, start with the problem. We&apos;ll take it from there together.
           </p>
-          <div className="mt-9 flex flex-wrap gap-4">
+          <div className="mt-10 flex flex-wrap gap-4">
             <button type="button" onClick={openForm} className="btn btn-primary group">
               <span>Send an inquiry</span>
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
@@ -52,13 +52,13 @@ export default function ContactPageContent() {
 
         <div className="mt-20 grid gap-12 border-t border-char/15 pt-10 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-4">
-            <span className="eyebrow eyebrow-light">// A few quick answers</span>
+            <span className="eyebrow eyebrow-light">A few quick answers</span>
             <h2 className="mt-4 font-serif text-3xl leading-tight sm:text-4xl">Before we talk.</h2>
             <p className="mt-4 max-w-sm leading-relaxed text-char-soft">
               A clear first note is enough. No lengthy brief or polished pitch deck required.
             </p>
           </div>
-          <div id="faq" className="space-y-3 lg:col-span-8">
+          <div id="faq" className="space-y-4 lg:col-span-8">
             {contactFaqs.map((faq, index) => (
               <section key={faq.q} className="overflow-hidden rounded-card border border-char/15 bg-canvas-raised">
                 <h3>
@@ -67,14 +67,14 @@ export default function ContactPageContent() {
                     aria-expanded={openFaq === index}
                     aria-controls={`contact-faq-${index}`}
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    className="flex min-h-16 w-full items-center justify-between gap-5 px-5 py-4 text-left font-medium text-char sm:px-6"
+                    className="flex min-h-16 w-full items-center justify-between gap-6 px-6 py-4 text-left font-medium text-char sm:px-6"
                   >
                     {faq.q}
                     <ChevronDown className={`h-4 w-4 shrink-0 text-brass-deep transition-transform ${openFaq === index ? "rotate-180" : ""}`} aria-hidden="true" />
                   </button>
                 </h3>
                 {openFaq === index && (
-                  <p id={`contact-faq-${index}`} className="border-t border-char/10 px-5 py-5 text-sm leading-relaxed text-char-soft sm:px-6">
+                  <p id={`contact-faq-${index}`} className="border-t border-char/10 px-6 py-6 text-sm leading-relaxed text-char-soft sm:px-6">
                     {faq.a}
                   </p>
                 )}

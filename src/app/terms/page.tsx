@@ -12,12 +12,11 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="w-full bg-surface pt-32 pb-24 text-content">
-      <div className="mx-auto max-w-[840px] px-5 md:px-8">
+    <div className="legal-page w-full bg-bg pt-12 sm:pt-16 pb-24 text-content">
+      <div className="mx-auto max-w-[840px] px-6 md:px-8">
         {/* Header */}
         <div className="border-b border-surface-border pb-10 mb-12">
-          <span className="text-xs font-mono uppercase tracking-[0.2em] text-brand block mb-4">
-            // Legal & Terms of Service
+          <span className="text-xs font-mono uppercase tracking-[0.2em] text-brand block mb-4">Legal & Terms of Service
           </span>
           <h1 className="text-4xl sm:text-5xl font-serif font-normal tracking-tight text-content">
             Terms of Use
@@ -29,7 +28,7 @@ export default function TermsPage() {
 
         {/* Terms Content */}
         <div className="space-y-10 text-content-muted text-base sm:text-lg leading-relaxed">
-          <section className="space-y-3">
+          <section className="space-y-4">
             <h2 className="text-xl font-semibold text-content font-sans">
               1. Acceptance of Terms
             </h2>
@@ -38,7 +37,7 @@ export default function TermsPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
+          <section className="space-y-4">
             <h2 className="text-xl font-semibold text-content font-sans">
               2. Software Licensing
             </h2>
@@ -47,7 +46,7 @@ export default function TermsPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
+          <section className="space-y-4">
             <h2 className="text-xl font-semibold text-content font-sans">
               3. Operational Responsibility
             </h2>
@@ -56,7 +55,7 @@ export default function TermsPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
+          <section className="space-y-4">
             <h2 className="text-xl font-semibold text-content font-sans">
               4. Accuracy of Operating Records
             </h2>
@@ -65,7 +64,7 @@ export default function TermsPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
+          <section className="space-y-4">
             <h2 className="text-xl font-semibold text-content font-sans">
               5. In-Development Products
             </h2>
@@ -74,7 +73,7 @@ export default function TermsPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
+          <section className="space-y-4">
             <h2 className="text-xl font-semibold text-content font-sans">
               6. Intellectual Property
             </h2>
@@ -83,7 +82,7 @@ export default function TermsPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
+          <section className="space-y-4">
             <h2 className="text-xl font-semibold text-content font-sans">
               7. Hardware & Peripherals
             </h2>
@@ -92,7 +91,7 @@ export default function TermsPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
+          <section className="space-y-4">
             <h2 className="text-xl font-semibold text-content font-sans">
               8. Limitation of Liability
             </h2>
@@ -101,7 +100,7 @@ export default function TermsPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
+          <section className="space-y-4">
             <h2 className="text-xl font-semibold text-content font-sans">
               9. Termination
             </h2>
@@ -110,7 +109,7 @@ export default function TermsPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
+          <section className="space-y-4">
             <h2 className="text-xl font-semibold text-content font-sans">
               10. Governing Law
             </h2>
@@ -119,7 +118,7 @@ export default function TermsPage() {
             </p>
           </section>
 
-          <section className="space-y-3 border-t border-surface-border pt-8">
+          <section className="space-y-4 border-t border-surface-border pt-8">
             <h2 className="text-xl font-semibold text-content font-sans">
               11. Contact Information
             </h2>

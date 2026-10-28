@@ -33,23 +33,38 @@ function contrast(foreground, background) {
   return (values[0] + 0.05) / (values[1] + 0.05);
 }
 
-// Normal-sized text should meet WCAG AA on every surface it commonly uses.
+// Every semantic and legacy Tailwind alias resolves to one of the approved tokens.
+const approved = ["bg", "surface", "border", "text", "text-muted", "accent", "accent-hover", "dark", "dark-text"]
+  .map((token) => rgb(`rgb(var(--${token}-rgb) / <alpha-value>)`));
+function assertApprovedPalette(value, name = "colors") {
+  if (typeof value === "string") {
+    if (["transparent", "currentColor", "inherit"].includes(value)) return;
+    const channels = rgb(value);
+    assert.ok(approved.some((entry) => entry.every((channel, index) => channel === channels[index])), `${name} must resolve to an approved palette token`);
+    return;
+  }
+  for (const [key, child] of Object.entries(value)) assertApprovedPalette(child, `${name}.${key}`);
+}
+assertApprovedPalette(colors);
+
+// Normal-sized text should meet WCAG AA on every light/dark surface in use.
 const pairs = [
-  ["Content on warm white", colors.content.DEFAULT, colors.surface.DEFAULT],
-  ["Muted content on warm white", colors.content.muted, colors.surface.DEFAULT],
-  ["Content on warm page", colors.content.DEFAULT, colors.canvas.DEFAULT],
-  ["Muted content on gray", colors.content.muted, colors.surface.muted],
-  ["Subtle content on gray", colors.content.subtle, colors.surface.muted],
-  ["Homepage accent on gray", colors.brass.deep, colors.canvas.DEFAULT],
+  ["Body text on white surface", colors.content.DEFAULT, colors.surface.DEFAULT],
+  ["Muted text on white surface", colors.content.muted, colors.surface.DEFAULT],
+  ["Body text on page background", colors.content.DEFAULT, colors.canvas.DEFAULT],
+  ["Muted text on page background", colors.content.muted, colors.surface.muted],
+  ["Subtle text on page background", colors.content.subtle, colors.surface.muted],
+  ["Accent on page background", colors.brass.deep, colors.canvas.DEFAULT],
   ["Blue accent on white", colors.brand.DEFAULT, colors.surface.DEFAULT],
-  ["Blue accent on gray", colors.brand.DEFAULT, colors.surface.muted],
+  ["Blue accent on page background", colors.brand.DEFAULT, colors.surface.muted],
   ["Button text on blue", "#ffffff", colors.brand.DEFAULT],
   ["Button text on hover", "#ffffff", colors.brand.deep],
-  ["Hero text on navy", colors.paper.DEFAULT, colors.ink.soft],
-  ["Muted text on navy", colors.muted.DEFAULT, colors.ink.soft],
-  ["Footer labels on navy", colors.muted.dark, colors.ink.deep],
-  ["Contact label on navy", colors.brand.light, colors.ink.card],
-  ["Error text on white", colors.accent.red, colors.surface.DEFAULT],
+  ["Body text on neutral section", colors.paper.DEFAULT, colors.ink.soft],
+  ["Muted text on neutral section", colors.muted.DEFAULT, colors.ink.soft],
+  ["Footer text on dark", colors.darkText, colors.dark],
+  ["Footer muted text on dark", colors.darkText, colors.dark],
+  ["Contact label on surface", colors.brand.light, colors.ink.card],
+  ["Accent text on white", colors.accent.red, colors.surface.DEFAULT],
 ];
 
 for (const [name, foreground, background] of pairs) {

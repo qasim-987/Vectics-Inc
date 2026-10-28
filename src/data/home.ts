@@ -1,10 +1,6 @@
 /**
- * HOME MEDIA — operational imagery for the hero slideshow, the "The day"
- * narrative and the product cards. All files are local (served through
- * next/image) and ship with a tiny base64 blur placeholder for a smooth LCP.
- *
- * Replace any file in /public/images/home with your own photography — keep the
- * names (or update the references here) and the aspect ratio notes below.
+ * HOME MEDIA — contained hero and stage imagery for the homepage, plus product photography.
+ * All files are local and include a small blur placeholder for next/image.
  */
 
 export interface MediaImage {
@@ -14,49 +10,15 @@ export interface MediaImage {
   blurDataURL: string;
 }
 
-export interface HeroSlide extends MediaImage {
-  /** Short editorial location label shown beside the slide counter. */
-  label: string;
-}
-
-/** 16:9 — full-bleed hero slides (also reused in "The day"). */
-export const heroSlides: HeroSlide[] = [
-  {
-    src: "/images/home/slide-opening.jpg",
-    alt: "Stacked warehouse cartons in an industrial aisle at first light",
-    label: "Opening",
-    blurDataURL: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wAARCAAMABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAQFAwb/xAAhEAACAQQCAgMAAAAAAAAAAAABAgMABBESBSExYSJBYv/EABYBAQEBAAAAAAAAAAAAAAAAAAMAAf/EABYRAQEBAAAAAAAAAAAAAAAAAAEAEf/aAAwDAQACEQMRAD8A5GJQxAzrnqm146WS1kmRkKp+xnr1S0WFj3IDEHwfFVI+SuTxcsWyiM/HVVAGKNWQKZFFGyZd0B9mitbW4kji1XGM/YorFdoC/9k=",
-  },
-  {
-    src: "/images/home/slide-route.jpg",
-    alt: "Freight truck on an open road at golden hour",
-    label: "Route",
-    blurDataURL: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wAARCAAMABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABAUA/8QAJRAAAgEDAwIHAAAAAAAAAAAAAQIDAAQRBRIhIjFBUWFxgdHh/8QAFQEBAQAAAAAAAAAAAAAAAAAAAwT/xAAZEQADAQEBAAAAAAAAAAAAAAAAAQIREhP/2gAMAwEAAhEDEQA/AGxataSqAsnPpn6otzqixTrES4DKW3k9vjFRjeSwqVi2oBxhRih3MrO+9sFvOpYjWU3WIqS6r18SKfdfytUOQkNwfCtT+aB7Z//Z",
-  },
-  {
-    src: "/images/home/slide-collection.jpg",
-    alt: "Close view of paperwork and ledgers being reviewed",
-    label: "Collection",
-    blurDataURL: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wAARCAAMABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIEBf/EACYQAAIBAwEHBQAAAAAAAAAAAAECAwAEERIFEyExUXGBIjNBobH/xAAVAQEBAAAAAAAAAAAAAAAAAAACA//EABcRAQEBAQAAAAAAAAAAAAAAAAARASH/2gAMAwEAAhEDEQA/AMK2t55CFtXhlVl9ZyOBz1I/KeW0azjDOFDtxYDmfPSr7dXMeN84X5QBcHxioLq5e2Y7kKoDcuY+6llqvEMsgkfUYtXADI7UU7bQudXuA91FFMY//9k=",
-  },
-  {
-    src: "/images/home/slide-close.jpg",
-    alt: "Quiet office interior after hours with a single desk lamp",
-    label: "Close",
-    blurDataURL: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wAARCAAMABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAEDBAb/xAAbEAACAwEBAQAAAAAAAAAAAAABAgARMSEDgf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AyIcjGMdMwvp+SQKD5YJXV3WwrEXw0dlQjsILkIH/2Q==",
-  },
-  {
-    src: "/images/home/slide-city.jpg",
-    alt: "Quiet city buildings at dusk",
-    label: "City at dusk",
-    blurDataURL: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wAARCAAMABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAIEAQX/xAAeEAACAgIDAQEAAAAAAAAAAAABAgARAyEEQVESE//EABUBAQEAAAAAAAAAAAAAAAAAAAAB/8QAGBEAAwEBAAAAAAAAAAAAAAAAAAERIUH/2gAMAwEAAhEDEQA/AOPxH4H4Oc2Rw4OlCXfm+omZuPsqCB0SbuQKxCgRi1DXkauhR5DWOP6O6hJyTCWskR//2Q==",
-  },
-];
+/** Contained hero image. */
+export const heroImage: MediaImage = {
+  src: "/images/home/slide-opening.jpg",
+  alt: "Stacked warehouse cartons in an industrial aisle at first light",
+  blurDataURL: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wAARCAAMABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAQFAwb/xAAhEAACAQQCAgMAAAAAAAAAAAABAgMABBESBSExYSJBYv/EABYBAQEBAAAAAAAAAAAAAAAAAAMAAf/EABYRAQEBAAAAAAAAAAAAAAAAAAEAEf/aAAwDAQACEQMRAD8A5GJQxAzrnqm146WS1kmRkKp+xnr1S0WFj3IDEHwfFVI+SuTxcsWyiM/HVVAGKNWQKZFFGyZd0B9mitbW4kji1XGM/YorFdoC/9k=",
+};
 
 export interface DayStageMedia {
   image: MediaImage;
-  /** Warm → cool tint applied to the image as the story scrolls. */
-  tint: string;
 }
 
 /** Four image-led stages mirror the four existing `operationalPillars` entries. */
@@ -67,7 +29,6 @@ export const dayStageMedia: DayStageMedia[] = [
       alt: "Stacked warehouse cartons in an industrial aisle",
       blurDataURL: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wAARCAAMABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAQFAwb/xAAhEAACAQQCAgMAAAAAAAAAAAABAgMABBESBSExYSJBYv/EABYBAQEBAAAAAAAAAAAAAAAAAAMAAf/EABYRAQEBAAAAAAAAAAAAAAAAAAEAEf/aAAwDAQACEQMRAD8A5GJQxAzrnqm146WS1kmRkKp+xnr1S0WFj3IDEHwfFVI+SuTxcsWyiM/HVVAGKNWQKZFFGyZd0B9mitbW4kji1XGM/YorFdoC/9k=",
     },
-    tint: "rgba(40, 95, 133, 0.12)",
   },
   {
     image: {
@@ -75,7 +36,6 @@ export const dayStageMedia: DayStageMedia[] = [
       alt: "Quiet meeting room prepared for a project planning session",
       blurDataURL: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wAARCAAMABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABAUA/8QAJRAAAgEDAwIHAAAAAAAAAAAAAQIDAAQRBRIhIjFBUWFxgdHh/8QAFQEBAQAAAAAAAAAAAAAAAAAAAwT/xAAZEQADAQEBAAAAAAAAAAAAAAAAAQIREhP/2gAMAwEAAhEDEQA/AGxataSqAsnPpn6otzqixTrES4DKW3k9vjFRjeSwqVi2oBxhRih3MrO+9sFvOpYjWU3WIqS6r18SKfdfytUOQkNwfCtT+aB7Z//Z",
     },
-    tint: "rgba(62, 103, 130, 0.12)",
   },
   {
     image: {
@@ -83,7 +43,6 @@ export const dayStageMedia: DayStageMedia[] = [
       alt: "Charts and figures on a desk during product development",
       blurDataURL: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wAARCAAMABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIEBf/EACYQAAIBAwEHBQAAAAAAAAAAAAECAwAEERIFEyExUXGBIjNBobH/xAAVAQEBAAAAAAAAAAAAAAAAAAACA//EABcRAQEBAQAAAAAAAAAAAAAAAAARASH/2gAMAwEAAhEDEQA/AMK2t55CFtXhlVl9ZyOBz1I/KeW0azjDOFDtxYDmfPSr7dXMeN84X5QBcHxioLq5e2Y7kKoDcuY+6llqvEMsgkfUYtXADI7UU7bQudXuA91FFMY//9k=",
     },
-    tint: "rgba(96, 104, 122, 0.12)",
   },
   {
     image: {
@@ -91,7 +50,6 @@ export const dayStageMedia: DayStageMedia[] = [
       alt: "Quiet office interior after hours, ready for the next iteration",
       blurDataURL: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wAARCAAMABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAEDBAb/xAAbEAACAwEBAQAAAAAAAAAAAAABAgARMSEDgf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AyIcjGMdMwvp+SQKD5YJXV3WwrEXw0dlQjsILkIH/2Q==",
     },
-    tint: "rgba(46, 64, 96, 0.20)",
   },
 ];
 

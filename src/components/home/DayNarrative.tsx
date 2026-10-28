@@ -11,15 +11,13 @@ import {
 } from "framer-motion";
 import { operationalPillars } from "@/data/vectis";
 import { dayStageMedia } from "@/data/home";
-import Atmosphere from "./Atmosphere";
 import { Reveal, RevealImage } from "./Reveal";
 import { useHydratedReducedMotion } from "./useHydratedReducedMotion";
 
 /**
  * Scroll-linked "The day" story.
- * A sticky image panel swaps through the four operational stages while the
- * section's background shifts between two restrained navy tones.
- * On smaller screens the sticky panel is replaced by inline image reveals.
+ * A sticky image panel swaps through the four operational stages.
+ * On smaller screens the panel is replaced by inline image reveals.
  */
 export default function DayNarrative() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -42,16 +40,15 @@ export default function DayNarrative() {
     <section
       ref={sectionRef}
       id="the-day"
-      className="relative isolate overflow-hidden bg-ink-deep py-24 text-paper sm:py-32"
+      className="relative isolate overflow-hidden bg-bg py-16 text-text sm:py-20"
     >
-      <Atmosphere tone="dark" grid />
 
-      <div className="relative z-10 mx-auto max-w-shell px-5 sm:px-8 lg:px-12">
+      <div className="relative z-10 mx-auto max-w-shell px-6 sm:px-8 lg:px-12">
         {/* Section header */}
         <div className="flex flex-col gap-8 border-b border-paper/[0.12] pb-12 lg:flex-row lg:items-end lg:justify-between">
           <Reveal className="max-w-2xl">
-            <span className="eyebrow eyebrow-dark">// The day</span>
-            <h2 className="mt-5 font-serif text-[clamp(2.4rem,5.4vw,4.8rem)] font-normal leading-[1.04] tracking-[-0.03em] text-paper">
+            <span className="eyebrow eyebrow-dark">The day</span>
+            <h2 className="mt-6 font-serif text-[clamp(2.4rem,5.4vw,4.8rem)] font-normal leading-[1.04] tracking-[-0.03em] text-paper">
               Good software has a thoughtful path.
             </h2>
           </Reveal>
@@ -75,9 +72,9 @@ export default function DayNarrative() {
                     initial={false}
                     animate={{
                       opacity: active === i ? 1 : 0,
-                      scale: active === i ? 1 : 1.07,
+                      scale: 1,
                     }}
-                    transition={{ duration: reduce ? 0 : 1.05, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: reduce ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}
                     aria-hidden={active !== i}
                   >
                     <Image
@@ -90,35 +87,23 @@ export default function DayNarrative() {
                       blurDataURL={stage.image.blurDataURL}
                       className="object-cover"
                     />
-                    <div
-                      className="absolute inset-0"
-                      style={{ backgroundColor: stage.tint }}
-                      aria-hidden="true"
-                    />
+
                   </motion.div>
                 ))}
 
                 {/* Panel chrome */}
-                <div
-                  className="pointer-events-none absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(0deg, rgba(11,29,45,0.88) 0%, transparent 42%, rgba(11,29,45,0.34) 100%)",
-                  }}
-                  aria-hidden="true"
-                />
-                <div className="absolute left-6 top-6 flex items-center gap-2 rounded-full border border-paper/15 bg-ink-deep/45 px-3 py-1.5 font-mono text-[0.6rem] uppercase tracking-[0.18em] text-paper/80 backdrop-blur-md">
-                  <span className="h-1.5 w-1.5 rounded-full bg-brass-light" />
+                <div className="pointer-events-none absolute inset-0 bg-dark/65" aria-hidden="true" />
+                <p className="absolute left-6 top-6 text-sm font-medium text-darkText">
                   Project stage · {String(active + 1).padStart(2, "0")} / 04
-                </div>
+                </p>
                 <div className="absolute bottom-7 left-7 right-7 flex items-end justify-between gap-4">
                   <div>
-                    <span className="eyebrow eyebrow-dark block">// The day</span>
-                    <p className="mt-1 font-serif text-3xl text-paper">
+                    <span className="eyebrow block text-darkText/80">The day</span>
+                    <p className="mt-2 font-serif text-3xl text-darkText">
                       {operationalPillars[active].phase}
                     </p>
                   </div>
-                  <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-paper/60">
+                  <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-darkText/80">
                     {operationalPillars[active].tag}
                   </span>
                 </div>
@@ -145,21 +130,19 @@ export default function DayNarrative() {
             {operationalPillars.map((stage, i) => (
               <article
                 key={stage.phase}
-                className={`relative flex min-h-[62vh] flex-col justify-center border-b border-paper/10 py-12 transition-opacity duration-700 lg:min-h-[78vh] lg:py-16 ${
-                  active === i ? "opacity-100" : "opacity-45"
-                }`}
+                className="relative flex min-h-[62vh] flex-col justify-center border-b border-border py-12 lg:min-h-[78vh] lg:py-16"
               >
                 {/* Stage marker */}
-                <div className="mb-7 flex items-center gap-4">
+                <div className="mb-8 flex items-center gap-4">
                   <span
-                    className={`font-mono text-[0.68rem] uppercase tracking-[0.2em] transition-colors duration-500 ${
+                    className={`font-mono text-[0.68rem] uppercase tracking-[0.2em] transition-colors duration-300 ${
                       active === i ? "text-brass-light" : "text-muted-dark"
                     }`}
                   >
                     0{i + 1}
                   </span>
                   <span
-                    className={`h-px flex-1 origin-left transition-transform duration-700 ${
+                    className={`h-px flex-1 origin-left transition-transform duration-300 ${
                       active === i ? "scale-x-100 bg-brass-light" : "scale-x-0 bg-paper/20"
                     }`}
                   />
@@ -173,13 +156,13 @@ export default function DayNarrative() {
                   <h3 className="mt-4 font-serif text-[clamp(2rem,3.7vw,3.4rem)] leading-[1.08] tracking-[-0.028em] text-paper">
                     {stage.title}
                   </h3>
-                  <p className="mt-5 max-w-lg text-base leading-relaxed text-muted sm:text-lg">
+                  <p className="mt-6 max-w-lg text-base leading-relaxed text-muted sm:text-lg">
                     {stage.description}
                   </p>
                 </Reveal>
 
                 {/* Mobile inline image (sticky panel is desktop-only) */}
-                <div className="mt-9 overflow-hidden rounded-card lg:hidden">
+                <div className="mt-10 overflow-hidden rounded-card lg:hidden">
                   <RevealImage className="relative aspect-[16/10]">
                     <Image
                       src={dayStageMedia[i].image.src}
@@ -191,11 +174,7 @@ export default function DayNarrative() {
                       blurDataURL={dayStageMedia[i].image.blurDataURL}
                       className="object-cover"
                     />
-                    <div
-                      className="absolute inset-0"
-                      style={{ backgroundColor: dayStageMedia[i].tint }}
-                      aria-hidden="true"
-                    />
+
                   </RevealImage>
                 </div>
 

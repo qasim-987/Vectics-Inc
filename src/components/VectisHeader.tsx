@@ -2,477 +2,205 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
-import {
-  AnimatePresence,
-  motion,
-  useMotionValueEvent,
-  useReducedMotion,
-  useScroll,
-} from "framer-motion";
 import { ArrowRight, ChevronDown, ExternalLink, Menu, X } from "lucide-react";
 import {
   productDropdownMain,
   productDropdownResources,
   productDropdownLogin,
-  productMedia,
   type DropdownLink,
 } from "@/data/home";
 import { productsData } from "@/data/vectis";
 import { primaryNavigation } from "@/data/site-navigation";
 
-const EASE = [0.22, 1, 0.36, 1] as const;
+const productTrigger = primaryNavigation.find((item) => item.label === "Products")!;
+const mainLinks = primaryNavigation.filter((item) => item.label !== "Products");
 
-const primaryLinks = primaryNavigation;
-const mobileLinks = primaryNavigation;
+function MenuLink({ item, onClick }: { item: DropdownLink; onClick?: () => void }) {
+  const className = "group flex min-h-10 items-center justify-between gap-4 rounded-md px-4 text-sm text-text-muted transition-colors hover:bg-bg hover:text-text focus-visible:outline-offset-2";
+  const label = <><span>{item.label}</span>{item.external && <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />}</>;
+  return item.external ? (
+    <a href={item.href} target="_blank" rel="noopener noreferrer" className={className} onClick={onClick}>{label}</a>
+  ) : (
+    <Link href={item.href} className={className} onClick={onClick}>{label}</Link>
+  );
+}
 
 export default function VectisHeader() {
   const pathname = usePathname();
-  const reduce = useReducedMotion();
-  const { scrollY } = useScroll();
-  const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
-  const lastY = useRef(0);
   const headerRef = useRef<HTMLElement>(null);
-  const mobileMenuRef = useRef<HTMLDivElement>(null);
-  const menuToggleRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const mobileToggleRef = useRef<HTMLButtonElement>(null);
 
-  /* Glass on scroll + hide on scroll down / show on scroll up. */
-  useMotionValueEvent(scrollY, "change", (y) => {
-    setScrolled(y > 24);
-    const delta = y - lastY.current;
-    lastY.current = y;
-    if (Math.abs(delta) < 6) return;
-    // A hover-open menu should never follow the reader down the page.
-    if (dropdownOpen) setDropdownOpen(false);
-    if (y < 140 || mobileOpen) setHidden(false);
-    else setHidden(delta > 0);
-  });
-
-  /* Close overlays on route change, Escape, or outside click. */
   useEffect(() => {
-    setDropdownOpen(false);
+    setProductsOpen(false);
     setMobileOpen(false);
   }, [pathname]);
 
-  /* Highlight home-page anchor links using one IntersectionObserver. */
   useEffect(() => {
     if (pathname !== "/") {
       setActiveSection(null);
       return;
     }
-    const ids = ["products", "approach"];
-    const targets = ids.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => Boolean(el));
+    const targets = ["products", "approach"]
+      .map((id) => document.getElementById(id))
+      .filter((element): element is HTMLElement => Boolean(element));
     if (!targets.length) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top));
-        if (visible[0]) setActiveSection(visible[0].target.id);
-      },
-      { rootMargin: "-30% 0px -58% 0px", threshold: 0 },
-    );
+    const observer = new IntersectionObserver((entries) => {
+      const current = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top))[0];
+      if (current) setActiveSection(current.target.id);
+    }, { rootMargin: "-30% 0px -58% 0px", threshold: 0 });
     targets.forEach((target) => observer.observe(target));
     return () => observer.disconnect();
   }, [pathname]);
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setDropdownOpen(false);
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setProductsOpen(false);
         setMobileOpen(false);
+        const mobilePanel = document.getElementById("mobile-menu");
+        const productsPanel = document.getElementById("products-menu");
+        if (mobilePanel?.getAttribute("aria-hidden") === "false") mobileToggleRef.current?.focus();
+        else if (productsPanel?.getAttribute("aria-hidden") === "false") toggleRef.current?.focus();
       }
     };
-    const onPointerDown = (e: PointerEvent) => {
-      if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
-        setDropdownOpen(false);
-      }
+    const onPointerDown = (event: PointerEvent) => {
+      if (headerRef.current && !headerRef.current.contains(event.target as Node)) setProductsOpen(false);
     };
-    window.addEventListener("keydown", onKey);
+    window.addEventListener("keydown", onKeyDown);
     window.addEventListener("pointerdown", onPointerDown);
     return () => {
-      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("keydown", onKeyDown);
       window.removeEventListener("pointerdown", onPointerDown);
     };
   }, []);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen]);
-
-  useEffect(() => {
-    if (!mobileOpen) return;
-    const panel = mobileMenuRef.current;
-    if (!panel) return;
-    const focusable = () => Array.from(
-      panel.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')
-    ).filter((element) => !element.hasAttribute("aria-hidden"));
+    if (!mobileOpen) return () => { document.body.style.overflow = ""; };
+    const panel = menuRef.current;
+    const focusable = () => Array.from(panel?.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    ) ?? []);
     focusable()[0]?.focus();
-
     const trapFocus = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setMobileOpen(false);
-        menuToggleRef.current?.focus();
-        return;
-      }
       if (event.key !== "Tab") return;
       const items = focusable();
       if (!items.length) return;
-      const first = items[0];
-      const last = items[items.length - 1];
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
+      if (event.shiftKey && document.activeElement === items[0]) {
+        event.preventDefault(); items[items.length - 1].focus();
+      } else if (!event.shiftKey && document.activeElement === items[items.length - 1]) {
+        event.preventDefault(); items[0].focus();
       }
     };
     window.addEventListener("keydown", trapFocus);
-    return () => window.removeEventListener("keydown", trapFocus);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", trapFocus);
+    };
   }, [mobileOpen]);
 
-  const renderDropdownLink = (item: DropdownLink, i: number) => {
-    const inner = (
-      <>
-        <span className="link-underline">{item.label}</span>
-        {item.external ? (
-          <ExternalLink className="h-3 w-3 opacity-60" />
-        ) : (
-          <ArrowRight className="h-3 w-3 -translate-x-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-80" />
-        )}
-      </>
-    );
-    const cls =
-      "group flex items-center justify-between gap-3 py-2.5 text-sm text-paper/80 transition-colors hover:text-paper";
-    return item.external ? (
-      <a
-        key={item.label}
-        href={item.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={cls}
-        onClick={() => setDropdownOpen(false)}
-        style={{ transitionDelay: `${i * 20}ms` }}
-      >
-        {inner}
-      </a>
-    ) : (
-      <Link
-        key={item.label}
-        href={item.href}
-        className={cls}
-        onClick={() => setDropdownOpen(false)}
-      >
-        {inner}
-      </Link>
-    );
-  };
+  const active = (href: string) => pathname === href || (pathname === "/" && activeSection === href.split("#")[1]);
+  const closeMobile = () => setMobileOpen(false);
 
   return (
-    <>
-      <motion.header
-      ref={headerRef}
-      initial={false}
-      animate={{ y: hidden && !reduce ? "-105%" : "0%" }}
-      transition={{ duration: 0.48, ease: EASE }}
-      onMouseLeave={() => setDropdownOpen(false)}
-      className={`fixed inset-x-0 top-0 z-50 flex h-[var(--header-h)] items-center text-paper transition-[background-color,box-shadow] duration-500 ${
-        scrolled || dropdownOpen ? "glass-nav" : "border-b border-paper/[0.08] bg-ink-deep/25 backdrop-blur-sm"
-      }`}
-      style={{ willChange: "transform" }}
-    >
-      <div className="mx-auto flex w-full max-w-shell items-center justify-between gap-4 px-5 sm:px-8 lg:px-12">
-        {/* ---------------------------- Wordmark ---------------------------- */}
-        <Link
-          href="/"
-          className="group inline-flex min-h-11 min-w-11 shrink-0 items-center"
-          aria-label="Vectis Inc. home"
-        >
-          <span className="font-logo inline-flex items-center whitespace-nowrap text-[0.95rem] font-extrabold uppercase leading-none tracking-[0.18em] sm:text-[1.02rem]">
-            <span className="text-paper">VECT</span>
-            <svg
-              viewBox="0 0 64 80"
-              fill="currentColor"
-              className="mx-[0.02em] inline-block h-[0.82em] w-auto text-brass-light transition-transform duration-500 group-hover:rotate-[8deg]"
-              aria-hidden="true"
-            >
-              <path d="M2.2 78 L32 5.2 L61.8 78 H47.15 L32 30.4 L16.85 78 Z" />
-            </svg>
-            <span className="ml-[0.36em] text-paper">
-              IS Inc<span className="text-brass-light">.</span>
-            </span>
-          </span>
+    <header ref={headerRef} className="sticky inset-x-0 top-0 z-50 h-[var(--header-h)] border-b border-border bg-surface">
+      <div className="mx-auto flex h-full w-full max-w-shell items-center justify-between px-6 lg:px-12">
+        <Link href="/" className="inline-flex min-h-11 items-center rounded-sm text-lg font-semibold tracking-[-0.03em] text-text" aria-label="Vectis Inc. home">
+          Vectis <span className="ml-2 font-normal text-text-muted">Inc.</span>
         </Link>
 
-        {/* -------------------------- Desktop nav --------------------------- */}
-        <nav className="hidden items-center gap-5 lg:flex xl:gap-7" aria-label="Primary">
-          {primaryLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              data-active={pathname === link.href || (pathname === "/" && activeSection === link.href.split("#")[1]) ? "true" : undefined}
-              aria-current={pathname === link.href ? "page" : pathname === "/" && activeSection === link.href.split("#")[1] ? "location" : undefined}
-              className="link-underline inline-flex min-h-11 items-center text-[0.79rem] font-medium text-paper/75 transition-colors duration-300 hover:text-paper"
+        <nav className="hidden items-center gap-2 lg:flex" aria-label="Primary">
+          <div className="relative">
+            <button
+              ref={toggleRef}
+              type="button"
+              aria-expanded={productsOpen}
+              aria-controls="products-menu"
+              onClick={() => setProductsOpen((open) => !open)}
+              className={`inline-flex h-10 items-center gap-2 rounded-md px-4 text-sm font-medium transition-colors hover:bg-bg ${active(productTrigger.href) ? "text-accent" : "text-text-muted"}`}
             >
-              {link.label}
+              {productTrigger.label}
+              <ChevronDown className={`h-4 w-4 transition-transform ${productsOpen ? "rotate-180" : ""}`} aria-hidden="true" />
+            </button>
+          </div>
+          {mainLinks.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              aria-current={active(item.href) ? (item.href.includes("#") ? "location" : "page") : undefined}
+              className={`inline-flex h-10 items-center rounded-md px-4 text-sm font-medium transition-colors hover:bg-bg ${active(item.href) ? "text-accent" : "text-text-muted hover:text-text"}`}
+            >
+              {item.label}
             </Link>
           ))}
-
-          {/* DistributionLife dropdown trigger */}
-          <button
-            type="button"
-            aria-haspopup="true"
-            aria-expanded={dropdownOpen}
-            aria-controls="distributionlife-menu"
-            onClick={() => setDropdownOpen((o) => !o)}
-            onMouseEnter={() => setDropdownOpen(true)}
-            className={`inline-flex min-h-11 items-center gap-1.5 text-[0.79rem] font-medium transition-colors duration-300 ${
-              dropdownOpen ? "text-brass-light" : "text-paper/75 hover:text-paper"
-            }`}
-          >
-            DistributionLife
-            <ChevronDown
-              className={`h-3.5 w-3.5 transition-transform duration-300 ${dropdownOpen ? "rotate-180" : ""}`}
-            />
-          </button>
+          <Link href="/#contact" className="btn btn-primary ml-4">Contact</Link>
         </nav>
 
-        <div className="flex items-center gap-3">
-          <Link
-            href="/#contact"
-            className="btn btn-outline hidden !px-5 !py-2.5 sm:inline-flex"
-          >
-            <span>Contact</span>
-            <ArrowRight className="h-3 w-3" />
-          </Link>
-          <button
-            ref={menuToggleRef}
-            type="button"
-            onClick={() => setMobileOpen((o) => !o)}
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileOpen}
-            aria-controls="mobile-menu"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-paper/20 text-paper transition-colors hover:border-brass hover:text-brass-light lg:hidden"
-          >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
+        <button
+          ref={mobileToggleRef}
+          type="button"
+          onClick={() => setMobileOpen((open) => !open)}
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-menu"
+          className="inline-flex h-12 w-12 items-center justify-center rounded-md border border-border bg-surface text-text lg:hidden"
+        >
+          {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </div>
 
-      {/* ------------------------- Desktop dropdown ------------------------ */}
-      <AnimatePresence>
-        {dropdownOpen && (
-          <motion.div
-            id="distributionlife-menu"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.34, ease: EASE }}
-            className="absolute inset-x-0 top-full hidden pt-2 px-5 sm:px-8 lg:block lg:px-12"
-          >
-            <div className="mx-auto grid max-w-shell grid-cols-12 overflow-hidden rounded-panel border border-paper/[0.12] bg-ink-deep/95 shadow-lift backdrop-blur-2xl">
-              <div className="col-span-4 border-r border-paper/10 p-7">
-                <span className="eyebrow eyebrow-dark">DistributionLife</span>
-                <h3 className="mt-3 font-serif text-2xl leading-tight text-paper">
-                  One system for the office.
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted">
-                  {productsData[0].headline}
-                </p>
-              </div>
-              <div className="col-span-4 border-r border-paper/10 p-7">
-                <span className="eyebrow text-muted-dark">Explore</span>
-                <nav className="mt-4 flex flex-col" aria-label="DistributionLife">
-                  {productDropdownMain.map(renderDropdownLink)}
-                </nav>
-              </div>
-              <div className="col-span-4 p-7">
-                <span className="eyebrow text-muted-dark">Resources</span>
-                <nav className="mt-4 flex flex-col" aria-label="DistributionLife resources">
-                  {productDropdownResources.map(renderDropdownLink)}
-                </nav>
-                <span className="eyebrow mt-5 block text-muted-dark">Log in</span>
-                <nav className="mt-2 flex flex-col" aria-label="DistributionLife login">
-                  {productDropdownLogin.map(renderDropdownLink)}
-                </nav>
-                <div className="relative mt-5 aspect-[16/9] overflow-hidden rounded-card border border-paper/10">
-                  <Image
-                    src={productMedia.distributionlife.src}
-                    alt={productMedia.distributionlife.alt}
-                    fill
-                    sizes="320px"
-                    quality={70}
-                    className="object-cover opacity-80"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink-deep/80 to-transparent" />
-                  <span className="absolute bottom-3 left-4 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-paper/80">
-                    Live in daily operations
-                  </span>
-                </div>
-              </div>
+      <div
+        id="products-menu"
+        aria-hidden={!productsOpen}
+        className={`absolute left-1/2 top-[calc(100%-1px)] w-[min(720px,calc(100vw-48px))] -translate-x-1/2 rounded-b-xl border border-border bg-surface p-6 shadow-soft ${productsOpen ? "hidden lg:block" : "hidden"}`}
+      >
+          <div className="grid grid-cols-3 gap-6">
+            <div>
+              <p className="eyebrow mb-2">Products</p>
+              {productDropdownMain.map((item) => <MenuLink key={item.label} item={item} />)}
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <div>
+              <p className="eyebrow mb-2">Resources</p>
+              {productDropdownResources.map((item) => <MenuLink key={item.label} item={item} />)}
+            </div>
+            <div>
+              <p className="eyebrow mb-2">Log in</p>
+              {productDropdownLogin.map((item) => <MenuLink key={item.label} item={item} />)}
+            </div>
+          </div>
+      </div>
 
-    </motion.header>
-      {/* --------------------------- Mobile drawer ------------------------- */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            id="mobile-menu"
-            initial={{ opacity: 0, y: -18 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -14 }}
-            transition={{ duration: 0.42, ease: EASE }}
-            ref={mobileMenuRef}
-            className="fixed inset-x-0 bottom-0 top-[var(--header-h)] z-40 overflow-y-auto border-t border-paper/10 bg-ink-deep/[0.97] px-5 pb-10 pt-8 backdrop-blur-2xl lg:hidden"
-          >
-            <motion.nav
-              aria-label="Primary"
-              initial="hidden"
-              animate="show"
-              variants={{ show: { transition: { staggerChildren: 0.055, delayChildren: 0.08 } } }}
-              className="mx-auto flex max-w-shell flex-col"
-            >
-              <motion.span
-                variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
-                className="eyebrow mb-4 text-muted-dark"
-              >
-                Navigation
-              </motion.span>
-              {mobileLinks.map((link) => (
-                <motion.div
-                  key={link.label}
-                  variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="flex items-center justify-between border-b border-paper/[0.07] py-3 font-serif text-2xl text-paper transition-colors hover:text-brass-light"
-                  >
-                    {link.label}
-                    <ArrowRight className="h-4 w-4 text-brass/70" />
-                  </Link>
-                </motion.div>
-              ))}
-
-              {/* DistributionLife group — same structure as the desktop menu */}
-              <motion.div
-                variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}
-                className="mt-8"
-              >
-                <span className="eyebrow eyebrow-dark">DistributionLife</span>
-                <div className="mt-3 grid grid-cols-2 gap-x-6 gap-y-1">
-                  {productDropdownMain.map((item) =>
-                    item.external ? (
-                      <a
-                        key={item.label}
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() => setMobileOpen(false)}
-                        className="flex items-center justify-between gap-2 py-2 text-sm text-paper/75"
-                      >
-                        {item.label}
-                        <ExternalLink className="h-3 w-3 opacity-50" />
-                      </a>
-                    ) : (
-                      <Link
-                        key={item.label}
-                        href={item.href}
-                        onClick={() => setMobileOpen(false)}
-                        className="py-2 text-sm text-paper/75 transition-colors hover:text-paper"
-                      >
-                        {item.label}
-                      </Link>
-                    )
-                  )}
-                </div>
-              </motion.div>
-
-              <motion.div
-                variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}
-                className="mt-8"
-              >
-                <span className="eyebrow text-muted-dark">Software Products</span>
-                <div className="mt-3 flex flex-col gap-2">
-                  {productsData.map((product) => (
-                    <Link
-                      key={product.id}
-                      href={`/${product.slug}`}
-                      onClick={() => setMobileOpen(false)}
-                      className="flex items-center justify-between rounded-card border border-paper/10 bg-paper/[0.02] px-4 py-3 text-sm text-paper"
-                    >
-                      <span>{product.name}</span>
-                      <span
-                        className={`font-mono text-[0.6rem] uppercase tracking-[0.14em] ${
-                          product.statusBadge === "Live" ? "text-live" : "text-muted-dark"
-                        }`}
-                      >
-                        {product.statusBadge}
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              </motion.div>
-
-              <motion.div
-                variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}
-                className="mt-7"
-              >
-                <span className="eyebrow text-muted-dark">Resources</span>
-                <div className="mt-2 grid grid-cols-2 gap-x-6 gap-y-1">
-                  {productDropdownResources.map((item) => (
-                    <Link key={item.label} href={item.href} onClick={() => setMobileOpen(false)} className="py-2 text-sm text-paper/75 transition-colors hover:text-paper">
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              </motion.div>
-
-              <motion.div
-                variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}
-                className="mt-6"
-              >
-                <span className="eyebrow text-muted-dark">Log in</span>
-                <div className="mt-2 flex flex-col">
-                  {productDropdownLogin.map((item) => (
-                    <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)} className="flex items-center gap-2 py-2 text-sm text-paper/75 transition-colors hover:text-paper">
-                      {item.label}<ExternalLink className="h-3 w-3 opacity-50" aria-hidden="true" />
-                    </a>
-                  ))}
-                </div>
-              </motion.div>
-
-
-
-              <motion.div
-                variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}
-                className="mt-9 border-t border-paper/10 pt-7"
-              >
-                <Link
-                  href="/#contact"
-                  onClick={() => setMobileOpen(false)}
-                  className="btn btn-primary w-full"
-                >
-                  <span>Get in touch</span>
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </Link>
-              </motion.div>
-            </motion.nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+      <div
+        ref={menuRef}
+        id="mobile-menu"
+        aria-hidden={!mobileOpen}
+        className={`fixed inset-x-0 bottom-0 top-[var(--header-h)] z-40 overflow-y-auto border-t border-border bg-surface px-6 py-6 lg:hidden ${mobileOpen ? "block" : "hidden"}`}
+      >
+          <nav aria-label="Primary" className="mx-auto flex max-w-shell flex-col">
+            {[productTrigger, ...mainLinks].map((item) => (
+              <Link key={item.label} href={item.href} onClick={closeMobile} aria-current={active(item.href) ? "page" : undefined} className="flex min-h-12 items-center justify-between border-b border-border text-lg font-medium text-text">
+                {item.label}<ArrowRight className="h-4 w-4 text-text-muted" aria-hidden="true" />
+              </Link>
+            ))}
+            <p className="eyebrow mb-2 mt-6">Products</p>
+            {productsData.map((product) => (
+              <Link key={product.id} href={`/${product.slug}`} onClick={closeMobile} className="flex min-h-11 items-center justify-between border-b border-border text-sm text-text-muted hover:text-text">
+                {product.name}<ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            ))}
+            <div className="mt-6">
+              <Link href="/#contact" onClick={closeMobile} className="btn btn-primary w-full">Contact</Link>
+            </div>
+          </nav>
+      </div>
+    </header>
   );
 }
