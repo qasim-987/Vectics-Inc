@@ -35,8 +35,9 @@ function contrast(foreground, background) {
 
 // Normal-sized text should meet WCAG AA on every surface it commonly uses.
 const pairs = [
-  ["Content on white", colors.content.DEFAULT, colors.surface.DEFAULT],
-  ["Muted content on white", colors.content.muted, colors.surface.DEFAULT],
+  ["Content on warm white", colors.content.DEFAULT, colors.surface.DEFAULT],
+  ["Muted content on warm white", colors.content.muted, colors.surface.DEFAULT],
+  ["Content on warm page", colors.content.DEFAULT, colors.canvas.DEFAULT],
   ["Muted content on gray", colors.content.muted, colors.surface.muted],
   ["Subtle content on gray", colors.content.subtle, colors.surface.muted],
   ["Homepage accent on gray", colors.brass.deep, colors.canvas.DEFAULT],

@@ -31,7 +31,6 @@ export default function DayNarrative() {
     offset: ["start start", "end end"],
   });
   const smooth = useSpring(scrollYProgress, { stiffness: 90, damping: 26, mass: 0.4 });
-  const tone = useTransform(smooth, [0, 1], ["#10263a", "#0b1d2d"]);
   const lineScale = useTransform(smooth, [0, 1], [0, 1]);
 
   useMotionValueEvent(smooth, "change", (v) => {
@@ -45,12 +44,6 @@ export default function DayNarrative() {
       id="the-day"
       className="relative isolate overflow-hidden bg-ink-deep py-24 text-paper sm:py-32"
     >
-      {/* Tone shift mirrors the day closing: warm ink → cool night. */}
-      <motion.div
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{ backgroundColor: reduce ? undefined : tone }}
-        aria-hidden="true"
-      />
       <Atmosphere tone="dark" grid />
 
       <div className="relative z-10 mx-auto max-w-shell px-5 sm:px-8 lg:px-12">
@@ -59,13 +52,12 @@ export default function DayNarrative() {
           <Reveal className="max-w-2xl">
             <span className="eyebrow eyebrow-dark">// The day</span>
             <h2 className="mt-5 font-serif text-[clamp(2.4rem,5.4vw,4.8rem)] font-normal leading-[1.04] tracking-[-0.03em] text-paper">
-              The operation has a shape.
+              Good software has a thoughtful path.
             </h2>
           </Reveal>
           <Reveal delay={0.12} className="max-w-md">
             <p className="text-base leading-relaxed text-muted sm:text-lg">
-              From the 5:30 AM warehouse count to the final bank ledger printout at nightfall, each
-              operational hour has its own imperative.
+              We move from understanding the work to supporting a product in use—keeping the decisions grounded and the process clear.
             </p>
             <span className="section-index mt-6 block">02 / 06 — The day</span>
           </Reveal>
@@ -117,7 +109,7 @@ export default function DayNarrative() {
                 />
                 <div className="absolute left-6 top-6 flex items-center gap-2 rounded-full border border-paper/15 bg-ink-deep/45 px-3 py-1.5 font-mono text-[0.6rem] uppercase tracking-[0.18em] text-paper/80 backdrop-blur-md">
                   <span className="h-1.5 w-1.5 rounded-full bg-brass-light" />
-                  Field record · {String(active + 1).padStart(2, "0")} / 04
+                  Project stage · {String(active + 1).padStart(2, "0")} / 04
                 </div>
                 <div className="absolute bottom-7 left-7 right-7 flex items-end justify-between gap-4">
                   <div>
@@ -142,7 +134,7 @@ export default function DayNarrative() {
                   />
                 </div>
                 <span className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-muted">
-                  Dawn → Close
+                  Discovery → Support
                 </span>
               </div>
             </div>
@@ -208,8 +200,8 @@ export default function DayNarrative() {
                 </div>
 
                 <div className="mt-8 flex items-center justify-between font-mono text-[0.62rem] uppercase tracking-[0.14em] text-muted-dark">
-                  <span>Physical handoff</span>
-                  <span>Verified</span>
+                  <span>Real-world fit</span>
+                  <span>In focus</span>
                 </div>
               </article>
             ))}

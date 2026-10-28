@@ -12,7 +12,7 @@ import Atmosphere from "./Atmosphere";
 import { Reveal } from "./Reveal";
 import { useHydratedReducedMotion } from "./useHydratedReducedMotion";
 
-/** "From problem to product" — a five-step loop with a scroll-drawn rail. */
+/** Five-stage delivery loop with a scroll-drawn rail. */
 export default function ProcessSteps() {
   const sectionRef = useRef<HTMLElement>(null);
   const reduce = useHydratedReducedMotion();
@@ -45,20 +45,19 @@ export default function ProcessSteps() {
           <Reveal className="lg:col-span-8">
             <span className="eyebrow eyebrow-dark">The loop</span>
             <h2 className="mt-5 font-serif text-[clamp(2.3rem,5.2vw,4.6rem)] leading-[1.04] tracking-[-0.03em] text-paper">
-              From problem to <span className="italic text-brass-light">product.</span>
+              Turn practical needs into <span className="italic text-brass-light">useful tools.</span>
             </h2>
           </Reveal>
           <Reveal delay={0.12} className="lg:col-span-4 lg:pl-8">
             <p className="text-base leading-relaxed text-muted">
-              Each product starts with a concrete operational problem and stays close to the people
-              who run it until the software earns its place.
+              Every engagement starts with a real business need and stays close to the people who use the result, from first discovery through continued improvement.
             </p>
             <span className="section-index mt-6 block">05 / 06 — The loop</span>
           </Reveal>
         </div>
 
         <Reveal className="mt-12">
-          <h3 className="eyebrow text-muted-dark">Operational Delivery Framework</h3>
+          <h3 className="eyebrow text-muted-dark">A practical delivery framework</h3>
         </Reveal>
 
         <div className="relative mt-10">
@@ -118,7 +117,7 @@ export default function ProcessSteps() {
 
         <Reveal delay={0.1} className="mt-16 flex items-center gap-4">
           <span className="font-mono text-[0.62rem] uppercase tracking-[0.18em] text-muted-dark">
-            Observe → Map → Build → Use → Improve → Observe
+            Discover → Plan → Build → Launch → Improve → Discover
           </span>
           <span className="h-px flex-1 bg-paper/10" aria-hidden="true" />
           <span className="font-mono text-[0.62rem] uppercase tracking-[0.18em] text-brass-light">

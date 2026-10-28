@@ -2,22 +2,15 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, ArrowUp, Instagram, Facebook, Linkedin, Github, Mail } from "lucide-react";
+import { ArrowRight, ArrowUp, Mail } from "lucide-react";
 import { siteMeta, productsData } from "@/data/vectis";
 import { productDropdownResources } from "@/data/home";
 import Atmosphere from "./home/Atmosphere";
 import MagneticLink from "./home/MagneticLink";
 import { Reveal } from "./home/Reveal";
+import { footerNavigation, parentCompany } from "@/data/site-navigation";
 
-const exploreLinks = [
-  { label: "What we build", href: "/#what-we-build" },
-  { label: "Products", href: "/#products" },
-  { label: "Clients", href: "/clients" },
-  { label: "Journal", href: "/journal" },
-  { label: "Approach", href: "/#approach" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/#contact" },
-];
+const exploreLinks = footerNavigation;
 
 const resourcesLinks = [
   ...productDropdownResources,
@@ -25,13 +18,7 @@ const resourcesLinks = [
   { label: "Terms of Use", href: "/terms" },
 ];
 
-/** Replace these with the brand's own profile URLs before launch (see DESIGN.md). */
-const socialLinks = [
-  { label: "Instagram", href: "https://www.instagram.com/", Icon: Instagram },
-  { label: "Facebook", href: "https://www.facebook.com/", Icon: Facebook },
-  { label: "LinkedIn", href: "https://www.linkedin.com/", Icon: Linkedin },
-  { label: "GitHub", href: "https://github.com/", Icon: Github },
-];
+
 
 export default function VectisFooter() {
   const openContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -51,13 +38,10 @@ export default function VectisFooter() {
             <div className="relative max-w-2xl">
               <span className="eyebrow eyebrow-dark">// Contact</span>
               <h2 className="mt-5 font-serif text-[clamp(2.5rem,5.6vw,5rem)] leading-[1.02] tracking-[-0.032em] text-paper">
-                Let&apos;s build what&apos;s{" "}
-                <span className="italic text-brass-light">next.</span>
+                Let&apos;s make the next idea <span className="italic text-brass-light">useful.</span>
               </h2>
               <p className="mt-6 text-base leading-relaxed text-muted sm:text-lg">
-                Whether you run an operational business with distribution, fleet, or warehouse
-                operations, or you want to build focused software together, we would love to hear
-                from you.
+                If you have a workflow to improve, a product to shape, or an idea for practical AI, we would love to hear what you are working on.
               </p>
 
               <div className="mt-9 flex flex-wrap items-center gap-3 sm:gap-4">
@@ -104,12 +88,20 @@ export default function VectisFooter() {
               </span>
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted">
-              Software for the work that moves the world. Focused desktop and operational software
-              engineered for independent distributors, route operators, and supply teams.
+              Purpose-built software for everyday work. We build practical digital tools around the needs of real teams and the businesses they keep moving.
             </p>
             <p className="mt-5 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted-dark">
               {siteMeta.location}
             </p>
+            <a
+              href={parentCompany.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-underline mt-5 inline-flex items-center gap-2 text-sm text-paper/70 hover:text-paper"
+            >
+              Vectis is part of {parentCompany.label}
+              <ArrowRight className="h-3 w-3" aria-hidden="true" />
+            </a>
           </div>
 
           {/* Explore */}
@@ -185,29 +177,24 @@ export default function VectisFooter() {
                 </a>
               </li>
             </ul>
-            <h4 className="eyebrow mt-7 text-muted-dark">Follow us</h4>
-            <div className="mt-4 flex items-center gap-2.5">
-              {socialLinks.map(({ label, href, Icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-paper/15 text-paper/70 transition-all duration-300 hover:-translate-y-0.5 hover:border-brass hover:text-brass-light"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
-            </div>
+            <h4 className="eyebrow mt-7 text-muted-dark">Parent company</h4>
+            <a
+              href={parentCompany.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${footerLink} mt-4 inline-flex items-center gap-2`}
+            >
+              {parentCompany.label}
+              <ArrowRight className="h-3 w-3" aria-hidden="true" />
+            </a>
           </div>
         </div>
 
         {/* Bottom bar */}
         <div className="mt-16 flex flex-col gap-4 border-t border-paper/[0.08] pt-8 font-mono text-[0.64rem] uppercase tracking-[0.14em] text-muted-dark sm:flex-row sm:items-center sm:justify-between">
-          <span>© {new Date().getFullYear()} Vectis Operations Inc. All rights reserved.</span>
-          <span className="hidden md:block">Focused Software for Physical Work</span>
-          <a href="#hero" className="link-underline inline-flex items-center gap-2 text-paper/70 hover:text-paper">
+          <span>© {new Date().getFullYear()} {siteMeta.legalName}. All rights reserved.</span>
+          <span className="hidden md:block">Purpose-built software for everyday work</span>
+          <a href="/#hero" className="link-underline inline-flex items-center gap-2 text-paper/70 hover:text-paper">
             Back to top <ArrowUp className="h-3 w-3" />
           </a>
         </div>

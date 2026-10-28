@@ -26,23 +26,22 @@ export default function PrinciplesSection() {
           <Reveal className="lg:col-span-8">
             <span className="eyebrow eyebrow-dark">// How we work</span>
             <h2 className="mt-5 font-serif text-[clamp(2.4rem,5.4vw,4.8rem)] leading-[1.03] tracking-[-0.03em] text-paper">
-              Built with <span className="italic text-brass-light">purpose.</span>
+              Guided by <span className="italic text-brass-light">what matters.</span>
             </h2>
             <p className="mt-4 font-serif text-xl italic text-muted sm:text-2xl">
-              Principles &amp; Process
+              The standards behind the work
             </p>
           </Reveal>
           <Reveal delay={0.12} className="lg:col-span-4 lg:pl-8">
             <p className="text-base leading-relaxed text-muted">
-              We design tools directly from warehouse observations. Four foundational convictions
-              guide our software, translated through a five-step execution model.
+              Our work is guided by a few durable principles: stay clear, solve the actual problem, and take responsibility for what ships.
             </p>
             <span className="section-index mt-6 block">04 / 06 — How we work</span>
           </Reveal>
         </div>
 
         <Reveal className="mt-14">
-          <h3 className="eyebrow text-muted-dark">Four Core Convictions</h3>
+          <h3 className="eyebrow text-muted-dark">How we work</h3>
         </Reveal>
 
         <div className="mt-7 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">

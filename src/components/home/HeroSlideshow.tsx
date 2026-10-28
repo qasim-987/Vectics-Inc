@@ -15,8 +15,8 @@ import { useHydratedReducedMotion } from "./useHydratedReducedMotion";
 const SLIDE_DURATION = 5600;
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-// Copy is preserved verbatim; split into two editorial lines for the mask reveal.
-const HEADLINE_LINES = ["Software for the work", "that moves the world."];
+// Keep the headline split at the intended line break for the mask reveal.
+const HEADLINE_LINES = ["Build for the work", "that matters next."];
 
 const wordVariants = {
   hidden: { y: "112%", opacity: 0 },
@@ -227,14 +227,14 @@ export default function HeroSlideshow() {
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-paper/15 bg-ink-deep/35 px-3.5 py-1.5 font-mono text-[0.63rem] uppercase tracking-[0.18em] text-paper/85 backdrop-blur-sm">
               <span className="h-1.5 w-1.5 rounded-full bg-live animate-pulse" />
-              Vectis Inc. — Operational Software Studio
+              Vectis Inc. — Software and AI Studio
             </span>
           </motion.div>
 
           {/* Headline: word-by-word mask reveal replayed on every slide */}
           <motion.h1
             key={`headline-${cycle}`}
-            aria-label="Software for the work that moves the world."
+            aria-label="Build for the work that matters next."
             initial="hidden"
             animate="show"
             className="font-serif text-[clamp(2.5rem,5.8vw,5.4rem)] font-normal leading-[1.02] tracking-[-0.03em] text-paper"
@@ -274,11 +274,10 @@ export default function HeroSlideshow() {
             transition={{ duration: 0.85, delay: 0.4, ease: EASE }}
           >
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-paper/85 sm:text-lg">
-              Focused software products built around the way businesses actually work.
+              Custom software, thoughtful web apps, and useful AI automation for real-world teams.
             </p>
             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted sm:text-[0.95rem]">
-              We build focused software for operational businesses. Tools for the distributor office, the
-              warehouse bay, and the road—starting with daily route distribution.
+              We build useful digital tools for real teams—from custom software and web applications to practical AI automation.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">

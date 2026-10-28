@@ -5,9 +5,9 @@ import { ArrowRight, ShieldCheck, HeartHandshake, Zap, Sparkles } from "lucide-r
 import { siteMeta, principles } from "@/data/vectis";
 
 export const metadata: Metadata = {
-  title: "About Vectis Inc. — Software for Physical Operations",
+  title: "About Vectis Inc. — Software & AI Studio",
   description:
-    "Vectis Inc. builds focused software for operational businesses. Our engineering philosophy, four stubborn convictions, and dedication to physical commerce.",
+    "Meet Vectis, a Forza Inc. company building custom software, web applications, and useful AI automation for real-world teams.",
   alternates: {
     canonical: "https://vectisoperations.tech/about",
   },
@@ -46,7 +46,7 @@ export default function AboutPage() {
           </h1>
 
           <p className="mt-8 text-lg sm:text-xl text-content-muted font-normal leading-relaxed">
-            Most technology companies build for people sitting in front of glass conference room whiteboards. We build for the people who manage loading docks, count cases in unheated warehouses, reconcile driver cash bags, and keep retail shelves stocked across cities.
+            Vectis is part of Forza Inc., building practical digital products and custom software for teams doing consequential work. We combine thoughtful product design, dependable engineering, and useful AI automation to make everyday workflows clearer.
           </p>
         </div>
       </section>
@@ -66,13 +66,13 @@ export default function AboutPage() {
 
             <div className="md:col-span-8 space-y-6 text-base sm:text-lg text-content-muted font-normal leading-relaxed">
               <p>
-                Vectis Inc. was formed out of a straightforward realization: the software running independent distribution businesses was fundamentally broken. Distributors were either trapped on fragile twenty-year-old DOS programs or coerced into massive cloud subscriptions that took fifteen clicks just to log a single broken bottle of soda.
+                We start with the work itself: the people, existing systems, handoffs, and small points of friction that accumulate into a larger problem. A useful product begins with understanding those realities, not with choosing a fashionable technology.
               </p>
               <p>
-                When a distribution driver returns from an eight-hour route in heavy traffic, they do not have patience for web browsers that crash, spinning loading icons, or cloud authentication errors. They need a single, rock-solid desktop ledger that accepts keyboard entries as fast as their fingers can type.
+                From custom software and web applications to AI-powered automation, we focus on clear outcomes, sensible scope, and reliable foundations. The right solution can be a new application, a careful integration, or a simpler way to handle repetitive work.
               </p>
               <p>
-                That is why we started RouteCore. We sat in cashier booths, watched delivery trucks roll out at 6:00 AM, and built software specifically to withstand the frantic pace of the evening close.
+                As a company within Forza Inc., Vectis works with the wider Forza family to turn real needs into software that is useful, maintainable, and ready to evolve with the people who rely on it.
               </p>
             </div>
           </div>

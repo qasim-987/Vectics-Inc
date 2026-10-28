@@ -12,8 +12,8 @@ import ProcessSteps from "@/components/home/ProcessSteps";
  * dark principles → deep process. The closing CTA and footer live in the root
  * layout (VectisFooter), so routes/functionality remain untouched.
  *
- * All original copy is preserved; section labels from the brief ("Built with
- * purpose.", "From problem to product.", etc.) are layered in as headings.
+ * The content is data-driven and the closing contact/footer remain shared
+ * through the root layout.
  */
 export default function HomePage() {
   return (

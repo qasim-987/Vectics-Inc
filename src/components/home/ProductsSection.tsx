@@ -21,8 +21,8 @@ export default function ProductsSection() {
           <Reveal className="lg:col-span-8">
             <span className="eyebrow eyebrow-light">// Products</span>
             <h2 className="mt-5 max-w-3xl font-serif text-[clamp(2.3rem,5.1vw,4.6rem)] leading-[1.04] tracking-[-0.03em] text-char">
-              A focused portfolio of{" "}
-              <span className="italic text-brass-deep">software products.</span>
+              Products shaped around{" "}
+              <span className="italic text-brass-deep">real work.</span>
             </h2>
             <p className="mt-4 font-serif text-xl italic text-char-soft sm:text-2xl">
               What we&apos;re building.
@@ -31,11 +31,10 @@ export default function ProductsSection() {
 
           <Reveal delay={0.14} className="lg:col-span-4 lg:pl-8">
             <p className="text-base leading-relaxed text-char-soft">
-              Software crafted for physical commerce and operational truth. One flagship desktop
-              system live in daily operations, and two companion products in active development.
+              A small portfolio built around practical business needs: reliable operational software today, with new intelligence and workflow tools taking shape.
             </p>
             <p className="mt-3 text-sm leading-relaxed text-char-faint">
-              Each one built around a specific problem. Each one built to last.
+              Every product starts with a practical need and earns its place through use.
             </p>
             <span className="section-index mt-6 block">03 / 06 — Products</span>
           </Reveal>

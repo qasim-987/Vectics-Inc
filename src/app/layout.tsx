@@ -19,11 +19,11 @@ import { siteMeta } from "@/data/vectis";
 export const metadata: Metadata = {
   metadataBase: new URL("https://vectisoperations.tech"),
   title: {
-    default: "Vectis Inc. — Software for the work that moves the world",
+    default: "Vectis Inc. — Custom Software, AI & Web Apps",
     template: "%s | Vectis Inc.",
   },
   description:
-    "Vectis Inc. builds focused software for operational businesses. Explore RouteCore, live distributor software, and PulseGrid and Vectis Studio in development.",
+    "Vectis builds custom software, web applications, and practical AI automation for real-world teams. A Vectis company within Forza Inc.",
   keywords: [
     "Vectis Inc",
     "RouteCore",
@@ -44,19 +44,21 @@ export const metadata: Metadata = {
     telephone: true,
   },
   openGraph: {
-    title: "Vectis Inc. — Software for the work that moves the world",
+    title: "Vectis Inc. — Custom Software, AI & Web Apps",
     description:
-      "Vectis Inc. builds focused software for operational businesses. Explore RouteCore, live distributor software, and PulseGrid and Vectis Studio in development.",
+      "Vectis builds custom software, web applications, and practical AI automation for real-world teams. A Vectis company within Forza Inc.",
     url: "https://vectisoperations.tech",
     siteName: "Vectis Inc.",
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Vectis Inc. — custom software, AI and web applications" }],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vectis Inc. — Software for the work that moves the world",
+    images: ["/opengraph-image.png"],
+    title: "Vectis Inc. — Custom Software, AI & Web Apps",
     description:
-      "Focused software for operational businesses. Explore RouteCore, PulseGrid, and Vectis Studio.",
+      "Custom software, thoughtful web applications, and useful AI automation for real-world teams.",
   },
   robots: {
     index: true,
@@ -75,7 +77,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#10263a",
+  themeColor: "#f2efe9",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -94,7 +96,11 @@ export default function RootLayout({
     url: "https://vectisoperations.tech",
     email: siteMeta.email,
     description: siteMeta.description,
-    sameAs: [],
+    parentOrganization: {
+      "@type": "Organization",
+      name: "Forza Inc.",
+      url: "https://forzainc.tech/",
+    },
   };
 
   const jsonLdWebSite = {

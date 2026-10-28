@@ -71,16 +71,16 @@ export const dayStageMedia: DayStageMedia[] = [
   },
   {
     image: {
-      src: "/images/home/slide-route.jpg",
-      alt: "Freight truck on an open road",
+      src: "/images/home/product-studio.jpg",
+      alt: "Quiet meeting room prepared for a project planning session",
       blurDataURL: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wAARCAAMABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABAUA/8QAJRAAAgEDAwIHAAAAAAAAAAAAAQIDAAQRBRIhIjFBUWFxgdHh/8QAFQEBAQAAAAAAAAAAAAAAAAAAAwT/xAAZEQADAQEBAAAAAAAAAAAAAAAAAQIREhP/2gAMAwEAAhEDEQA/AGxataSqAsnPpn6otzqixTrES4DKW3k9vjFRjeSwqVi2oBxhRih3MrO+9sFvOpYjWU3WIqS6r18SKfdfytUOQkNwfCtT+aB7Z//Z",
     },
     tint: "rgba(62, 103, 130, 0.12)",
   },
   {
     image: {
-      src: "/images/home/slide-collection.jpg",
-      alt: "Close view of paperwork being reviewed",
+      src: "/images/home/product-nano.jpg",
+      alt: "Charts and figures on a desk during product development",
       blurDataURL: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wAARCAAMABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIEBf/EACYQAAIBAwEHBQAAAAAAAAAAAAECAwAEERIFEyExUXGBIjNBobH/xAAVAQEBAAAAAAAAAAAAAAAAAAACA//EABcRAQEBAQAAAAAAAAAAAAAAAAARASH/2gAMAwEAAhEDEQA/AMK2t55CFtXhlVl9ZyOBz1I/KeW0azjDOFDtxYDmfPSr7dXMeN84X5QBcHxioLq5e2Y7kKoDcuY+6llqvEMsgkfUYtXADI7UU7bQudXuA91FFMY//9k=",
     },
     tint: "rgba(96, 104, 122, 0.12)",
@@ -88,7 +88,7 @@ export const dayStageMedia: DayStageMedia[] = [
   {
     image: {
       src: "/images/home/slide-close.jpg",
-      alt: "Quiet office interior after hours",
+      alt: "Quiet office interior after hours, ready for the next iteration",
       blurDataURL: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wAARCAAMABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAEDBAb/xAAbEAACAwEBAQAAAAAAAAAAAAABAgARMSEDgf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AyIcjGMdMwvp+SQKD5YJXV3WwrEXw0dlQjsILkIH/2Q==",
     },
     tint: "rgba(46, 64, 96, 0.20)",
@@ -140,6 +140,9 @@ export const productDropdownMain: DropdownLink[] = [
 export const productDropdownResources: DropdownLink[] = [
   { label: "User Guide", href: "/journal" },
   { label: "FAQ", href: "/contact#faq" },
+];
+
+export const productDropdownLogin: DropdownLink[] = [
   {
     label: "Web app login",
     href: "https://app.distributionlife.app/login",

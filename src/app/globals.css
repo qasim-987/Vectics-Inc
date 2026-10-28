@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 /* ==========================================================================
-   VECTIS — PROFESSIONAL NAVY / SLATE PALETTE
-   Dark navy grounds the navigation, hero and footer; clean white and cool
-   gray surfaces carry the content. Blue accents replace the former brass.
+   VECTIS — WARM EDITORIAL SURFACES / NAVY CONTRAST
+   Dark navy grounds the navigation, hero and footer; warm cream surfaces carry
+   the content. Blue accents replace the former brass.
    RGB triplets keep Tailwind opacity modifiers working. The `brass` names are
    retained as compatibility aliases for the existing homepage components.
    ========================================================================== */
@@ -22,14 +22,14 @@
   --muted-dark-rgb: 159 178 193;   /* #9fb2c1 */
   --muted-deep-rgb: 143 163 179;   /* #8fa3b3 */
 
-  /* White/slate surfaces and dark text */
-  --canvas-rgb: 243 246 249;        /* #f3f6f9 */
-  --canvas-raised-rgb: 255 255 255;  /* #ffffff */
-  --canvas-deep-rgb: 234 240 245;   /* #eaf0f5 */
-  --surface-border-rgb: 214 224 232; /* #d6e0e8 */
-  --char-rgb: 23 45 67;             /* #172d43 */
-  --char-soft-rgb: 75 97 117;       /* #4b6175 */
-  --char-faint-rgb: 92 113 132;     /* #5c7184 */
+  /* Warm editorial surfaces and near-black text (Forza reference direction). */
+  --canvas-rgb: 242 239 233;        /* #f2efe9 */
+  --canvas-raised-rgb: 250 248 244;  /* warm white */
+  --canvas-deep-rgb: 232 227 219;   /* warm slate */
+  --surface-border-rgb: 215 210 201; /* warm hairline */
+  --char-rgb: 17 17 17;             /* #111111 */
+  --char-soft-rgb: 78 77 73;        /* muted charcoal */
+  --char-faint-rgb: 105 103 98;     /* secondary muted */
 
   /* Restrained blue accents + status */
   --brass-rgb: 112 157 184;         /* #709db8 */
@@ -64,6 +64,9 @@
   --shadow-lift: 0 34px 72px -30px rgb(0 0 0 / 0.7);
   --shadow-glow: 0 0 0 1px rgb(var(--brass-rgb) / 0.22), 0 28px 70px -34px rgb(var(--brass-rgb) / 0.36);
   --ease-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-reveal: 700ms;
+  --motion-stagger: 100ms;
+  --motion-hover: 250ms;
   --slide-duration: 5600ms;
 }
 
@@ -420,4 +423,12 @@ body {
   .reveal, .hero-enter { opacity: 1 !important; transform: none !important; transition: none !important; }
   .clip-reveal { clip-path: none !important; transform: none !important; }
   .hero-progress-fill { transform: scaleX(1) !important; }
+}
+
+
+
+/* Simplify ambient effects on touch layouts. */
+@media (max-width: 767px) {
+  .mesh-blob { display: none; }
+  .route-grid, .route-grid-light { background-size: 56px 56px; }
 }

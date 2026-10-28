@@ -61,12 +61,8 @@ interface RevealImageProps {
 }
 
 /**
- * Editorial mask reveal for photography.
- *
- * IMPORTANT: the clipped element itself must NOT be the IntersectionObserver
- * target — `clip-path: inset(0 0 100% 0)` gives it zero visible area, so the
- * observer would never fire and the image would stay hidden forever. We
- * observe an unclipped wrapper and drive the inner mask from that state.
+ * Lightweight image reveal driven only by opacity and transform. The observer
+ * watches an unclipped wrapper so restored-scroll positions remain visible.
  */
 export function RevealImage({ children, className, delay = 0 }: RevealImageProps) {
   const reduce = useHydratedReducedMotion();
@@ -108,13 +104,9 @@ export function RevealImage({ children, className, delay = 0 }: RevealImageProps
       <motion.div
         className="relative h-full w-full"
         initial={false}
-        animate={
-          inView
-            ? { clipPath: "inset(0% 0% 0% 0%)", scale: 1 }
-            : { clipPath: "inset(0% 0% 100% 0%)", scale: 1.07 }
-        }
-        transition={{ duration: 1.1, delay, ease: EASE }}
-        style={{ willChange: "clip-path, transform" }}
+        animate={inView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 18, scale: 1.025 }}
+        transition={{ duration: 0.7, delay, ease: EASE }}
+        style={{ willChange: "transform, opacity" }}
       >
         {children}
       </motion.div>

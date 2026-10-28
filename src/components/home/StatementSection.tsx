@@ -25,8 +25,7 @@ export default function StatementSection() {
 
         <Reveal delay={0.08} className="mt-12 max-w-5xl">
           <h2 className="font-serif text-[clamp(2.4rem,5.7vw,5.2rem)] font-normal leading-[1.03] tracking-[-0.032em] text-char">
-            Operations rarely happen in{" "}
-            <span className="italic text-brass-deep">clean rows.</span>
+            Good software meets real work where it happens.
           </h2>
         </Reveal>
 
@@ -36,9 +35,7 @@ export default function StatementSection() {
               01
             </span>
             <p className="text-lg leading-[1.75] text-char sm:text-xl">
-              Warehouses have damaged cartons and split load-outs. Drivers encounter urban gridlock,
-              partial deliveries, and impromptu credit renegotiations. Retail kiosks pay in crumpled
-              currency, deferred bank checks, and handwritten counterfoil notes.
+              A growing business rarely follows a neat diagram. Teams juggle disconnected tools, repetitive handoffs, and decisions made with incomplete information.
             </p>
           </Reveal>
           <Reveal delay={0.2} className="md:border-l md:border-char/15 md:pl-16">
@@ -46,10 +43,7 @@ export default function StatementSection() {
               02
             </span>
             <p className="text-lg leading-[1.75] text-char-soft sm:text-xl">
-              Most enterprise software collapses when physical reality gets messy. We spend our
-              mornings on the loading bays and our evenings at the cashier&apos;s desk, building durable
-              software that stands up under operational pressure and ensures teams close the day
-              accurately.
+              We build custom software, web applications, and practical AI automation around the way people actually work—so technology removes busywork instead of adding another layer.
             </p>
           </Reveal>
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
+import SiteImage from "@/components/SiteImage";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { ProductItem } from "@/data/vectis";
@@ -24,16 +24,16 @@ export default function ProductCard({ product, media, index }: ProductCardProps)
     <Reveal delay={index * 0.11} className="h-full">
       <article className="gradient-border group relative flex h-full flex-col overflow-hidden rounded-card border border-char/[0.12] bg-canvas-raised shadow-soft transition-[transform,box-shadow] duration-500 ease-expo hover:-translate-y-2 hover:shadow-lift focus-within:-translate-y-2 focus-within:shadow-lift">
         {/* --------------------------- Image --------------------------- */}
-        <RevealImage className="relative aspect-[4/3] overflow-hidden bg-canvas-deep">
-          <Image
+        <RevealImage className="relative overflow-hidden bg-canvas-deep">
+          <SiteImage
             src={media.src}
             alt={media.alt}
             fill
             sizes="(min-width: 1024px) 32vw, (min-width: 640px) 50vw, 100vw"
             quality={80}
-            placeholder="blur"
             blurDataURL={media.blurDataURL}
-            className="object-cover transition-transform duration-[900ms] ease-expo group-hover:scale-[1.08]"
+            aspectClassName="aspect-[4/3]"
+            className="transition-transform duration-[900ms] ease-expo group-hover:scale-[1.08]"
           />
           <div
             className="pointer-events-none absolute inset-0 bg-gradient-to-t from-char/70 via-transparent to-transparent opacity-70"

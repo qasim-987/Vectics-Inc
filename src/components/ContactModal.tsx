@@ -22,6 +22,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const modalRef = useRef<HTMLDivElement>(null);
+  const returnFocusRef = useRef<HTMLElement | null>(null);
 
   const activeIsOpen = controlledIsOpen !== undefined ? controlledIsOpen : isOpen;
 
@@ -36,6 +37,11 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
       setFormData({ name: "", email: "", organization: "", message: "", botField: "" });
     }
   };
+
+  const handleCloseRef = useRef(handleClose);
+  useEffect(() => {
+    handleCloseRef.current = handleClose;
+  });
 
   useEffect(() => {
     // Listen for custom trigger event
@@ -64,20 +70,45 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
   }, []);
 
   useEffect(() => {
-    if (activeIsOpen) {
-      setFormLoadedAt(Date.now());
-      document.body.style.overflow = "hidden";
-      const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === "Escape") handleClose();
-      };
-      window.addEventListener("keydown", handleKeyDown);
-      return () => {
-        document.body.style.overflow = "unset";
-        window.removeEventListener("keydown", handleKeyDown);
-      };
-    } else {
-      document.body.style.overflow = "unset";
+    if (!activeIsOpen) {
+      document.body.style.overflow = "";
+      return;
     }
+
+    returnFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    setFormLoadedAt(Date.now());
+    document.body.style.overflow = "hidden";
+    const focusable = () => Array.from(
+      modalRef.current?.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ) ?? [],
+    ).filter((element) => !element.hasAttribute("aria-hidden"));
+    window.requestAnimationFrame(() => focusable()[0]?.focus());
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        handleCloseRef.current();
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const elements = focusable();
+      if (!elements.length) return;
+      const first = elements[0];
+      const last = elements[elements.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+      returnFocusRef.current?.focus();
+    };
   }, [activeIsOpen]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -92,7 +123,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
         body: JSON.stringify({
           firstName: formData.name,
           email: formData.email,
-          service: formData.organization || "Distribution Operation",
+          service: formData.organization || "Project or area of interest",
           message: formData.message,
           botField: formData.botField,
           formLoadedAt,
@@ -140,10 +171,10 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
             // Get in touch
           </span>
           <h2 id="contact-modal-title" className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight text-content">
-            Let’s discuss your operation.
+            Let’s talk about what you need.
           </h2>
           <p className="mt-2 text-sm sm:text-base text-content-muted font-normal">
-            Tell us about your distribution routes, warehouse workflow, or software requirements.
+            Tell us about your team, the work you want to improve, and what you would like to build.
           </p>
         </div>
 
@@ -152,7 +183,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
             <CheckCircle2 className="mx-auto h-10 w-10 text-emerald-700" />
             <h3 className="text-lg font-semibold text-content">Message received</h3>
             <p className="text-sm text-content-muted">
-              Thank you for reaching out. A Vectis Inc. engineer will review your operational requirements and respond within 24 hours.
+              Thank you for reaching out. Thank you for reaching out. We will review your message and reply using the email address you provided.
             </p>
             <button
               onClick={handleClose}
@@ -202,7 +233,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                placeholder="e.g. Tariq Mahmood"
+                placeholder="Your name"
                 className="w-full rounded-md border border-surface-border bg-surface-muted px-3.5 py-2.5 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all"
               />
             </div>
@@ -231,7 +262,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
                 id="organization"
                 value={formData.organization}
                 onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                placeholder="e.g. FMCG Wholesale (15 routes)"
+                placeholder="Company or project (optional)"
                 className="w-full rounded-md border border-surface-border bg-surface-muted px-3.5 py-2.5 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all"
               />
             </div>
@@ -246,7 +277,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
                 rows={4}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                placeholder="Tell us about your route reconciliation, inventory counts, or system questions..."
+                placeholder="Tell us about the work you want to improve or the product you want to build..."
                 className="w-full rounded-md border border-surface-border bg-surface-muted px-3.5 py-2.5 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all resize-none"
               />
             </div>

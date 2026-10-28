@@ -15,28 +15,17 @@ import { ArrowRight, ChevronDown, ExternalLink, Menu, X } from "lucide-react";
 import {
   productDropdownMain,
   productDropdownResources,
+  productDropdownLogin,
   productMedia,
   type DropdownLink,
 } from "@/data/home";
 import { productsData } from "@/data/vectis";
+import { primaryNavigation } from "@/data/site-navigation";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const primaryLinks = [
-  { label: "Products", href: "/#products" },
-  { label: "Clients", href: "/clients" },
-  { label: "Journal", href: "/journal" },
-  { label: "Approach", href: "/#approach" },
-  { label: "About", href: "/about" },
-];
-
-const mobileLinks = [
-  { label: "Products", href: "/#products" },
-  { label: "Clients & Stories", href: "/clients" },
-  { label: "Journal & Thinking", href: "/journal" },
-  { label: "Approach", href: "/#approach" },
-  { label: "About Vectis Inc.", href: "/about" },
-];
+const primaryLinks = primaryNavigation;
+const mobileLinks = primaryNavigation;
 
 export default function VectisHeader() {
   const pathname = usePathname();
@@ -46,8 +35,11 @@ export default function VectisHeader() {
   const [hidden, setHidden] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
   const lastY = useRef(0);
   const headerRef = useRef<HTMLElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const menuToggleRef = useRef<HTMLButtonElement>(null);
 
   /* Glass on scroll + hide on scroll down / show on scroll up. */
   useMotionValueEvent(scrollY, "change", (y) => {
@@ -65,6 +57,28 @@ export default function VectisHeader() {
   useEffect(() => {
     setDropdownOpen(false);
     setMobileOpen(false);
+  }, [pathname]);
+
+  /* Highlight home-page anchor links using one IntersectionObserver. */
+  useEffect(() => {
+    if (pathname !== "/") {
+      setActiveSection(null);
+      return;
+    }
+    const ids = ["products", "approach"];
+    const targets = ids.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => Boolean(el));
+    if (!targets.length) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top));
+        if (visible[0]) setActiveSection(visible[0].target.id);
+      },
+      { rootMargin: "-30% 0px -58% 0px", threshold: 0 },
+    );
+    targets.forEach((target) => observer.observe(target));
+    return () => observer.disconnect();
   }, [pathname]);
 
   useEffect(() => {
@@ -92,6 +106,38 @@ export default function VectisHeader() {
     return () => {
       document.body.style.overflow = "";
     };
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const panel = mobileMenuRef.current;
+    if (!panel) return;
+    const focusable = () => Array.from(
+      panel.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')
+    ).filter((element) => !element.hasAttribute("aria-hidden"));
+    focusable()[0]?.focus();
+
+    const trapFocus = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileOpen(false);
+        menuToggleRef.current?.focus();
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const items = focusable();
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    window.addEventListener("keydown", trapFocus);
+    return () => window.removeEventListener("keydown", trapFocus);
   }, [mobileOpen]);
 
   const renderDropdownLink = (item: DropdownLink, i: number) => {
@@ -140,7 +186,7 @@ export default function VectisHeader() {
       transition={{ duration: 0.48, ease: EASE }}
       onMouseLeave={() => setDropdownOpen(false)}
       className={`fixed inset-x-0 top-0 z-50 flex h-[var(--header-h)] items-center text-paper transition-[background-color,box-shadow] duration-500 ${
-        scrolled || dropdownOpen ? "glass-nav" : "border-b border-paper/[0.08] bg-ink-soft"
+        scrolled || dropdownOpen ? "glass-nav" : "border-b border-paper/[0.08] bg-ink-deep/25 backdrop-blur-sm"
       }`}
       style={{ willChange: "transform" }}
     >
@@ -173,7 +219,8 @@ export default function VectisHeader() {
             <Link
               key={link.label}
               href={link.href}
-              data-active={pathname === link.href ? "true" : undefined}
+              data-active={pathname === link.href || (pathname === "/" && activeSection === link.href.split("#")[1]) ? "true" : undefined}
+              aria-current={pathname === link.href ? "page" : pathname === "/" && activeSection === link.href.split("#")[1] ? "location" : undefined}
               className="link-underline inline-flex min-h-11 items-center text-[0.79rem] font-medium text-paper/75 transition-colors duration-300 hover:text-paper"
             >
               {link.label}
@@ -208,6 +255,7 @@ export default function VectisHeader() {
             <ArrowRight className="h-3 w-3" />
           </Link>
           <button
+            ref={menuToggleRef}
             type="button"
             onClick={() => setMobileOpen((o) => !o)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -252,7 +300,11 @@ export default function VectisHeader() {
                 <nav className="mt-4 flex flex-col" aria-label="DistributionLife resources">
                   {productDropdownResources.map(renderDropdownLink)}
                 </nav>
-                <div className="relative mt-6 aspect-[16/9] overflow-hidden rounded-card border border-paper/10">
+                <span className="eyebrow mt-5 block text-muted-dark">Log in</span>
+                <nav className="mt-2 flex flex-col" aria-label="DistributionLife login">
+                  {productDropdownLogin.map(renderDropdownLink)}
+                </nav>
+                <div className="relative mt-5 aspect-[16/9] overflow-hidden rounded-card border border-paper/10">
                   <Image
                     src={productMedia.distributionlife.src}
                     alt={productMedia.distributionlife.alt}
@@ -282,10 +334,11 @@ export default function VectisHeader() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -14 }}
             transition={{ duration: 0.42, ease: EASE }}
+            ref={mobileMenuRef}
             className="fixed inset-x-0 bottom-0 top-[var(--header-h)] z-40 overflow-y-auto border-t border-paper/10 bg-ink-deep/[0.97] px-5 pb-10 pt-8 backdrop-blur-2xl lg:hidden"
           >
             <motion.nav
-              aria-label="Mobile Navigation"
+              aria-label="Primary"
               initial="hidden"
               animate="show"
               variants={{ show: { transition: { staggerChildren: 0.055, delayChildren: 0.08 } } }}
@@ -320,7 +373,7 @@ export default function VectisHeader() {
               >
                 <span className="eyebrow eyebrow-dark">DistributionLife</span>
                 <div className="mt-3 grid grid-cols-2 gap-x-6 gap-y-1">
-                  {[...productDropdownMain, ...productDropdownResources].map((item) =>
+                  {productDropdownMain.map((item) =>
                     item.external ? (
                       <a
                         key={item.label}
@@ -372,6 +425,36 @@ export default function VectisHeader() {
                   ))}
                 </div>
               </motion.div>
+
+              <motion.div
+                variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}
+                className="mt-7"
+              >
+                <span className="eyebrow text-muted-dark">Resources</span>
+                <div className="mt-2 grid grid-cols-2 gap-x-6 gap-y-1">
+                  {productDropdownResources.map((item) => (
+                    <Link key={item.label} href={item.href} onClick={() => setMobileOpen(false)} className="py-2 text-sm text-paper/75 transition-colors hover:text-paper">
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </motion.div>
+
+              <motion.div
+                variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}
+                className="mt-6"
+              >
+                <span className="eyebrow text-muted-dark">Log in</span>
+                <div className="mt-2 flex flex-col">
+                  {productDropdownLogin.map((item) => (
+                    <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)} className="flex items-center gap-2 py-2 text-sm text-paper/75 transition-colors hover:text-paper">
+                      {item.label}<ExternalLink className="h-3 w-3 opacity-50" aria-hidden="true" />
+                    </a>
+                  ))}
+                </div>
+              </motion.div>
+
+
 
               <motion.div
                 variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}

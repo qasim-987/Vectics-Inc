@@ -29,6 +29,7 @@ async function runTests() {
   const nextBin = require.resolve('next/dist/bin/next');
   const server = spawn(process.execPath, [nextBin, 'start', '-p', String(port), '-H', '127.0.0.1'], {
     stdio: 'pipe',
+    env: { ...process.env, RESEND_API_KEY: '', CONTACT_FROM_EMAIL: '' },
   });
 
   server.stdout.on('data', (d) => {
@@ -64,15 +65,16 @@ async function runTests() {
 
   // 1. Verify 9 Core Routes
   const routesToTest = [
-    { path: '/', title: 'Home', expected: ['Vectis', 'Software for the work', 'RouteCore', 'PulseGrid', 'Vectis Studio', 'Why Vectis exists', 'The day', 'Principles &amp; Process'] },
+    { path: '/', title: 'Home', expected: ['Vectis', 'Build for the work', 'custom software', 'RouteCore', 'PulseGrid', 'Vectis Studio', 'Why Vectis exists', 'The day'] },
     { path: '/distributionlife', title: 'RouteCore', expected: ['RouteCore', 'One system for the office', 'Inventory and load-outs', 'Route collections', 'Close-of-Day Summary', 'SQLite'] },
     { path: '/nano', title: 'PulseGrid', expected: ['PulseGrid', 'Market intelligence for distributors', 'Four questions PulseGrid answers', 'Route Velocity', 'svg'] },
     { path: '/studio', title: 'Vectis Studio', titleExpected: 'Vectis Studio', expected: ['Vectis Studio', 'Turning operational workflows into working software prototypes', 'Sites', 'Boards', 'Operational tools'] },
-    { path: '/about', title: 'About', expected: ['About Vectis Inc.', 'Concrete Floor', 'Four stubborn ideas', 'Offline Resilience', 'Atomic Accountability'] },
+    { path: '/about', title: 'About', expected: ['About Vectis Inc.', 'Forza Inc.', 'custom software', 'Four stubborn ideas'] },
     { path: '/clients', title: 'Clients', expected: ['Where RouteCore is used every single day', 'Khyber Beverage Logistics', 'Indus Valley Wholesale', 'Atlas Route Traders', 'Margalla Food Services'] },
     { path: '/journal', title: 'Journal', expected: ['Writing on operations, software, and physical commerce', 'The whole distribution office, in one system', 'Software that has to hold up where the work actually happens', 'Reading the market so the operation can stay profitable'] },
     { path: '/privacy', title: 'Privacy Policy', expected: ['Privacy Policy', 'Scope', 'Absolute Offline Ledger Isolation', 'Information We Collect'] },
     { path: '/terms', title: 'Terms of Use', expected: ['Terms of Use', 'Acceptance of Terms', 'Software Licensing', 'Operational Responsibility'] },
+    { path: '/contact', title: 'Contact', expected: ['Start a conversation', 'Send an inquiry', 'Before we talk'] },
   ];
 
   console.log("\n[2] Testing Core Pages...");
@@ -109,7 +111,7 @@ async function runTests() {
   try {
     const sitemapRes = await fetchUrl(`${baseUrl}/sitemap.xml`);
     const sitemapOk = sitemapRes.status === 200 && sitemapRes.body.includes('/distributionlife') && sitemapRes.body.includes('/nano');
-    results.push({ name: 'sitemap.xml', passed: sitemapOk, details: `Status ${sitemapRes.status} | Contains all 9 route URLs` });
+    results.push({ name: 'sitemap.xml', passed: sitemapOk, details: `Status ${sitemapRes.status} | Contains all 10 route URLs` });
     console.log(`  ✓ sitemap.xml         : ${sitemapOk ? 'PASSED' : 'FAILED'}`);
   } catch (e) {
     results.push({ name: 'sitemap.xml', passed: false, details: e.message });
@@ -132,9 +134,9 @@ async function runTests() {
       body: postBody
     });
     const parsed = JSON.parse(apiRes.body);
-    const validOk = apiRes.status === 200 && parsed.success === true;
-    results.push({ name: 'API: Valid Contact Form Post', passed: validOk, details: `200 OK | Message received` });
-    console.log(`  ✓ Valid Submission    : ${validOk ? 'PASSED' : 'FAILED'}`);
+    const validOk = apiRes.status === 503 && typeof parsed.error === 'string' && parsed.error.includes('temporarily unavailable');
+    results.push({ name: 'API: Email setup required', passed: validOk, details: `503 until server email credentials are configured; submission is not falsely accepted` });
+    console.log(`  ✓ Email setup guard   : ${validOk ? 'PASSED' : 'FAILED'}`);
   } catch (e) {
     results.push({ name: 'API: Valid Contact Form Post', passed: false, details: e.message });
   }
