@@ -68,8 +68,8 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Contact FAQs Accordion */}
-            <div className="lg:col-span-7">
+            {/* Contact FAQs Accordion — anchor for the DistributionLife dropdown */}
+            <div id="faq" className="lg:col-span-7">
               <span className="text-xs font-mono uppercase tracking-widest text-brand-primary font-semibold mb-3 block">
                 ENGAGEMENT FAQ
               </span>

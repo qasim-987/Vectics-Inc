@@ -1,9 +1,19 @@
 import type { Metadata, Viewport } from "next";
+// Self-hosted webfonts (no external requests, no layout shift, works offline).
+import "@fontsource-variable/inter/wght.css";
+import "@fontsource/instrument-serif/latin-400.css";
+import "@fontsource/instrument-serif/latin-400-italic.css";
+import "@fontsource/ibm-plex-mono/latin-400.css";
+import "@fontsource/ibm-plex-mono/latin-500.css";
+import "@fontsource/ibm-plex-mono/latin-600.css";
+import "@fontsource/outfit/latin-700.css";
+import "@fontsource/outfit/latin-800.css";
 import "./globals.css";
 import VectisHeader from "@/components/VectisHeader";
 import VectisFooter from "@/components/VectisFooter";
 import ContactModal from "@/components/ContactModal";
 import ScrollObserver from "@/components/ScrollObserver";
+import PageTransition from "@/components/PageTransition";
 import { siteMeta } from "@/data/vectis";
 
 export const metadata: Metadata = {
@@ -97,12 +107,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Outfit:wght@600;700;800&display=swap"
-          rel="stylesheet"
-        />
+        {/* Fonts are imported as self-hosted @fontsource CSS in this layout. */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrg) }}
@@ -111,8 +116,17 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }}
         />
+        {/* No-JS fallback: never leave motion-hidden content invisible. */}
+        <noscript>
+          <style
+            dangerouslySetInnerHTML={{
+              __html:
+                '[style*="opacity:0"]{opacity:1!important;transform:none!important;clip-path:none!important}',
+            }}
+          />
+        </noscript>
       </head>
-      <body className="min-h-screen bg-ink-soft text-paper antialiased font-sans overflow-x-hidden selection:bg-brand-light/40 selection:text-ink">
+      <body className="min-h-screen bg-ink-soft text-paper antialiased font-sans overflow-x-hidden">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-paper focus:text-ink focus:rounded-md focus:shadow-lg focus:outline-none text-xs font-semibold uppercase tracking-wider"
@@ -122,7 +136,7 @@ export default function RootLayout({
         <ScrollObserver />
         <VectisHeader />
         <main id="main-content" className="relative">
-          {children}
+          <PageTransition>{children}</PageTransition>
         </main>
         <VectisFooter />
         <ContactModal />
