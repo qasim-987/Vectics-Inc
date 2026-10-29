@@ -1,166 +1,68 @@
-"use client";
-
-import React from "react";
 import Link from "next/link";
-import { ArrowRight, ArrowUp, Mail } from "lucide-react";
-import { siteMeta, productsData } from "@/data/vectis";
-import { productDropdownResources } from "@/data/home";
-import { Reveal } from "./home/Reveal";
-import { footerNavigation } from "@/data/site-navigation";
+import { ArrowUp, Mail } from "lucide-react";
+import { siteMeta } from "@/data/vectis";
 
-const exploreLinks = footerNavigation;
-
-const resourcesLinks = [
-  ...productDropdownResources,
-  { label: "Privacy Policy", href: "/privacy" },
-  { label: "Terms of Use", href: "/terms" },
+const footerLinks = [
+  { label: "Services", href: "/#services" },
+  { label: "Our approach", href: "/#approach" },
+  { label: "About", href: "/about" },
+  { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
 ];
 
-
-
 export default function VectisFooter() {
-  const openContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    window.dispatchEvent(new CustomEvent("open-contact"));
-  };
-
-  const footerLink = "link-underline text-sm text-paper/70 transition-colors duration-300 hover:text-paper";
-
   return (
-    <footer className="site-footer relative isolate overflow-hidden border-t border-darkText/10 bg-dark text-darkText">
-      {/* ---------------------------- Closing CTA ---------------------------- */}
-      <section id="contact" className="relative bg-dark py-16 sm:py-20">
-        <div className="relative z-10 mx-auto max-w-shell px-6 sm:px-8 lg:px-12">
-          <Reveal className="relative overflow-hidden rounded-panel border border-darkText/15 bg-dark p-8 sm:p-12 md:p-16">
-            <div className="relative max-w-2xl">
-              <span className="eyebrow eyebrow-dark">Contact</span>
-              <h2 className="mt-4 max-w-2xl text-darkText">
-                Let&apos;s make the next idea <span>useful.</span>
-              </h2>
-              <p className="mt-4 text-base leading-7 text-darkText/80 sm:text-lg">
-                If you have a workflow to improve, a product to shape, or an idea for practical AI, we would love to hear what you are working on.
-              </p>
-
-              <div className="mt-10 flex flex-wrap items-center gap-4 sm:gap-4">
-                <Link
-                  href="#contact-form"
-                  onClick={openContact}
-                  className="btn btn-primary group"
-                >
-                  <span>Get in touch</span>
-                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
-                <a href={`mailto:${siteMeta.email}`} className="btn btn-outline">
-                  <Mail className="h-3.5 w-3.5" />
-                  <span>{siteMeta.email}</span>
-                </a>
-              </div>
-            </div>
-
-            <span className="absolute bottom-6 right-8 hidden text-sm text-darkText/70 sm:block">
-              06 / 06 — Contact
-            </span>
-          </Reveal>
+    <footer className="site-footer border-t border-darkText/15 bg-dark text-darkText">
+      <section id="contact" aria-labelledby="contact-title" className="py-16 sm:py-24">
+        <div className="mx-auto grid max-w-shell gap-8 px-6 sm:px-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:px-12">
+          <div className="max-w-3xl">
+            <p className="eyebrow eyebrow-dark">Contact</p>
+            <h2 id="contact-title" className="mt-5 text-3xl font-semibold leading-tight tracking-[-0.04em] text-darkText sm:text-5xl">
+              Have a problem worth solving?
+            </h2>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-darkText/75 sm:text-lg">
+              Tell us what your business needs. We can help you work out a practical next step.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3 lg:justify-end">
+            <Link href="/contact" className="btn btn-primary">Start a project</Link>
+            <a href={`mailto:${siteMeta.email}`} className="btn btn-outline">
+              <Mail className="h-4 w-4" aria-hidden="true" />
+              Email us
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* ------------------------------ Footer ------------------------------- */}
-      <div className="relative z-10 mx-auto max-w-shell border-t border-darkText/15 px-6 py-12 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-2 gap-10 md:grid-cols-3 lg:grid-cols-12 lg:gap-8">
-          {/* Brand */}
-          <div className="col-span-2 md:col-span-3 lg:col-span-4">
-            <Link href="/" className="group inline-flex items-center" aria-label="Vectis Inc. home">
-              <span className="inline-flex items-center whitespace-nowrap text-lg font-semibold leading-none tracking-[-0.02em] text-darkText">
-                Vectis <span className="ml-2 font-normal text-darkText/80">Inc.</span>
-              </span>
+      <div className="border-t border-darkText/15">
+        <div className="mx-auto grid max-w-shell gap-10 px-6 py-10 sm:px-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-start lg:px-12">
+          <div>
+            <Link href="/" className="inline-flex min-h-11 items-center text-lg font-semibold tracking-[-0.04em] text-darkText" aria-label="Vectis Inc. home">
+              Vectis <span className="ml-2 font-normal text-darkText/70">Inc.</span>
             </Link>
-            <p className="mt-4 max-w-sm text-sm leading-6 text-darkText/80">
-              Purpose-built software for everyday work. We build practical digital tools around the needs of real teams and the businesses they keep moving.
+            <p className="mt-3 max-w-md text-sm leading-6 text-darkText/70">
+              AI-powered software and automation for businesses.
             </p>
-            <p className="mt-4 text-sm text-darkText/80">
-              {siteMeta.location}
-            </p>
+            <a href={`mailto:${siteMeta.email}`} className="mt-4 inline-flex min-h-11 items-center text-sm text-darkText/80 underline decoration-darkText/30 underline-offset-4 hover:text-darkText">
+              {siteMeta.email}
+            </a>
           </div>
 
-          {/* Explore */}
-          <div className="lg:col-span-2">
-            <h3 className="eyebrow eyebrow-dark">Explore</h3>
-            <ul className="mt-4 space-y-2">
-              {exploreLinks.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className={footerLink}>
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Products */}
-          <div className="lg:col-span-2">
-            <h3 className="eyebrow eyebrow-dark">Products</h3>
-            <ul className="mt-4 space-y-2">
-              {productsData.map((product) => (
-                <li key={product.id}>
-                  <Link href={`/${product.slug}`} className={`${footerLink} inline-flex items-center gap-2`}>
-                    <span className="link-underline">{product.name}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Resources */}
-          <div className="lg:col-span-2">
-            <h3 className="eyebrow eyebrow-dark">Resources</h3>
-            <ul className="mt-4 space-y-2">
-              {resourcesLinks.map((link) =>
-                "external" in link && link.external ? (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={footerLink}
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ) : (
-                  <li key={link.label}>
-                    <Link href={link.href} className={footerLink}>
-                      {link.label}
-                    </Link>
-                  </li>
-                )
-              )}
-            </ul>
-          </div>
-
-          {/* Connect */}
-          <div className="lg:col-span-2">
-            <h3 className="eyebrow eyebrow-dark">Connect</h3>
-            <ul className="mt-4 space-y-2">
-              <li>
-                <a href={`mailto:${siteMeta.email}`} className={footerLink}>
-                  {siteMeta.email}
-                </a>
-              </li>
-              <li>
-                <a href="#contact-form" onClick={openContact} className={footerLink}>
-                  Get in touch
-                </a>
-              </li>
-            </ul>
-          </div>
+          <nav aria-label="Footer" className="grid grid-cols-2 gap-x-8 gap-y-2 sm:grid-cols-3">
+            {footerLinks.map((link) => (
+              <Link key={link.label} href={link.href} className="inline-flex min-h-11 items-center text-sm text-darkText/75 transition-colors hover:text-darkText">
+                {link.label}
+              </Link>
+            ))}
+          </nav>
         </div>
+      </div>
 
-        {/* Bottom bar */}
-        <div className="mt-12 flex flex-col gap-4 border-t border-darkText/15 pt-6 text-sm text-darkText/80 sm:flex-row sm:items-center sm:justify-between">
+      <div className="border-t border-darkText/15">
+        <div className="mx-auto flex max-w-shell flex-col gap-3 px-6 py-5 text-sm text-darkText/65 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-12">
           <span>© {new Date().getFullYear()} {siteMeta.legalName}. All rights reserved.</span>
-          <span className="hidden md:block">Purpose-built software for everyday work</span>
-          <a href="/#hero" className="inline-flex min-h-11 items-center gap-2 text-sm text-darkText/80 hover:text-darkText">
-            Back to top <ArrowUp className="h-3 w-3" />
+          <a href="/#hero" className="inline-flex min-h-11 items-center gap-2 hover:text-darkText">
+            Back to top <ArrowUp className="h-4 w-4" aria-hidden="true" />
           </a>
         </div>
       </div>

@@ -182,7 +182,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
             <CheckCircle2 className="mx-auto h-10 w-10 text-emerald-700" />
             <h3 className="text-lg font-semibold text-content">Message received</h3>
             <p className="text-sm text-content-muted">
-              Thank you for reaching out. Thank you for reaching out. We will review your message and reply using the email address you provided.
+              Your message has been received. We will review it and reply using the email address you provided.
             </p>
             <button
               onClick={handleClose}
@@ -254,7 +254,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
 
             <div className="space-y-2">
               <label htmlFor="organization" className="text-xs font-medium uppercase tracking-wider text-content-muted">
-                Organization / Operation Type
+                Business (optional)
               </label>
               <input
                 type="text"

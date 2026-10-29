@@ -1,51 +1,56 @@
-"use client";
+const services = [
+  {
+    title: "AI business automation",
+    description: "Reduce repetitive work by connecting the tools and tasks your team already relies on.",
+  },
+  {
+    title: "AI agents",
+    description: "Build focused assistants that help staff find information, handle routine requests, and complete defined tasks.",
+  },
+  {
+    title: "Custom websites",
+    description: "Create clear, accessible websites that explain your business and make it easy for customers to take the next step.",
+  },
+  {
+    title: "Web apps",
+    description: "Bring essential business workflows into secure, easy-to-use applications that work across devices.",
+  },
+  {
+    title: "Dashboards & analytics",
+    description: "Bring key business information together so your team can understand activity and make informed decisions.",
+  },
+  {
+    title: "Internal tools",
+    description: "Replace scattered spreadsheets and manual processes with tools shaped around the way your team works.",
+  },
+  {
+    title: "API integrations",
+    description: "Connect the systems you use to reduce duplicate entry and keep important information in sync.",
+  },
+];
 
-import React from "react";
-import { productsData } from "@/data/vectis";
-import { productMedia } from "@/data/home";
-import { Reveal } from "./Reveal";
-import ProductCard from "./ProductCard";
-
-/** Light products section on a clean, cool-gray surface. */
 export default function ProductsSection() {
   return (
-    <section
-      id="products"
-      className="relative isolate overflow-hidden bg-canvas py-24 text-char sm:py-32"
-    >
-
-      <div className="relative z-10 mx-auto max-w-shell px-6 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-1 gap-10 border-b border-char/[0.14] pb-14 lg:grid-cols-12 lg:items-end">
-          <Reveal className="lg:col-span-8">
-            <span className="eyebrow eyebrow-light">Products</span>
-            <h2 className="mt-6 max-w-3xl font-serif text-[clamp(2.3rem,5.1vw,4.6rem)] leading-[1.04] tracking-[-0.03em] text-char">
-              Products shaped around{" "}
-              <span className="text-brass-deep">real work.</span>
+    <section id="services" aria-labelledby="services-title" className="border-y border-border bg-surface py-20 sm:py-28">
+      <div className="mx-auto max-w-shell px-6 sm:px-8 lg:px-12">
+        <div className="grid gap-6 border-b border-border pb-10 md:grid-cols-[minmax(0,1fr)_minmax(16rem,0.65fr)] md:items-end md:gap-12">
+          <div>
+            <p className="eyebrow">Services</p>
+            <h2 id="services-title" className="mt-4 max-w-[16ch] text-3xl font-semibold leading-tight tracking-[-0.04em] text-text sm:text-5xl">
+              Useful technology, without the extra complexity.
             </h2>
-            <p className="mt-4 font-serif text-xl text-char-soft sm:text-2xl">
-              What we&apos;re building.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.14} className="lg:col-span-4 lg:pl-8">
-            <p className="text-base leading-relaxed text-char-soft">
-              A small portfolio built around practical business needs: reliable operational software today, with new intelligence and workflow tools taking shape.
-            </p>
-            <p className="mt-4 text-sm leading-relaxed text-char-faint">
-              Every product starts with a practical need and earns its place through use.
-            </p>
-            <span className="section-index mt-6 block">03 / 06 — Products</span>
-          </Reveal>
+          </div>
+          <p className="max-w-xl text-base leading-7 text-text-muted">
+            We work with businesses to improve everyday operations, connect existing systems, and build digital products around real needs.
+          </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-          {productsData.map((product, index) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              media={productMedia[product.slug]}
-              index={index}
-            />
+        <div className="mt-2 grid gap-x-10 md:grid-cols-2 lg:grid-cols-3">
+          {services.map((service) => (
+            <article key={service.title} className="border-b border-border py-7 sm:py-8">
+              <h3 className="text-lg font-semibold tracking-[-0.02em] text-text">{service.title}</h3>
+              <p className="mt-3 max-w-[42ch] text-sm leading-6 text-text-muted">{service.description}</p>
+            </article>
           ))}
         </div>
       </div>
