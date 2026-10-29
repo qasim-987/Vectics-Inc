@@ -2,28 +2,21 @@ import type { Metadata, Viewport } from "next";
 // Self-hosted webfonts (no external requests, no layout shift, works offline).
 import "@fontsource-variable/inter/wght.css";
 import "@fontsource/instrument-serif/latin-400.css";
-import "@fontsource/instrument-serif/latin-400-italic.css";
-import "@fontsource/ibm-plex-mono/latin-400.css";
-import "@fontsource/ibm-plex-mono/latin-500.css";
-import "@fontsource/ibm-plex-mono/latin-600.css";
-import "@fontsource/outfit/latin-700.css";
-import "@fontsource/outfit/latin-800.css";
 import "./globals.css";
 import VectisHeader from "@/components/VectisHeader";
 import VectisFooter from "@/components/VectisFooter";
 import ContactModal from "@/components/ContactModal";
-import ScrollObserver from "@/components/ScrollObserver";
 import PageTransition from "@/components/PageTransition";
 import { siteMeta } from "@/data/vectis";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://vectisoperations.tech"),
   title: {
-    default: "Vectis Inc. — Software for the work that moves the world",
+    default: "Vectis Inc. — Custom Software, AI & Web Apps",
     template: "%s | Vectis Inc.",
   },
   description:
-    "Vectis Inc. builds focused software for operational businesses. Explore RouteCore, live distributor software, and PulseGrid and Vectis Studio in development.",
+    "Vectis builds custom software, web applications, and practical AI automation for real-world teams.",
   keywords: [
     "Vectis Inc",
     "RouteCore",
@@ -44,19 +37,21 @@ export const metadata: Metadata = {
     telephone: true,
   },
   openGraph: {
-    title: "Vectis Inc. — Software for the work that moves the world",
+    title: "Vectis Inc. — Custom Software, AI & Web Apps",
     description:
-      "Vectis Inc. builds focused software for operational businesses. Explore RouteCore, live distributor software, and PulseGrid and Vectis Studio in development.",
+      "Vectis builds custom software, web applications, and practical AI automation for real-world teams.",
     url: "https://vectisoperations.tech",
     siteName: "Vectis Inc.",
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Vectis Inc. — custom software, AI and web applications" }],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vectis Inc. — Software for the work that moves the world",
+    images: ["/opengraph-image.png"],
+    title: "Vectis Inc. — Custom Software, AI & Web Apps",
     description:
-      "Focused software for operational businesses. Explore RouteCore, PulseGrid, and Vectis Studio.",
+      "Custom software, thoughtful web applications, and useful AI automation for real-world teams.",
   },
   robots: {
     index: true,
@@ -75,7 +70,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0D1115",
+  themeColor: "#FAFAF7",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -94,7 +89,6 @@ export default function RootLayout({
     url: "https://vectisoperations.tech",
     email: siteMeta.email,
     description: siteMeta.description,
-    sameAs: [],
   };
 
   const jsonLdWebSite = {
@@ -105,7 +99,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html lang="en" className="scroll-smooth">
       <head>
         {/* Fonts are imported as self-hosted @fontsource CSS in this layout. */}
         <script
@@ -126,14 +120,13 @@ export default function RootLayout({
           />
         </noscript>
       </head>
-      <body className="min-h-screen bg-ink-soft text-paper antialiased font-sans overflow-x-hidden selection:bg-paper selection:text-ink">
+      <body className="min-h-screen bg-bg text-text antialiased font-sans overflow-x-hidden">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-paper focus:text-ink focus:rounded-md focus:shadow-lg focus:outline-none text-xs font-semibold uppercase tracking-wider"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-accent focus:text-darkText focus:rounded-md focus:shadow-soft focus:outline-none text-xs font-semibold uppercase tracking-wider"
         >
           Skip to main content
         </a>
-        <ScrollObserver />
         <VectisHeader />
         <main id="main-content" className="relative">
           <PageTransition>{children}</PageTransition>

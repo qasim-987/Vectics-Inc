@@ -2,9 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import LightRays from "@/components/LightRays";
 import { blogPosts, blogCategories, BlogPost } from "@/data/blog";
 import {
   FileText,
@@ -27,21 +24,19 @@ export default function BlogIndexPage() {
   const regularPosts = filteredPosts.filter((p) => p.slug !== featuredPost.slug);
 
   return (
-    <div className="relative min-h-screen bg-[#030303] text-zinc-100 flex flex-col justify-between">
-      <Navbar />
+    <div className="relative min-h-screen bg-bg text-zinc-100 flex flex-col justify-between">
 
-      <main id="main-content" className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full flex-1">
-        <LightRays />
+      <div className="relative pt-12 sm:pt-16 pb-24 px-6 sm:px-8 lg:px-12 max-w-shell mx-auto w-full flex-1">
 
         {/* Header Block */}
         <div className="max-w-3xl mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono uppercase tracking-wider text-brand-primary mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono uppercase tracking-wider text-brand-primary mb-6">
             <FileText className="w-3.5 h-3.5" />
             Engineering Blueprints &amp; Evals
           </div>
           <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
             Insights from the <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-brand-primary">
+            <span className="text-transparent bg-clip-text bg-surface">
               Frontiers of AI Systems
             </span>
           </h1>
@@ -74,22 +69,22 @@ export default function BlogIndexPage() {
           <div className="mb-16">
             <Link
               href={`/blog/${featuredPost.slug}`}
-              className="group relative rounded-3xl bg-gradient-to-br from-white/[0.06] via-white/[0.02] to-transparent border border-white/[0.1] hover:border-brand-primary/40 p-8 sm:p-12 block transition-all duration-300 hover:shadow-2xl hover:shadow-brand-primary/10 overflow-hidden"
+              className="group relative rounded-3xl bg-surface border border-white/[0.1] hover:border-brand-primary/40 p-8 sm:p-12 block transition-all duration-300 hover:shadow-2xl hover:shadow-brand-primary/10 overflow-hidden"
             >
               <div className="absolute top-0 right-0 p-8 sm:p-12 opacity-10 group-hover:opacity-20 transition-opacity pointer-events-none">
                 <Sparkles className="w-40 h-40 text-brand-primary" />
               </div>
 
               <div className="max-w-3xl relative z-10">
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="text-[11px] font-mono uppercase px-2.5 py-1 rounded-full bg-brand-primary/20 text-brand-primary border border-brand-primary/30 font-semibold">
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="text-[11px] font-mono uppercase px-2 py-2 rounded-full bg-brand-primary/20 text-brand-primary border border-brand-primary/30 font-semibold">
                     Featured Blueprint
                   </span>
                   <span className="text-xs font-mono text-zinc-400">
                     {featuredPost.category}
                   </span>
                   <span className="text-zinc-600">•</span>
-                  <span className="text-xs font-mono text-zinc-400 flex items-center gap-1">
+                  <span className="text-xs font-mono text-zinc-400 flex items-center gap-2">
                     <Clock className="w-3.5 h-3.5" />
                     {featuredPost.readingTime}
                   </span>
@@ -104,7 +99,7 @@ export default function BlogIndexPage() {
                 </p>
 
                 <div className="flex items-center justify-between pt-6 border-t border-white/[0.08]">
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-4">
                     <div className="w-8 h-8 rounded-full bg-brand-primary/20 border border-brand-primary/30 flex items-center justify-center font-mono text-xs text-white">
                       {featuredPost.author.avatar}
                     </div>
@@ -118,7 +113,7 @@ export default function BlogIndexPage() {
                     </div>
                   </div>
 
-                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-white group-hover:text-brand-primary transition-colors">
+                  <span className="inline-flex items-center gap-2 text-xs font-semibold text-white group-hover:text-brand-primary transition-colors">
                     Read Article
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
@@ -138,16 +133,16 @@ export default function BlogIndexPage() {
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-4">
-                  <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-white/[0.06] text-zinc-300">
+                  <span className="text-[11px] font-mono px-2 py-2 rounded bg-white/[0.06] text-zinc-300">
                     {post.category}
                   </span>
-                  <span className="text-xs font-mono text-zinc-400 flex items-center gap-1">
+                  <span className="text-xs font-mono text-zinc-400 flex items-center gap-2">
                     <Clock className="w-3 h-3" />
                     {post.readingTime}
                   </span>
                 </div>
 
-                <h3 className="text-lg sm:text-xl font-bold text-white mb-3 group-hover:text-brand-primary transition-colors leading-snug">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-4 group-hover:text-brand-primary transition-colors leading-snug">
                   {post.title}
                 </h3>
 
@@ -160,7 +155,7 @@ export default function BlogIndexPage() {
                 <span className="text-zinc-400 font-mono">
                   {post.publishedAt}
                 </span>
-                <span className="text-white group-hover:text-brand-primary font-semibold flex items-center gap-1">
+                <span className="text-white group-hover:text-brand-primary font-semibold flex items-center gap-2">
                   Read
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </span>
@@ -170,7 +165,7 @@ export default function BlogIndexPage() {
         </div>
 
         {/* Newsletter & Project Inquiry Footer */}
-        <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-brand-primary/10 to-transparent border border-brand-primary/20 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+        <div className="p-8 sm:p-12 rounded-3xl bg-surface border border-brand-primary/20 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div>
             <span className="text-xs font-mono uppercase tracking-widest text-brand-primary font-semibold mb-2 block">
               STAY INFORMED
@@ -184,14 +179,12 @@ export default function BlogIndexPage() {
           </div>
           <Link
             href="/contact"
-            className="px-6 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors shrink-0"
+            className="px-6 py-4 rounded-full text-xs font-semibold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors shrink-0"
           >
             Consult With Our Architects
           </Link>
         </div>
-      </main>
-
-      <Footer />
+      </div>
     </div>
   );
 }

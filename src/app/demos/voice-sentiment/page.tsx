@@ -2,9 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import LightRays from "@/components/LightRays";
 import {
   Mic,
   MicOff,
@@ -73,21 +70,19 @@ export default function VoiceSentimentDemoPage() {
   }, [isRecording, activeScenario]);
 
   return (
-    <div className="relative min-h-screen bg-[#030303] text-zinc-100 flex flex-col justify-between">
-      <Navbar />
+    <div className="relative min-h-screen bg-bg text-zinc-100 flex flex-col justify-between">
 
-      <main id="main-content" className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full flex-1">
-        <LightRays />
+      <div className="relative pt-12 sm:pt-16 pb-24 px-6 sm:px-8 lg:px-12 max-w-shell mx-auto w-full flex-1">
 
         {/* Header Block */}
         <div className="max-w-4xl mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-xs font-mono uppercase tracking-wider text-purple-400 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-xs font-mono uppercase tracking-wider text-purple-400 mb-6">
             <Volume2 className="w-3.5 h-3.5" />
             Acoustic Telemetry Demo
           </div>
           <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
             Acoustic Tremor &amp; <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-300 to-brand-primary">
+            <span className="text-transparent bg-clip-text bg-surface">
               Voice Sentiment Engine
             </span>
           </h1>
@@ -97,7 +92,7 @@ export default function VoiceSentimentDemoPage() {
         </div>
 
         {/* Scenario Presets Bar */}
-        <div className="flex flex-wrap items-center gap-3 mb-10">
+        <div className="flex flex-wrap items-center gap-4 mb-10">
           <span className="text-xs font-mono uppercase text-zinc-500 mr-2">
             Select Sample Audio Scenario:
           </span>
@@ -121,10 +116,10 @@ export default function VoiceSentimentDemoPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-24">
           {/* Left Column: Live Audio Waveform Canvas */}
           <div className="lg:col-span-7">
-            <div className="p-8 sm:p-10 rounded-3xl bg-[#08080c] border border-white/[0.1] shadow-2xl flex flex-col justify-between min-h-[440px]">
+            <div className="p-8 sm:p-10 rounded-3xl bg-surface border border-white/[0.1] shadow-2xl flex flex-col justify-between min-h-[440px]">
               <div className="flex items-center justify-between border-b border-white/[0.08] pb-4 mb-6">
                 <div className="flex items-center gap-2">
-                  <span className={`w-2.5 h-2.5 rounded-full ${isRecording ? "bg-rose-500 animate-ping" : "bg-zinc-600"}`} />
+                  <span className={`w-2.5 h-2.5 rounded-full ${isRecording ? "bg-rose-500" : "bg-zinc-600"}`} />
                   <span className="text-xs font-mono font-semibold text-white">
                     {isRecording ? "ACOUSTIC INGESTION: ACTIVE" : "ACOUSTIC INGESTION: IDLE"}
                   </span>
@@ -132,7 +127,7 @@ export default function VoiceSentimentDemoPage() {
                 <button
                   type="button"
                   onClick={() => setIsRecording(!isRecording)}
-                  className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] text-xs font-mono text-zinc-300 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] text-xs font-mono text-zinc-300 transition-colors"
                 >
                   {isRecording ? <MicOff className="w-3.5 h-3.5 text-rose-400" /> : <Mic className="w-3.5 h-3.5 text-emerald-400" />}
                   <span>{isRecording ? "Mute Analyzer" : "Start Live Feed"}</span>
@@ -144,7 +139,7 @@ export default function VoiceSentimentDemoPage() {
                 {waveHeights.map((h, i) => (
                   <div
                     key={i}
-                    className="w-2.5 rounded-full bg-gradient-to-t from-purple-600 via-brand-primary to-white transition-all duration-150"
+                    className="w-2.5 rounded-full bg-surface transition-all duration-150"
                     style={{
                       height: isRecording ? `${h}%` : "8%",
                       opacity: isRecording ? 0.9 : 0.3,
@@ -164,7 +159,7 @@ export default function VoiceSentimentDemoPage() {
           {/* Right Column: Gauges & Sentiment Intelligence */}
           <div className="lg:col-span-5 space-y-6">
             {/* Stress Probability Gauge */}
-            <div className="p-6 rounded-2xl bg-[#08080c] border border-white/[0.08]">
+            <div className="p-6 rounded-2xl bg-surface border border-white/[0.08]">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-mono uppercase text-zinc-400">
                   Stress Probability Score
@@ -177,8 +172,8 @@ export default function VoiceSentimentDemoPage() {
                 <div
                   className={`h-full rounded-full transition-all duration-500 ${
                     activeScenario.stressScore > 50
-                      ? "bg-gradient-to-r from-amber-500 to-rose-500"
-                      : "bg-gradient-to-r from-emerald-500 to-teal-400"
+                      ? "bg-surface"
+                      : "bg-surface"
                   }`}
                   style={{ width: `${activeScenario.stressScore}%` }}
                 />
@@ -186,7 +181,7 @@ export default function VoiceSentimentDemoPage() {
             </div>
 
             {/* Vocal Micro-Tremor (Hz) */}
-            <div className="p-6 rounded-2xl bg-[#08080c] border border-white/[0.08]">
+            <div className="p-6 rounded-2xl bg-surface border border-white/[0.08]">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-mono uppercase text-zinc-400">
                   Vocal Micro-Tremor (8-12Hz Band)
@@ -202,7 +197,7 @@ export default function VoiceSentimentDemoPage() {
 
             {/* Classification Card */}
             <div className="p-6 rounded-2xl bg-brand-primary/[0.06] border border-brand-primary/30">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-brand-primary font-semibold block mb-1">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-brand-primary font-semibold block mb-2">
                 EVALUATED VERDICT
               </span>
               <h3 className="text-lg font-bold text-white mb-2">
@@ -211,16 +206,14 @@ export default function VoiceSentimentDemoPage() {
               <p className="text-xs text-zinc-300 leading-relaxed mb-4">
                 {activeScenario.description}
               </p>
-              <div className="flex items-center justify-between pt-3 border-t border-brand-primary/20 text-xs font-mono text-zinc-400">
+              <div className="flex items-center justify-between pt-4 border-t border-brand-primary/20 text-xs font-mono text-zinc-400">
                 <span>Confidence Rating:</span>
                 <span className="text-white font-bold">{activeScenario.confidenceRating}%</span>
               </div>
             </div>
           </div>
         </div>
-      </main>
-
-      <Footer />
+      </div>
     </div>
   );
 }

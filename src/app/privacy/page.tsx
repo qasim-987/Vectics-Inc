@@ -12,60 +12,59 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="w-full pt-32 pb-24">
-      <div className="mx-auto max-w-[840px] px-5 md:px-8">
+    <div className="legal-page w-full bg-bg pt-12 sm:pt-16 pb-24 text-content">
+      <div className="mx-auto max-w-[840px] px-6 md:px-8">
         {/* Header */}
-        <div className="border-b border-white/[0.08] pb-10 mb-12">
-          <span className="text-xs font-mono uppercase tracking-[0.2em] text-accent-amber block mb-4">
-            // Legal & Data Governance
+        <div className="border-b border-surface-border pb-10 mb-12">
+          <span className="text-xs font-mono uppercase tracking-[0.2em] text-brand block mb-4">Legal & Data Governance
           </span>
-          <h1 className="text-4xl sm:text-5xl font-serif font-normal tracking-tight text-paper">
+          <h1 className="text-4xl sm:text-5xl font-serif font-normal tracking-tight text-content">
             Privacy Policy
           </h1>
-          <p className="mt-4 text-xs font-mono text-muted">
+          <p className="mt-4 text-xs font-mono text-content-muted">
             Last Updated: October 2026 • Vectis Operations Inc.
           </p>
         </div>
 
         {/* Policy Content */}
-        <div className="space-y-10 text-paper/85 text-base sm:text-lg leading-relaxed">
-          <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-paper font-sans">
+        <div className="space-y-10 text-content-muted text-base sm:text-lg leading-relaxed">
+          <section className="space-y-4">
+            <h2 className="text-xl font-semibold text-content font-sans">
               1. Scope & Identity
             </h2>
             <p>
-              This Privacy Policy explains how Vectis Operations Inc. (&quot;Vectis&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) handles information gathered through our website (<a href="https://vectisoperations.tech" className="text-accent-amber underline">vectisoperations.tech</a>) and our desktop applications, including RouteCore.
+              This Privacy Policy explains how Vectis Operations Inc. (&quot;Vectis&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) handles information gathered through our website (<a href="https://vectisoperations.tech" className="text-brand underline">vectisoperations.tech</a>) and our desktop applications, including RouteCore.
             </p>
           </section>
 
-          <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-paper font-sans">
+          <section className="space-y-4">
+            <h2 className="text-xl font-semibold text-content font-sans">
               2. Absolute Offline Ledger Isolation
             </h2>
-            <div className="rounded-xl border border-white/10 bg-ink-card/50 p-6 text-sm sm:text-base text-paper/90">
-              <strong className="text-accent-amber block mb-2 font-mono uppercase text-xs">
+            <div className="rounded-xl border border-surface-border bg-surface p-6 text-sm sm:text-base text-content">
+              <strong className="text-brand block mb-2 font-mono uppercase text-xs">
                 Key Operational Guarantee
               </strong>
               RouteCore operates on an offline-first architecture. All customer records, shop balances, route driver cash tallies, inventory levels, and bank deposit slips are stored strictly on your local premises in an encrypted local database. Vectis Inc. does not host, sync, access, or hold copies of your operational data on external cloud servers.
             </div>
           </section>
 
-          <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-paper font-sans">
+          <section className="space-y-4">
+            <h2 className="text-xl font-semibold text-content font-sans">
               3. Information We Collect
             </h2>
             <p>
               When you interact with our website or contact our team directly, we may collect:
             </p>
-            <ul className="list-disc pl-6 space-y-2 text-sm sm:text-base text-muted">
+            <ul className="list-disc pl-6 space-y-2 text-sm sm:text-base text-content-muted">
               <li>Contact Details: Name, corporate email address, organization name, and message contents submitted via our inquiry form.</li>
               <li>Technical Telemetry: Standard HTTP server headers, browser user-agent, and anonymized referral metrics to ensure website performance.</li>
               <li>Licensing Verification: When installing RouteCore, our licensing utility may verify machine activation status via a cryptographically hashed hardware token that contains zero personal or operational records.</li>
             </ul>
           </section>
 
-          <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-paper font-sans">
+          <section className="space-y-4">
+            <h2 className="text-xl font-semibold text-content font-sans">
               4. How We Use Collected Data
             </h2>
             <p>
@@ -73,8 +72,8 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-paper font-sans">
+          <section className="space-y-4">
+            <h2 className="text-xl font-semibold text-content font-sans">
               5. Data Protection & Non-Disclosure
             </h2>
             <p>
@@ -82,8 +81,8 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-paper font-sans">
+          <section className="space-y-4">
+            <h2 className="text-xl font-semibold text-content font-sans">
               6. Data Retention
             </h2>
             <p>
@@ -91,8 +90,8 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-paper font-sans">
+          <section className="space-y-4">
+            <h2 className="text-xl font-semibold text-content font-sans">
               7. Security Measures
             </h2>
             <p>
@@ -100,8 +99,8 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-paper font-sans">
+          <section className="space-y-4">
+            <h2 className="text-xl font-semibold text-content font-sans">
               8. Your Rights
             </h2>
             <p>
@@ -109,8 +108,8 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-paper font-sans">
+          <section className="space-y-4">
+            <h2 className="text-xl font-semibold text-content font-sans">
               9. Policy Updates
             </h2>
             <p>
@@ -118,13 +117,13 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          <section className="space-y-3 border-t border-white/[0.08] pt-8">
-            <h2 className="text-xl font-semibold text-paper font-sans">
+          <section className="space-y-4 border-t border-surface-border pt-8">
+            <h2 className="text-xl font-semibold text-content font-sans">
               10. Contact Us
             </h2>
             <p>
               For privacy inquiries or data governance questions, please write to our data protection officer at:{" "}
-              <a href={`mailto:${siteMeta.email}`} className="text-accent-amber underline font-mono">
+              <a href={`mailto:${siteMeta.email}`} className="text-brand underline font-mono">
                 {siteMeta.email}
               </a>
             </p>

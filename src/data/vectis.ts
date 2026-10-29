@@ -51,8 +51,8 @@ export const siteMeta = {
   name: "Vectis Inc.",
   wordmark: "Vectis",
   legalName: "Vectis Operations Inc.",
-  tagline: "Software for the work that moves the world.",
-  description: "Vectis Inc. builds focused software for operational businesses. Explore RouteCore, live distributor software, and PulseGrid and Vectis Studio in development.",
+  tagline: "Purpose-built software for everyday work.",
+  description: "Vectis builds practical software for real-world operations, combining focused product engineering with automation and thoughtful digital tools.",
   email: "hello@vectisoperations.tech",
   location: "Rawalpindi • London • Remote",
 };
@@ -254,28 +254,28 @@ export const journalArticles: JournalArticle[] = [
 
 export const operationalPillars = [
   {
-    phase: "Opening",
-    title: "The warehouse before the list.",
-    description: "Shutters, cartons, and the first count. Software starts here, on the concrete floor, not in an abstract pitch deck.",
-    tag: "Field · 01"
+    phase: "Discovery",
+    title: "Start with the work as it is.",
+    description: "We listen to the people doing the work, map the handoffs, and find the friction worth solving before a line of code is written.",
+    tag: "Understand · 01"
   },
   {
-    phase: "Route",
-    title: "The work already moving.",
-    description: "A route is a daily promise across town. Stock in the back, shops along the way, traffic in between.",
-    tag: "Field · 02"
+    phase: "Design",
+    title: "Make the complex feel clear.",
+    description: "We turn real needs into a practical plan, a thoughtful interface, and a technical foundation that can grow with the business.",
+    tag: "Shape · 02"
   },
   {
-    phase: "Ledger",
-    title: "Paper still in the day.",
-    description: "Receipts, counterfoil slips, crossed-out lines. Systems have to meet the day where it is, not where software designers wish it was.",
-    tag: "Field · 03"
+    phase: "Build",
+    title: "Ship software made for use.",
+    description: "Custom applications and useful AI automation are built, tested, and refined around the constraints of the real operating day.",
+    tag: "Deliver · 03"
   },
   {
-    phase: "Balance",
-    title: "The office after the last return.",
-    description: "When the drivers return, collections, bank deposit slips, and stock return totals reconcile into one day's undeniable truth.",
-    tag: "Field · 04"
+    phase: "Improve",
+    title: "Keep making it more useful.",
+    description: "Launch is the beginning. We learn from actual use, resolve rough edges, and evolve the product as the work changes.",
+    tag: "Support · 04"
   }
 ];
 
@@ -284,32 +284,32 @@ export const principles = [
     num: "01",
     name: "Simple",
     headline: "Simple over clever.",
-    desc: "Complex operational systems should feel intuitive. We eliminate gratuitous UI clutter so floor operators can move with velocity."
+    desc: "The best software makes hard things feel straightforward. We reduce friction and keep the interface focused on what matters."
   },
   {
     num: "02",
     name: "Practical",
     headline: "Practical over perfect.",
-    desc: "We solve real physical bottlenecks rather than theoretical edge cases. If it doesn't help close the operating day, we don't build it."
+    desc: "We focus on the real problem, choose the simplest useful solution, and avoid adding technology for its own sake."
   },
   {
     num: "03",
     name: "Reliable",
     headline: "Reliable over impressive.",
-    desc: "Software people can depend on every single day without fear of server downtime, data corruption, or sluggish latency."
+    desc: "We care about thoughtful engineering, accessible experiences, and dependable software that teams can trust."
   },
   {
     num: "04",
     name: "Continuous",
     headline: "Continuous over finished.",
-    desc: "We build lasting partnerships. We refine and improve our tools side-by-side with the distributors who use them."
+    desc: "We stay close to the people using what we build, learn from real feedback, and keep improving after launch."
   }
 ];
 
 export const processSteps = [
-  { num: "01", name: "Observe", desc: "We spend time on the warehouse floor and on delivery routes to map real operational friction." },
-  { num: "02", name: "Map", desc: "We translate messy physical handoffs into clear, deterministic data models and ledger workflows." },
-  { num: "03", name: "Build", desc: "We write fast, native, resilient software engineered to withstand poor connectivity and heavy load." },
-  { num: "04", name: "Use", desc: "We deploy directly with office cashiers, dispatchers, and managers during live operating days." },
-  { num: "05", name: "Improve", desc: "We gather ongoing floor feedback to harden the system and eliminate friction on every update." }
+  { num: "01", name: "Discover", desc: "Listen to your team, understand the workflow, and agree on the problem worth solving." },
+  { num: "02", name: "Plan", desc: "Define the smallest useful scope, technical approach, milestones, and measures of success." },
+  { num: "03", name: "Build", desc: "Develop the software in clear, testable increments with regular review and feedback." },
+  { num: "04", name: "Launch", desc: "Prepare the product for real use, support the rollout, and make sure the handover is clear." },
+  { num: "05", name: "Improve", desc: "Learn from usage, prioritize the next improvements, and keep the product healthy over time." }
 ];

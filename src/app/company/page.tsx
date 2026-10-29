@@ -2,9 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import LightRays from "@/components/LightRays";
 import {
   Sparkles,
   ArrowRight,
@@ -57,21 +54,19 @@ export default function CompanyPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#030303] text-zinc-100 flex flex-col justify-between">
-      <Navbar />
+    <div className="relative min-h-screen bg-bg text-zinc-100 flex flex-col justify-between">
 
-      <main id="main-content" className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full flex-1">
-        <LightRays />
+      <div className="relative pt-12 sm:pt-16 pb-24 px-6 sm:px-8 lg:px-12 max-w-shell mx-auto w-full flex-1">
 
         {/* Hero Section */}
         <div className="max-w-4xl mx-auto text-center mb-20 sm:mb-28">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono uppercase tracking-wider text-brand-primary mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono uppercase tracking-wider text-brand-primary mb-6">
             <Compass className="w-3.5 h-3.5" />
             Our Mission &amp; DNA
           </div>
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-[1.08]">
             Companies create products. <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-brand-primary">
+            <span className="text-transparent bg-clip-text bg-surface">
               Axiom Labs Creates Impact.
             </span>
           </h1>
@@ -101,26 +96,19 @@ export default function CompanyPage() {
 
           <div className="md:col-span-7">
             {/* Interactive Showcase Reel Simulation */}
-            <div className="relative rounded-2xl overflow-hidden border border-white/[0.1] bg-[#08080c] shadow-2xl shadow-black/80 aspect-video flex flex-col justify-between p-6 sm:p-8">
+            <div className="relative rounded-2xl overflow-hidden border border-white/[0.1] bg-surface shadow-2xl shadow-black/80 aspect-video flex flex-col justify-between p-6 sm:p-8">
               {/* Dynamic Animated Grid Pattern inside preview */}
-              <div
-                className="absolute inset-0 opacity-20"
-                style={{
-                  backgroundImage: `radial-gradient(rgba(133, 135, 227, 0.4) 1px, transparent 1px)`,
-                  backgroundSize: "24px 24px",
-                }}
-              />
 
               {/* Central Audio/Video Wave Visualizer */}
               <div className="relative z-10 flex flex-col items-center justify-center my-auto">
                 <div className="w-16 h-16 rounded-full bg-brand-primary/20 border border-brand-primary/40 flex items-center justify-center mb-4 shadow-lg shadow-brand-primary/30">
-                  <Cpu className="w-8 h-8 text-white animate-pulse" />
+                  <Cpu className="w-8 h-8 text-white " />
                 </div>
-                <div className="flex items-center gap-1.5 h-12 mb-3">
+                <div className="flex items-center gap-2 h-12 mb-4">
                   {[40, 70, 30, 90, 60, 100, 45, 80, 65, 95, 50, 75, 35, 85].map((h, i) => (
                     <div
                       key={i}
-                      className="w-1 bg-gradient-to-t from-brand-primary to-white rounded-full transition-all duration-300"
+                      className="w-1 bg-surface rounded-full transition-all duration-300"
                       style={{
                         height: isPlayingReel ? `${h}%` : "20%",
                         opacity: isPlayingReel ? 0.9 : 0.4,
@@ -136,13 +124,12 @@ export default function CompanyPage() {
               {/* Reel Controls Footer */}
               <div className="relative z-10 flex items-center justify-between pt-4 border-t border-white/[0.08] text-xs">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
                   <span className="font-mono text-zinc-300">4K HDR • 60 FPS</span>
                 </div>
                 <button
                   type="button"
                   onClick={() => setIsPlayingReel(!isPlayingReel)}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.08] hover:bg-white/[0.15] text-white transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/[0.08] hover:bg-white/[0.15] text-white transition-colors"
                 >
                   {isPlayingReel ? (
                     <>
@@ -178,7 +165,7 @@ export default function CompanyPage() {
                 <div className="w-12 h-12 rounded-xl bg-brand-primary/10 border border-brand-primary/20 flex items-center justify-center mb-6">
                   <Sparkles className="w-6 h-6 text-brand-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">
+                <h3 className="text-xl font-bold text-white mb-4">
                   Design-First Innovation
                 </h3>
                 <p className="text-sm text-zinc-300 leading-relaxed">
@@ -195,7 +182,7 @@ export default function CompanyPage() {
                 <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-6">
                   <Code2 className="w-6 h-6 text-emerald-400" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">
+                <h3 className="text-xl font-bold text-white mb-4">
                   Engineering Excellence
                 </h3>
                 <p className="text-sm text-zinc-300 leading-relaxed">
@@ -212,7 +199,7 @@ export default function CompanyPage() {
                 <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-6">
                   <Award className="w-6 h-6 text-blue-400" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">
+                <h3 className="text-xl font-bold text-white mb-4">
                   Real-World Impact
                 </h3>
                 <p className="text-sm text-zinc-300 leading-relaxed">
@@ -227,7 +214,7 @@ export default function CompanyPage() {
         </div>
 
         {/* How We Think / Core Beliefs (01, 02, 03) */}
-        <div id="beliefs" className="mb-28 p-8 sm:p-14 rounded-3xl bg-gradient-to-b from-[#09090e] to-[#040406] border border-white/[0.08]">
+        <div id="beliefs" className="mb-28 p-8 sm:p-14 rounded-3xl bg-surface border border-white/[0.08]">
           <div className="max-w-3xl mb-12">
             <span className="text-xs font-mono uppercase tracking-widest text-brand-primary font-semibold mb-2 block">
               PHILOSOPHY &amp; ARCHITECTURE
@@ -242,7 +229,7 @@ export default function CompanyPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="border-l-2 border-brand-primary/40 pl-6">
-              <span className="text-3xl font-extrabold font-mono text-brand-primary mb-3 block">
+              <span className="text-3xl font-extrabold font-mono text-brand-primary mb-4 block">
                 01
               </span>
               <h3 className="text-lg font-bold text-white mb-2">
@@ -254,7 +241,7 @@ export default function CompanyPage() {
             </div>
 
             <div className="border-l-2 border-brand-primary/40 pl-6">
-              <span className="text-3xl font-extrabold font-mono text-brand-primary mb-3 block">
+              <span className="text-3xl font-extrabold font-mono text-brand-primary mb-4 block">
                 02
               </span>
               <h3 className="text-lg font-bold text-white mb-2">
@@ -266,7 +253,7 @@ export default function CompanyPage() {
             </div>
 
             <div className="border-l-2 border-brand-primary/40 pl-6">
-              <span className="text-3xl font-extrabold font-mono text-brand-primary mb-3 block">
+              <span className="text-3xl font-extrabold font-mono text-brand-primary mb-4 block">
                 03
               </span>
               <h3 className="text-lg font-bold text-white mb-2">
@@ -323,7 +310,7 @@ export default function CompanyPage() {
         </div>
 
         {/* Bottom Consultation Banner */}
-        <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-brand-primary/20 via-brand-muted/10 to-transparent border border-brand-primary/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+        <div className="p-8 sm:p-12 rounded-3xl bg-surface border border-brand-primary/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
           <div className="max-w-2xl">
             <span className="text-xs font-mono uppercase tracking-widest text-brand-primary font-semibold mb-2 block">
               READY TO BUILD?
@@ -338,15 +325,13 @@ export default function CompanyPage() {
 
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors shrink-0 shadow-xl shadow-brand-primary/20"
+            className="inline-flex items-center gap-2 px-6 py-4 rounded-full text-sm font-semibold uppercase tracking-wider bg-white text-black hover:bg-zinc-200 transition-colors shrink-0 shadow-xl shadow-brand-primary/20"
           >
             Start Conversation
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
-      </main>
-
-      <Footer />
+      </div>
     </div>
   );
 }

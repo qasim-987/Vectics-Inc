@@ -1,13 +1,33 @@
 import type { Config } from "tailwindcss";
 
-/**
- * FORZA / VECTIS — DESIGN TOKENS
- * ---------------------------------------------------------------------------
- * Every colour below resolves to an RGB CSS custom property declared in
- * src/app/globals.css. The `rgb(var(--x) / <alpha-value>)` form keeps Tailwind's
- * opacity modifiers (e.g. `bg-ink-soft/90`, `text-paper/70`) working while the
- * actual palette lives in one place. See DESIGN.md for the full hex palette.
- */
+const color = (token: string) => `rgb(var(--${token}-rgb) / <alpha-value>)`;
+const neutral = {
+  50: color("bg"),
+  100: color("bg"),
+  200: color("border"),
+  300: color("text-muted"),
+  400: color("text-muted"),
+  500: color("text-muted"),
+  600: color("text-muted"),
+  700: color("text"),
+  800: color("text"),
+  900: color("text"),
+  950: color("text"),
+};
+const accentScale = {
+  50: color("bg"),
+  100: color("bg"),
+  200: color("border"),
+  300: color("accent"),
+  400: color("accent"),
+  500: color("accent"),
+  600: color("accent-hover"),
+  700: color("accent-hover"),
+  800: color("text"),
+  900: color("text"),
+  950: color("text"),
+};
+
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -16,132 +36,128 @@ const config: Config = {
   ],
   darkMode: "class",
   theme: {
-    extend: {
-      colors: {
-        // Warm ivory / paper family (text on dark + light section backgrounds)
-        paper: {
-          DEFAULT: "rgb(var(--paper-rgb) / <alpha-value>)",
-          muted: "rgb(var(--paper-muted-rgb) / <alpha-value>)",
-          dim: "rgb(var(--paper-dim-rgb) / <alpha-value>)",
-        },
-        // Deep ink / night-operations family (dark backgrounds)
-        ink: {
-          DEFAULT: "rgb(var(--ink-rgb) / <alpha-value>)",
-          soft: "rgb(var(--ink-soft-rgb) / <alpha-value>)",
-          card: "rgb(var(--ink-card-rgb) / <alpha-value>)",
-          deep: "rgb(var(--ink-deep-rgb) / <alpha-value>)",
-        },
-        // Neutral secondary text
-        muted: {
-          DEFAULT: "rgb(var(--muted-rgb) / <alpha-value>)",
-          dark: "rgb(var(--muted-dark-rgb) / <alpha-value>)",
-          deep: "rgb(var(--muted-deep-rgb) / <alpha-value>)",
-        },
-        // Light-section surfaces and their ink
-        canvas: {
-          DEFAULT: "rgb(var(--canvas-rgb) / <alpha-value>)",
-          raised: "rgb(var(--canvas-raised-rgb) / <alpha-value>)",
-          deep: "rgb(var(--canvas-deep-rgb) / <alpha-value>)",
-        },
-        char: {
-          DEFAULT: "rgb(var(--char-rgb) / <alpha-value>)",
-          soft: "rgb(var(--char-soft-rgb) / <alpha-value>)",
-          faint: "rgb(var(--char-faint-rgb) / <alpha-value>)",
-        },
-        // Signature accent: muted bronze / brass
-        brass: {
-          DEFAULT: "rgb(var(--brass-rgb) / <alpha-value>)",
-          light: "rgb(var(--brass-light-rgb) / <alpha-value>)",
-          deep: "rgb(var(--brass-deep-rgb) / <alpha-value>)",
-        },
-        live: "rgb(var(--live-rgb) / <alpha-value>)",
-        // Legacy accent aliases — kept so every existing page keeps its colours.
-        accent: {
-          red: "rgb(var(--accent-red-rgb) / <alpha-value>)",
-          blue: "rgb(var(--accent-blue-rgb) / <alpha-value>)",
-          amber: "rgb(var(--brass-light-rgb) / <alpha-value>)",
-        },
+    // Replace Tailwind's default palette so all generated color utilities use approved tokens.
+    colors: {
+      transparent: "transparent",
+      current: "currentColor",
+      inherit: "inherit",
+      white: color("surface"),
+      black: color("bg"),
+      bg: color("bg"),
+      surface: {
+        DEFAULT: color("surface"),
+        muted: color("bg"),
+        alternate: color("bg"),
+        border: color("border"),
       },
+      border: color("border"),
+      text: {
+        DEFAULT: color("text"),
+        muted: color("text-muted"),
+      },
+      accent: {
+        DEFAULT: color("accent"),
+        hover: color("accent-hover"),
+        red: color("accent"),
+        blue: color("accent"),
+        amber: color("accent"),
+      },
+      dark: color("dark"),
+      darkText: color("dark-text"),
+      paper: {
+        DEFAULT: color("text"),
+        muted: color("text-muted"),
+        dim: color("text-muted"),
+      },
+      ink: {
+        DEFAULT: color("text"),
+        soft: color("bg"),
+        card: color("surface"),
+        deep: color("bg"),
+      },
+      muted: {
+        DEFAULT: color("text-muted"),
+        dark: color("text-muted"),
+        deep: color("text-muted"),
+      },
+      canvas: {
+        DEFAULT: color("bg"),
+        raised: color("surface"),
+        deep: color("border"),
+      },
+      char: {
+        DEFAULT: color("text"),
+        soft: color("text-muted"),
+        faint: color("text-muted"),
+      },
+      brass: {
+        DEFAULT: color("accent"),
+        light: color("text-muted"),
+        deep: color("accent"),
+      },
+      live: color("accent"),
+      content: {
+        DEFAULT: color("text"),
+        muted: color("text-muted"),
+        subtle: color("text-muted"),
+      },
+      brand: {
+        DEFAULT: color("accent"),
+        deep: color("accent-hover"),
+        light: color("text-muted"),
+        primary: color("accent"),
+        muted: color("text-muted"),
+      },
+      zinc: neutral,
+      slate: neutral,
+      gray: neutral,
+      neutral,
+      stone: neutral,
+      emerald: accentScale,
+      green: accentScale,
+      teal: accentScale,
+      blue: accentScale,
+      indigo: accentScale,
+      violet: accentScale,
+      purple: accentScale,
+      pink: accentScale,
+      rose: accentScale,
+      red: accentScale,
+      amber: accentScale,
+      yellow: accentScale,
+      orange: accentScale,
+    },
+    extend: {
       fontFamily: {
-        sans: ["var(--font-body)", "Inter", "system-ui", "-apple-system", "sans-serif"],
-        serif: ["var(--font-display)", "Instrument Serif", "Newsreader", "Georgia", "serif"],
-        mono: ["var(--font-mono)", "IBM Plex Mono", "ui-monospace", "monospace"],
-        logo: ["var(--font-logo)", "Outfit", "sans-serif"],
+        sans: ["var(--font-body)", "Inter", "system-ui", "sans-serif"],
+        serif: ["var(--font-heading)", "Instrument Serif", "Georgia", "serif"],
+        mono: ["var(--font-body)", "Inter", "system-ui", "sans-serif"],
+        logo: ["var(--font-body)", "Inter", "system-ui", "sans-serif"],
       },
       borderRadius: {
         card: "var(--radius-card)",
-        panel: "var(--radius-panel)",
+        panel: "var(--radius-card)",
       },
       boxShadow: {
-        soft: "var(--shadow-soft)",
-        lift: "var(--shadow-lift)",
-        glow: "var(--shadow-glow)",
+        soft: "var(--shadow-card)",
+        lift: "var(--shadow-card)",
+        glow: "var(--shadow-card)",
       },
-      maxWidth: {
-        shell: "var(--shell)",
-      },
+      maxWidth: { shell: "var(--shell)" },
       transitionTimingFunction: {
-        expo: "cubic-bezier(0.22, 1, 0.36, 1)",
+        expo: "var(--ease-standard)",
       },
       animation: {
-        "reveal-in": "reveal-in .85s cubic-bezier(.22,1,.36,1) forwards",
-        "hero-kenburns": "hero-kenburns 28s ease-in-out infinite alternate",
-        "hero-enter": "hero-enter .72s cubic-bezier(.22,1,.36,1) forwards",
-        "nano-draw": "nano-draw 2.2s ease-out forwards",
-        progress: "progress var(--slide-duration, 5600ms) linear forwards",
-        "pulse-ring": "pulse-ring 2.4s cubic-bezier(.22,1,.36,1) infinite",
-        "spin-slow": "spin-slow 26s linear infinite",
-        "mesh-drift": "mesh-drift 22s ease-in-out infinite alternate",
-        "float-y": "float-y 3.4s ease-in-out infinite",
-        "scroll-cue": "scroll-cue 2.2s cubic-bezier(.22,1,.36,1) infinite",
-        "shine-sweep": "shine-sweep 1s cubic-bezier(.22,1,.36,1)",
+        "reveal-in": "page-enter 300ms ease both",
+        "fade-in": "page-enter 300ms ease both",
+        "pulse-ring": "none",
+        "hero-kenburns": "none",
+        "mesh-drift": "none",
       },
       keyframes: {
-        "reveal-in": {
-          "0%": { opacity: "0", transform: "translateY(16px)" },
-          "100%": { opacity: "1", transform: "none" },
-        },
-        "hero-kenburns": {
-          "0%": { transform: "scale(1)" },
-          "100%": { transform: "scale(1.055)" },
-        },
-        "hero-enter": {
-          "0%": { opacity: "0", transform: "translateY(24px)" },
-          "100%": { opacity: "1", transform: "none" },
-        },
-        "nano-draw": {
-          "0%": { strokeDashoffset: "1000" },
-          "100%": { strokeDashoffset: "0" },
-        },
-        progress: {
-          "0%": { transform: "scaleX(0)" },
-          "100%": { transform: "scaleX(1)" },
-        },
-        "pulse-ring": {
-          "0%": { opacity: "0.7", transform: "scale(0.7)" },
-          "70%": { opacity: "0", transform: "scale(2.2)" },
-          "100%": { opacity: "0", transform: "scale(2.2)" },
-        },
-        "spin-slow": {
-          "0%": { transform: "rotate(0deg)" },
-          "100%": { transform: "rotate(360deg)" },
-        },
-        "mesh-drift": {
-          "0%": { transform: "translate3d(-4%, -2%, 0) scale(1)" },
-          "100%": { transform: "translate3d(6%, 4%, 0) scale(1.12)" },
-        },
-        "float-y": {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(7px)" },
-        },
-        "scroll-cue": {
-          "0%": { opacity: "0", transform: "translateY(-8px)" },
-          "35%": { opacity: "1" },
-          "100%": { opacity: "0", transform: "translateY(18px)" },
-        },
-        "shine-sweep": {
-          "0%": { transform: "translateX(-120%)" },
-          "100%": { transform: "translateX(220%)" },
+        "page-enter": {
+          "0%": { opacity: "0", transform: "translateY(8px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
       },
     },
