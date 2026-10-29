@@ -5,7 +5,6 @@ import { ChevronDown, ArrowRight, Mail } from "lucide-react";
 import { siteMeta } from "@/data/vectis";
 import Container from "@/components/Container";
 import SectionLabel from "@/components/SectionLabel";
-import Button from "@/components/Button";
 
 const contactFaqs = [
   {
@@ -32,10 +31,10 @@ export default function ContactPageContent() {
         <div className="max-w-3xl">
           <SectionLabel className="eyebrow-light">Start a conversation</SectionLabel>
           <h1 className="mt-6 font-serif text-[clamp(2.8rem,6vw,5.8rem)] leading-[1.02] tracking-[-0.035em]">
-            Tell us what you&apos;re trying to make better.
+            Tell us what your business needs to improve.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-char-soft">
-            Whether you need custom software, a considered web application, or a practical use for AI, start with the problem. We&apos;ll take it from there together.
+            Share the workflow, system, or customer experience you want to improve. We&apos;ll discuss whether custom software, an integration, or AI automation is the right fit.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <button type="button" onClick={openForm} className="btn btn-primary group">
@@ -46,7 +45,6 @@ export default function ContactPageContent() {
               <Mail className="h-3.5 w-3.5" aria-hidden="true" />
               <span>{siteMeta.email}</span>
             </a>
-            <Button href="/#products" variant="text">See our products</Button>
           </div>
         </div>
 

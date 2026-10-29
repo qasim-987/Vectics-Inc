@@ -129,10 +129,10 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-body)", "Inter", "system-ui", "sans-serif"],
-        serif: ["var(--font-heading)", "Instrument Serif", "Georgia", "serif"],
-        mono: ["var(--font-body)", "Inter", "system-ui", "sans-serif"],
-        logo: ["var(--font-body)", "Inter", "system-ui", "sans-serif"],
+        sans: ["var(--font-body)"],
+        serif: ["var(--font-body)"],
+        mono: ["var(--font-body)"],
+        logo: ["var(--font-body)"],
       },
       borderRadius: {
         card: "var(--radius-card)",

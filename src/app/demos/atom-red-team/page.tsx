@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
-export default function RedirectPage() {
-  redirect("/demos/threat-monitor");
+export default function LegacyRouteRedirect() {
+  redirect("/#services");
 }

@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
-export default function RedirectPage() {
-  redirect("/open-axiom");
+export default function LegacyRouteRedirect() {
+  redirect("/#services");
 }

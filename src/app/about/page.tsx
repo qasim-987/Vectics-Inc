@@ -1,17 +1,33 @@
-import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, HeartHandshake, Zap, Sparkles } from "lucide-react";
-import { siteMeta, principles } from "@/data/vectis";
+import { ArrowRight } from "lucide-react";
+import { siteMeta } from "@/data/vectis";
 
 export const metadata: Metadata = {
-  title: "About Vectis Inc. — Software & AI Studio",
+  title: "About Vectis Inc.",
   description:
-    "Meet Vectis, building custom software, web applications, and useful AI automation for real-world teams.",
-  alternates: {
-    canonical: "https://vectisoperations.tech/about",
-  },
+    "Vectis builds AI-powered software and automation around the needs of businesses and the people who work in them.",
+  alternates: { canonical: "https://vectisoperations.tech/about" },
 };
+
+const principles = [
+  {
+    title: "Start with the problem",
+    description: "We begin by understanding the work and the people doing it before recommending a technical solution.",
+  },
+  {
+    title: "Keep the scope clear",
+    description: "A focused plan helps teams make informed decisions about what to build now and what can wait.",
+  },
+  {
+    title: "Build for real use",
+    description: "We value clear interfaces, reliable foundations, and software that fits into the way a business operates.",
+  },
+  {
+    title: "Improve with feedback",
+    description: "We make room to learn from day-to-day use and refine the product as needs change.",
+  },
+];
 
 export default function AboutPage() {
   const jsonLd = {
@@ -28,136 +44,61 @@ export default function AboutPage() {
   };
 
   return (
-    <div className="w-full bg-bg pt-12 sm:pt-16 pb-24 text-content">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-
-      {/* Hero Narrative */}
-      <section className="mx-auto max-w-shell px-6 md:px-8 mb-20">
-        <div className="max-w-3xl">
-          <span className="text-xs font-mono uppercase tracking-[0.2em] text-brand block mb-6">About Vectis Inc.
-          </span>
-
-          <h1 className="text-4xl sm:text-6xl font-serif font-normal tracking-tight text-content leading-[1.1]">
-            We build software for the businesses that keep the physical world moving.
+    <div className="w-full bg-bg text-text">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <section className="mx-auto max-w-shell px-6 py-20 sm:px-8 sm:py-28 lg:px-12">
+        <div className="max-w-4xl">
+          <p className="eyebrow">About Vectis</p>
+          <h1 className="mt-6 max-w-[16ch] text-4xl font-semibold leading-[1.05] tracking-[-0.055em] sm:text-6xl">
+            We build software that makes everyday work easier to manage.
           </h1>
-
-          <p className="mt-8 text-lg sm:text-xl text-content-muted font-normal leading-relaxed">
-            Vectis builds practical digital products and custom software for teams doing consequential work. We combine thoughtful product design, dependable engineering, and useful AI automation to make everyday workflows clearer.
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-text-muted">
+            Vectis creates AI-powered software and automation for businesses. We combine practical engineering with a clear understanding of your workflows to build tools your team can use with confidence.
           </p>
         </div>
       </section>
 
-      {/* Origin Story Section */}
-      <section className="border-t border-surface-border bg-surface-muted py-24">
-        <div className="mx-auto max-w-shell px-6 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-            <div className="md:col-span-4">
-              <span className="text-[0.78rem] font-mono uppercase tracking-[0.18em] text-brand">Where we began
-              </span>
-              <h2 className="mt-4 text-3xl sm:text-4xl font-serif text-content">
-                The Concrete Floor
+      <section className="border-y border-border bg-surface py-16 sm:py-20">
+        <div className="mx-auto max-w-shell px-6 sm:px-8 lg:px-12">
+          <div className="grid gap-8 md:grid-cols-[minmax(0,0.7fr)_minmax(0,1fr)] md:gap-16">
+            <div>
+              <p className="eyebrow">How we work</p>
+              <h2 className="mt-4 max-w-[12ch] text-3xl font-semibold leading-tight tracking-[-0.04em] sm:text-4xl">
+                Clear thinking before more technology.
               </h2>
             </div>
-
-            <div className="md:col-span-8 space-y-6 text-base sm:text-lg text-content-muted font-normal leading-relaxed">
+            <div className="space-y-5 text-base leading-7 text-text-muted">
               <p>
-                We start with the work itself: the people, existing systems, handoffs, and small points of friction that accumulate into a larger problem. A useful product begins with understanding those realities, not with choosing a fashionable technology.
+                Every business has its own processes, systems, and constraints. We take time to understand those details before shaping the right software or automation.
               </p>
               <p>
-                From custom software and web applications to AI-powered automation, we focus on clear outcomes, sensible scope, and reliable foundations. The right solution can be a new application, a careful integration, or a simpler way to handle repetitive work.
-              </p>
-              <p>
-                We turn real needs into software that is useful, maintainable, and ready to evolve with the people who rely on it.
+                The result should solve a defined need, fit your team&apos;s day-to-day work, and be straightforward to maintain and improve.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Four Stubborn Ideas */}
-      <section className="py-24 mx-auto max-w-shell px-6 md:px-8">
-        <div className="mb-16">
-          <span className="text-[0.78rem] font-mono uppercase tracking-[0.18em] text-brand">Convictions
-          </span>
-          <h2 className="mt-4 text-3xl sm:text-5xl font-serif font-normal tracking-tight text-content">
-            Four stubborn ideas.
+      <section className="mx-auto max-w-shell px-6 py-16 sm:px-8 sm:py-24 lg:px-12">
+        <div className="max-w-2xl">
+          <p className="eyebrow">Our principles</p>
+          <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-[-0.04em] sm:text-4xl">
+            A thoughtful way to build.
           </h2>
-          <p className="mt-4 text-base text-content-muted max-w-2xl">
-            These are the principles that dictate how we write every line of code at Vectis Inc.
-          </p>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-          <div className="rounded-xl border border-surface-border bg-surface p-8">
-            <span className="font-mono text-xs uppercase tracking-widest text-brand block mb-4">
-              01 • Offline Resilience
-            </span>
-            <h3 className="text-xl font-medium text-content mb-4">
-              Internet connections will fail. The software must not.
-            </h3>
-            <p className="text-sm text-content-muted leading-relaxed">
-              Warehouses have thick concrete walls and unpredictable utility grids. We build desktop-native software powered by local SQLite databases that run without an internet connection for days on end without losing a single transaction.
-            </p>
-          </div>
-
-          <div className="rounded-xl border border-surface-border bg-surface p-8">
-            <span className="font-mono text-xs uppercase tracking-widest text-brand block mb-4">
-              02 • Atomic Accountability
-            </span>
-            <h3 className="text-xl font-medium text-content mb-4">
-              Every single rupee and carton must balance before the office locks.
-            </h3>
-            <p className="text-sm text-content-muted leading-relaxed">
-              We treat inventory and cash with forensic seriousness. Our ledgers are deterministic: stock loaded minus sales minus returns must equal physical vault balances. We don&apos;t hide accounting discrepancies behind fuzzy estimates.
-            </p>
-          </div>
-
-          <div className="rounded-xl border border-surface-border bg-surface p-8">
-            <span className="font-mono text-xs uppercase tracking-widest text-brand block mb-4">
-              03 • Ergonomic Speed
-            </span>
-            <h3 className="text-xl font-medium text-content mb-4">
-              Keyboard velocity beats flashy design animations.
-            </h3>
-            <p className="text-sm text-content-muted leading-relaxed">
-              When an operator is entering three hundred invoices a night, every mouse click is lost time. We design interfaces optimized for rapid numeric keypads, instant tab-navigation, and sub-millisecond database commits.
-            </p>
-          </div>
-
-          <div className="rounded-xl border border-surface-border bg-surface p-8">
-            <span className="font-mono text-xs uppercase tracking-widest text-brand block mb-4">
-              04 • Direct Partnership
-            </span>
-            <h3 className="text-xl font-medium text-content mb-4">
-              We stand next to the people using our tools.
-            </h3>
-            <p className="text-sm text-content-muted leading-relaxed">
-              We do not outsource our customer support to ticket queues. When a distributor has a question during an audit, they talk directly to the engineers who wrote the software. We iterate based on physical feedback, not marketing trends.
-            </p>
-          </div>
+        <div className="mt-8 grid gap-x-10 sm:grid-cols-2 lg:grid-cols-4">
+          {principles.map((principle) => (
+            <article key={principle.title} className="border-t border-border py-6">
+              <h3 className="text-lg font-semibold text-text">{principle.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-text-muted">{principle.description}</p>
+            </article>
+          ))}
         </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-16 border-t border-surface-border bg-surface-muted">
-        <div className="mx-auto max-w-shell px-6 md:px-8 text-center max-w-2xl">
-          <h2 className="text-2xl sm:text-3xl font-serif text-content">
-            Want to see how our software works in real depots?
-          </h2>
-          <p className="mt-4 text-sm sm:text-base text-content-muted leading-relaxed">
-            Read case studies from independent distributors who run RouteCore every day.
-          </p>
-          <div className="mt-6 flex justify-center gap-4">
-            <Link
-              href="/clients"
-              className="inline-flex items-center gap-2 rounded-full bg-brand px-6 py-4 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-brand-deep"
-            >
-              Explore Client Stories
-            </Link>
-          </div>
+        <div className="mt-12 border-t border-border pt-8">
+          <Link href="/contact" className="btn btn-primary group">
+            Talk about your project
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+          </Link>
         </div>
       </section>
     </div>
