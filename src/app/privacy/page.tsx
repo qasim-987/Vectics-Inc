@@ -1,14 +1,12 @@
 import React from "react";
-import type { Metadata } from "next";
 import { siteMeta } from "@/data/vectis";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy — Vectis Inc.",
-  description: "Privacy policy and data governance terms for Vectis Operations Inc. and RouteCore.",
-  alternates: {
-    canonical: "https://vectisoperations.tech/privacy",
-  },
-};
+export const metadata = createPageMetadata(
+  "Privacy Policy",
+  "How Vectis handles information submitted through its website and contact form.",
+  "/privacy",
+);
 
 export default function PrivacyPage() {
   return (

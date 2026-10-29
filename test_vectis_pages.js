@@ -55,7 +55,10 @@ async function runTests() {
         }
       }
       if (/<img\b|<image\b|next\/image/i.test(response.body)) {
-        throw new Error(`${page.path} contains image markup or image imports.`);
+        throw new Error(`${page.path} contains inline image markup or next/image imports.`);
+      }
+      if (!response.body.includes('property="og:image"') || !response.body.includes('name="twitter:card" content="summary_large_image"')) {
+        throw new Error(`${page.path} is missing its Open Graph or Twitter social-card metadata.`);
       }
       if (response.body.toLowerCase().includes("forza")) {
         throw new Error(`${page.path} contains a removed parent-company reference.`);
@@ -102,7 +105,38 @@ async function runTests() {
     });
     if (unavailable.status !== 503) throw new Error("Contact API should report missing server email configuration.");
 
-    console.log("Vectis site checks passed: core pages, redirects, image-free output, mobile navigation, sitemap, and contact API validation.");
+    const rateLimitIp = "198.51.100.42";
+    for (let attempt = 0; attempt < 5; attempt += 1) {
+      const limitedPayload = JSON.stringify({
+        name: "Rate Limit Test",
+        email: "rate-limit@example.com",
+        service: "AI agents",
+        message: "Testing the contact API request limit behavior.",
+        formLoadedAt: Date.now() - 5000,
+      });
+      const response = await request(`${baseUrl}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Content-Length": Buffer.byteLength(limitedPayload), "x-real-ip": rateLimitIp },
+        body: limitedPayload,
+      });
+      if (response.status !== 503) throw new Error(`Expected missing-email 503 before the rate limit; got ${response.status}.`);
+    }
+    const limitedPayload = JSON.stringify({
+      name: "Rate Limit Test",
+      email: "rate-limit@example.com",
+      message: "Testing the contact API request limit behavior.",
+      formLoadedAt: Date.now() - 5000,
+    });
+    const rateLimited = await request(`${baseUrl}/api/contact`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Content-Length": Buffer.byteLength(limitedPayload), "x-real-ip": rateLimitIp },
+      body: limitedPayload,
+    });
+    if (rateLimited.status !== 429 || !rateLimited.headers["retry-after"]) {
+      throw new Error("Contact API did not enforce its per-instance request limit.");
+    }
+
+    console.log("Vectis site checks passed: core pages, redirects, social metadata, mobile navigation, sitemap, contact validation, and rate limiting.");
   } finally {
     server.kill();
   }

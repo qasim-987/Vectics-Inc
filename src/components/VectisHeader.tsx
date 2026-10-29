@@ -14,12 +14,23 @@ const navigation = [
 export default function VectisHeader() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMobileOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    const updateScrollState = () => {
+      const next = window.scrollY > 40;
+      setScrolled((current) => current === next ? current : next);
+    };
+    updateScrollState();
+    window.addEventListener("scroll", updateScrollState, { passive: true });
+    return () => window.removeEventListener("scroll", updateScrollState);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -58,7 +69,7 @@ export default function VectisHeader() {
   const closeMenu = () => setMobileOpen(false);
 
   return (
-    <header className="sticky inset-x-0 top-0 z-50 h-[var(--header-h)] border-b border-border bg-surface">
+    <header className={`site-header sticky inset-x-0 top-0 z-50 h-[var(--header-h)] border-b border-border ${scrolled ? "is-scrolled" : ""}`}>
       <div className="mx-auto flex h-full w-full max-w-shell items-center justify-between px-6 sm:px-8 lg:px-12">
         <Link href="/" className="inline-flex min-h-11 items-center rounded-sm text-lg font-semibold tracking-[-0.04em] text-text" aria-label="Vectis Inc. home">
           Vectis <span className="ml-2 font-normal text-text-muted">Inc.</span>
@@ -90,7 +101,8 @@ export default function VectisHeader() {
         ref={panelRef}
         id="mobile-menu"
         aria-hidden={!mobileOpen}
-        className={`fixed inset-x-0 bottom-0 top-[var(--header-h)] z-40 overflow-y-auto border-t border-border bg-surface px-6 py-8 lg:hidden ${mobileOpen ? "block" : "hidden"}`}
+        data-open={mobileOpen}
+        className="mobile-menu-panel fixed inset-x-0 bottom-0 top-[var(--header-h)] z-40 overflow-y-auto border-t border-border bg-surface px-6 py-8 lg:hidden"
       >
         <nav aria-label="Mobile primary" className="mx-auto flex max-w-shell flex-col">
           {navigation.map((item) => (
