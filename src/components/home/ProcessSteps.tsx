@@ -1,3 +1,5 @@
+import Reveal from "@/components/home/Reveal";
+
 const approach = [
   {
     title: "Understand the work",
@@ -21,7 +23,7 @@ export default function ProcessSteps() {
   return (
     <section id="approach" aria-labelledby="approach-title" className="bg-bg py-20 sm:py-28">
       <div className="mx-auto max-w-shell px-6 sm:px-8 lg:px-12">
-        <div className="grid gap-6 border-b border-border pb-10 md:grid-cols-[minmax(0,1fr)_minmax(16rem,0.65fr)] md:items-end md:gap-12">
+        <Reveal className="grid gap-6 border-b border-border pb-10 md:grid-cols-[minmax(0,1fr)_minmax(16rem,0.65fr)] md:items-end md:gap-12">
           <div>
             <p className="eyebrow">Our approach</p>
             <h2 id="approach-title" className="mt-4 max-w-[14ch] text-3xl font-semibold leading-tight tracking-[-0.04em] text-text sm:text-5xl">
@@ -31,14 +33,16 @@ export default function ProcessSteps() {
           <p className="max-w-xl text-base leading-7 text-text-muted">
             Straightforward collaboration keeps the project focused, the decisions clear, and the result grounded in how your business operates.
           </p>
-        </div>
+        </Reveal>
 
         <div className="mt-2 grid gap-x-10 sm:grid-cols-2 lg:grid-cols-4">
-          {approach.map((item) => (
-            <article key={item.title} className="border-b border-border py-7 sm:py-8">
-              <h3 className="text-lg font-semibold tracking-[-0.02em] text-text">{item.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-text-muted">{item.description}</p>
-            </article>
+          {approach.map((item, index) => (
+            <Reveal key={item.title} staggerIndex={index} className="h-full">
+              <article className="h-full border-b border-border py-7 sm:py-8">
+                <h3 className="text-lg font-semibold tracking-[-0.02em] text-text">{item.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-text-muted">{item.description}</p>
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>

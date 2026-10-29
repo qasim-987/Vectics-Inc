@@ -1,14 +1,12 @@
 import React from "react";
-import type { Metadata } from "next";
 import { siteMeta } from "@/data/vectis";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Terms of Use — Vectis Inc.",
-  description: "Terms of use, software licensing terms, and operational warranties for Vectis Operations Inc.",
-  alternates: {
-    canonical: "https://vectisoperations.tech/terms",
-  },
-};
+export const metadata = createPageMetadata(
+  "Terms of Use",
+  "Terms for using the Vectis website and contacting our team about software and automation work.",
+  "/terms",
+);
 
 export default function TermsPage() {
   return (

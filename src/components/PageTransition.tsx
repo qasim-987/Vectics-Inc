@@ -1,15 +1,28 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
-/**
- * Smooth page-load and route transitions. Implemented with a CSS keyframe
- * (not Framer Motion) so content is visible in the server-rendered HTML even
- * before hydration. Keying by pathname replays the fade on every navigation.
- */
+/** A small CSS route transition; Next links keep their normal modifier-click behavior. */
 export default function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const previousPath = useRef(pathname);
+
+  useEffect(() => {
+    if (previousPath.current === pathname) return;
+    previousPath.current = pathname;
+
+    const frame = window.requestAnimationFrame(() => {
+      const heading = document.querySelector<HTMLElement>("#main-content h1");
+      if (!heading) return;
+      heading.tabIndex = -1;
+      heading.focus({ preventScroll: true });
+      heading.addEventListener("blur", () => heading.removeAttribute("tabindex"), { once: true });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [pathname]);
+
   return (
     <div key={pathname} className="page-enter">
       {children}

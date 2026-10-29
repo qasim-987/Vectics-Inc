@@ -5,8 +5,10 @@ import VectisFooter from "@/components/VectisFooter";
 import ContactModal from "@/components/ContactModal";
 import PageTransition from "@/components/PageTransition";
 import { siteMeta } from "@/data/vectis";
+import { SITE_URL } from "@/lib/seo";
 
-const siteUrl = "https://vectisoperations.tech";
+const siteUrl = SITE_URL;
+const socialImage = "/opengraph-image";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -36,14 +38,16 @@ export const metadata: Metadata = {
       "AI-powered software and automation for businesses, built around the way teams work.",
     url: siteUrl,
     siteName: siteMeta.name,
+    images: [{ url: socialImage, width: 1200, height: 630, alt: "Vectis Inc. — AI software and business automation" }],
     locale: "en_US",
     type: "website",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Vectis Inc. — AI Software & Business Automation",
     description:
       "AI-powered software and automation for businesses, built around the way teams work.",
+    images: [socialImage],
   },
   robots: {
     index: true,
@@ -85,6 +89,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrg) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }} />
+        <noscript>
+          <style
+            dangerouslySetInnerHTML={{
+              __html: ".reveal{opacity:1!important;transform:none!important}.hero-intro-ready .hero-eyebrow,.hero-intro-ready .hero-title,.hero-intro-ready .hero-description,.hero-intro-ready .hero-actions{animation:none!important;opacity:1!important;transform:none!important}",
+            }}
+          />
+        </noscript>
       </head>
       <body className="min-h-screen bg-bg text-text antialiased font-sans">
         <a

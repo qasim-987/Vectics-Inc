@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { siteMeta } from "@/data/vectis";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About Vectis Inc.",
-  description:
-    "Vectis builds AI-powered software and automation around the needs of businesses and the people who work in them.",
-  alternates: { canonical: "https://vectisoperations.tech/about" },
-};
+export const metadata = createPageMetadata(
+  "About",
+  "Vectis builds AI-powered software and automation around the needs of businesses and the people who work in them.",
+  "/about",
+);
 
 const principles = [
   {

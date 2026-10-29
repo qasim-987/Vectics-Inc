@@ -16,6 +16,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
     name: "",
     email: "",
     organization: "",
+    service: "",
     message: "",
     botField: "",
   });
@@ -34,7 +35,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
     }
     if (status === "success") {
       setStatus("idle");
-      setFormData({ name: "", email: "", organization: "", message: "", botField: "" });
+      setFormData({ name: "", email: "", organization: "", service: "", message: "", botField: "" });
     }
   };
 
@@ -121,9 +122,10 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          firstName: formData.name,
+          name: formData.name,
           email: formData.email,
-          service: formData.organization || "Project or area of interest",
+          organization: formData.organization,
+          service: formData.service,
           message: formData.message,
           botField: formData.botField,
           formLoadedAt,
@@ -136,9 +138,9 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
       }
 
       setStatus("success");
-    } catch (err: any) {
+    } catch (err: unknown) {
       setStatus("error");
-      setErrorMessage(err.message || "An unexpected error occurred. Please contact us directly via email.");
+      setErrorMessage(err instanceof Error ? err.message : "An unexpected error occurred. Please contact us directly via email.");
     }
   };
 
@@ -161,7 +163,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
         <button
           onClick={handleClose}
           aria-label="Close dialog"
-          className="absolute right-4 top-4 rounded-lg p-2 text-content-muted hover:bg-surface-muted hover:text-content transition-colors"
+          className="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-lg text-content-muted transition-colors hover:bg-surface-muted hover:text-content"
         >
           <X className="h-5 w-5" />
         </button>
@@ -178,7 +180,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
         </div>
 
         {status === "success" ? (
-          <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-6 text-center space-y-4">
+          <div role="status" aria-live="polite" aria-atomic="true" className="rounded-lg border border-emerald-200 bg-emerald-50 p-6 text-center space-y-4">
             <CheckCircle2 className="mx-auto h-10 w-10 text-emerald-700" />
             <h3 className="text-lg font-semibold text-content">Message received</h3>
             <p className="text-sm text-content-muted">
@@ -186,15 +188,18 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
             </p>
             <button
               onClick={handleClose}
-              className="mt-4 inline-flex items-center justify-center rounded-md bg-brand px-6 py-2 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-brand-deep"
+              className="mt-4 inline-flex min-h-11 items-center justify-center rounded-md bg-brand px-6 py-2 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-brand-deep"
             >
               Done
             </button>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
+            <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+              {status === "loading" ? "Sending your message." : ""}
+            </p>
             {status === "error" && (
-              <div className="flex items-start gap-4 rounded-lg border border-accent-red/30 bg-accent-red/10 p-4 text-xs text-content">
+              <div role="alert" aria-live="assertive" className="flex items-start gap-4 rounded-lg border border-accent-red/30 bg-accent-red/10 p-4 text-xs text-content">
                 <AlertCircle className="h-4 w-4 shrink-0 text-accent-red mt-2" />
                 <div className="space-y-2">
                   <p>{errorMessage}</p>
@@ -208,9 +213,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
               </div>
             )}
 
-            {/* Honeypot field (anti-spam) */}
-            <div className="hidden" aria-hidden="true">
-              <label htmlFor="botField">Leave this blank</label>
+            <div className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
               <input
                 type="text"
                 id="botField"
@@ -229,11 +232,14 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
               <input
                 type="text"
                 id="name"
+                name="name"
+                autoComplete="name"
+                maxLength={120}
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Your name"
-                className="w-full rounded-md border border-surface-border bg-surface-muted px-4 py-2 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all"
+                className="w-full rounded-md border border-surface-border bg-surface-muted px-4 py-3 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all"
               />
             </div>
 
@@ -244,11 +250,14 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
               <input
                 type="email"
                 id="email"
+                name="email"
+                autoComplete="email"
+                maxLength={254}
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="name@company.com"
-                className="w-full rounded-md border border-surface-border bg-surface-muted px-4 py-2 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all"
+                className="w-full rounded-md border border-surface-border bg-surface-muted px-4 py-3 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all"
               />
             </div>
 
@@ -259,11 +268,36 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
               <input
                 type="text"
                 id="organization"
+                name="organization"
+                autoComplete="organization"
+                maxLength={180}
                 value={formData.organization}
                 onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
                 placeholder="Company or project (optional)"
-                className="w-full rounded-md border border-surface-border bg-surface-muted px-4 py-2 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all"
+                className="w-full rounded-md border border-surface-border bg-surface-muted px-4 py-3 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all"
               />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="service" className="text-xs font-medium uppercase tracking-wider text-content-muted">
+                Service (optional)
+              </label>
+              <select
+                id="service"
+                name="service"
+                value={formData.service}
+                onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                className="w-full rounded-md border border-surface-border bg-surface-muted px-4 py-3 text-sm text-content focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
+              >
+                <option value="">Select a service</option>
+                <option value="AI business automation">AI business automation</option>
+                <option value="AI agents">AI agents</option>
+                <option value="Custom websites">Custom websites</option>
+                <option value="Web apps">Web apps</option>
+                <option value="Dashboards & analytics">Dashboards &amp; analytics</option>
+                <option value="Internal tools">Internal tools</option>
+                <option value="API integrations">API integrations</option>
+              </select>
             </div>
 
             <div className="space-y-2">
@@ -272,12 +306,15 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
               </label>
               <textarea
                 id="message"
+                name="message"
+                minLength={10}
+                maxLength={8000}
                 required
                 rows={4}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 placeholder="Tell us about the work you want to improve or the product you want to build..."
-                className="w-full rounded-md border border-surface-border bg-surface-muted px-4 py-2 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all resize-none"
+                className="w-full rounded-md border border-surface-border bg-surface-muted px-4 py-3 text-sm text-content placeholder:text-content-subtle focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand transition-all resize-none"
               />
             </div>
 
@@ -293,7 +330,7 @@ export default function ContactModal({ isOpen: controlledIsOpen, onClose: contro
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-md bg-brand px-6 py-2 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-brand-deep disabled:opacity-50"
+                className="min-h-11 w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-md bg-brand px-6 py-2 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:bg-brand-deep disabled:opacity-50"
               >
                 {status === "loading" ? (
                   <span>Sending...</span>
