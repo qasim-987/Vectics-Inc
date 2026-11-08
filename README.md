@@ -53,6 +53,14 @@
 - **Accessibility & Motion Compliance**:
   - Full `@media (prefers-reduced-motion: reduce)` support across all CSS transitions and animations.
   - WCAG 2.1 AA compliant contrast ratios and keyboard-accessible navigation drawers and accordions.
+- **Bulk Email Campaigns (`scripts/email-campaign.mjs`)**:
+  - Dry-run-first CLI sender (nothing leaves the machine without `--send`).
+  - CSV import with validation, case-insensitive dedupe, and tag-based segmentation (`--segment vip`).
+  - Per-recipient personalisation with fallbacks (`{{first_name|there}}`), HTML-escaped.
+  - Batched Resend delivery (100 per call) with per-recipient CSV/JSON logs.
+  - Signed one-click unsubscribe (`/api/unsubscribe`) with RFC 8058 POST support and a persistent
+    suppression list, honoured on every campaign.
+  - Full guide: [`BULK_EMAIL_SETUP.md`](./BULK_EMAIL_SETUP.md).
 
 ---
 
@@ -107,6 +115,7 @@ Starts the production server on port 3000.
 ├── src/
 │   ├── app/
 │   │   ├── api/contact/route.ts        # Real contact backend API route (anti-spam)
+│   │   ├── api/unsubscribe/route.ts    # Signed 1-click unsubscribe (GET page + POST RFC 8058)
 │   │   ├── blog/                       # Engineering blog index
 │   │   │   ├── page.tsx
 │   │   │   └── [slug]/page.tsx         # Dynamic article reader
@@ -139,6 +148,9 @@ Starts the production server on port 3000.
 │   │   ├── LogoStrip.tsx               # Continuous marquee strip
 │   │   ├── ContactSection.tsx          # Validated contact form (connected to /api/contact)
 │   │   └── Footer.tsx                  # 5-column footer with dynamic live local clock
+│   ├── lib/
+│   │   ├── seo.ts
+│   │   └── unsubscribe-token.ts        # HMAC signing shared by the API and the sender
 │   └── data/
 │       ├── blog.ts                     # 4 technical blueprints & articles
 │       ├── caseStudies.ts              # Compatibility alias
@@ -152,6 +164,28 @@ Starts the production server on port 3000.
 ├── tailwind.config.ts
 └── tsconfig.json
 ```
+
+---
+
+## Bulk Email Campaigns
+
+See **[`BULK_EMAIL_SETUP.md`](./BULK_EMAIL_SETUP.md)** for the full walkthrough (domain authentication,
+list hygiene, warm-up, consent rules, troubleshooting).
+
+```bash
+npm test        # verify unsubscribe signing (sender ↔ API parity)
+
+# Dry run — renders a preview, sends nothing
+npm run campaign -- --contacts campaigns/my-list.csv --template campaigns/templates/example.json
+
+# Real send to a segment
+npm run campaign -- --contacts campaigns/my-list.csv \
+  --template campaigns/templates/example.json --segment vip --send
+```
+
+Requires `RESEND_API_KEY`, `CONTACT_FROM_EMAIL`, `EMAIL_UNSUBSCRIBE_SECRET`, `NEXT_PUBLIC_SITE_URL`
+and — for persistent unsubscribes — `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY`
+(see `.env.example` and `supabase/email-schema.sql`).
 
 ---
 

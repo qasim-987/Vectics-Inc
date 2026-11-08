@@ -32,3 +32,9 @@ yarn-error.log*
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Bulk email campaign data — customer lists and suppression logs are private
+/campaigns/logs/
+/campaigns/*.csv
+!/campaigns/contacts.example.csv
+/campaigns/suppressions.json
