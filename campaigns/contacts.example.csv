@@ -1,0 +1,7 @@
+email,first_name,last_name,company,industry,tags,last_contact
+aisha.khan@example.com,Aisha,Khan,Northwind Logistics,logistics,vip;manufacturing,2026-09-14
+bilal.raza@example.com,Bilal,Raza,Meridian Clinics,healthcare,newsletter,2026-10-02
+sara.ahmed@example.com,Sara,Ahmed,Coastal Retail Group,retail,vip;retail,2026-08-30
+omar.farouk@example.com,Omar,Farouk,,technology,newsletter,2026-10-21
+not-an-email,Invalid,Row,Broken Co,retail,newsletter,
+bilal.raza@example.com,Bilal,Raza,Meridian Clinics,healthcare,newsletter,2026-10-02

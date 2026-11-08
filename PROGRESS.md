@@ -106,6 +106,31 @@ A complete, clean-room re-implementation of the architectural system analyzed fr
   - Responsive test suite: 66/66 test passes across 375px (Mobile), 768px (Tablet), and 1440px (Desktop).
   - First-load shared JS: 87.3 kB.
 
+### Phase 6: Bulk Email Campaigns (COMPLETED)
+- [x] **Dry-run-first CLI sender (`scripts/email-campaign.mjs`)**:
+  - RFC 4180 CSV parser (quotes, escaped quotes, CRLF, embedded newlines, BOM).
+  - Validation, case-insensitive dedupe, tag segmentation (`--segment vip`), `--limit`, `--list-tags`.
+  - Per-recipient personalisation with fallbacks (`{{first_name|there}}`), HTML-escaped in HTML bodies.
+  - Batched Resend delivery (100/batch), per-batch delay, per-recipient CSV + JSON logs, non-zero exit on failure.
+  - `--mock` for offline pipeline testing; nothing sends without `--send`.
+- [x] **Signed one-click unsubscribe (`/api/unsubscribe`)**:
+  - HMAC-SHA256 tokens bound to the address, constant-time verification, base64url-safe.
+  - GET renders a branded confirmation page; POST answers the RFC 8058 one-click request.
+  - Writes to the Supabase `email_suppressions` table; refuses to fake success when the store is unreachable.
+  - `List-Unsubscribe` + `List-Unsubscribe-Post` headers on every campaign message.
+- [x] **Suppression enforcement**: local `campaigns/suppressions.json` ∪ Supabase, checked before every send.
+- [x] **`supabase/email-schema.sql`**: `email_suppressions` (RLS closed to anon/authenticated),
+  optional `email_contacts` and `email_campaigns`.
+- [x] **Parity test (`npm test`)**: asserts the sender and the API sign/verify identically, tokens are
+  URL-safe, address-bound, and survive `URLSearchParams` round-trips.
+- [x] **`BULK_EMAIL_SETUP.md`**: path comparison, domain authentication (SPF/DKIM/DMARC), list hygiene,
+  warm-up schedule, CAN-SPAM/PECR/GDPR guidance, troubleshooting.
+
+**Verified:** 4/4 unsubscribe paths exercised against a live server (invalid token → 400, valid GET → 200,
+one-click POST → 200, tampered address → 400); sender dry run, segment send, suppression skip, and
+offline network failure all behave correctly; `tsc --noEmit` clean; `next build` clean with
+`/api/unsubscribe` registered as a dynamic route.
+
 ---
 
 ## Verification Summary Table

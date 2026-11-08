@@ -7,7 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test:palette": "node test_color_palette.js"
+    "test:palette": "node test_color_palette.js",
+    "campaign": "node scripts/email-campaign.mjs",
+    "campaign:dry": "node scripts/email-campaign.mjs --contacts campaigns/contacts.example.csv --template campaigns/templates/example.json",
+    "campaign:tags": "node scripts/email-campaign.mjs --contacts campaigns/contacts.example.csv --template campaigns/templates/example.json --list-tags",
+    "check:unsubscribe-token": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/check-unsubscribe-token.mjs",
+    "test": "npm run check:unsubscribe-token"
   },
   "dependencies": {
     "lucide-react": "^0.453.0",
